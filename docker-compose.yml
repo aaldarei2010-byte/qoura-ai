@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  qoura-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - BASEROW_BASE_URL=${BASEROW_BASE_URL}
+        - BASEROW_API_TOKEN=${BASEROW_API_TOKEN}
+        - BASEROW_TABLE_ID=${BASEROW_TABLE_ID}
+        - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - BASEROW_BASE_URL=${BASEROW_BASE_URL}
+      - BASEROW_API_TOKEN=${BASEROW_API_TOKEN}
+      - BASEROW_TABLE_ID=${BASEROW_TABLE_ID}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add Baserow as a local service
+  # Uncomment if you want to run Baserow locally instead of using cloud
+  # baserow:
+  #   image: baserow/baserow:latest
+  #   ports:
+  #     - "8080:80"
+  #   environment:
+  #     - BASEROW_PUBLIC_URL=http://localhost:8080
+  #   volumes:
+  #     - baserow_data:/baserow/data
+  #   restart: unless-stopped
+
+# volumes:
+#   baserow_data:
