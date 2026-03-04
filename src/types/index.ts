@@ -88,6 +88,17 @@ export interface Dictionary {
     subtitle: string;
     points: string[];
   };
+  childrenProgram: {
+    title: string;
+    subtitle: string;
+    badge: string;
+    ageGroup: string;
+    features: {
+      title: string;
+      description: string;
+    }[];
+    cta: string;
+  };
   credibility: {
     title: string;
     subtitle: string;

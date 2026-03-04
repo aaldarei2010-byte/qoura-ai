@@ -209,7 +209,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <p className="text-sm text-gray-500">{item.label}</p>
-                        <p className="text-black font-medium group-hover:text-primary-500 transition-colors">
+                        <p className="text-black font-medium group-hover:text-primary-500 transition-colors" dir={item.href.startsWith('tel:') || item.href.startsWith('mailto:') ? 'ltr' : undefined}>
                           {item.value}
                         </p>
                       </div>

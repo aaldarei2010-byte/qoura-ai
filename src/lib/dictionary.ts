@@ -49,6 +49,35 @@ const dictionaries: Record<Language, Dictionary> = {
         'نقدم محتوى مخصص بهوية إماراتية لكل مؤسسة',
       ],
     },
+    childrenProgram: {
+      title: 'برنامج الذكاء الاصطناعي للأطفال',
+      subtitle: 'نغرس بذور المستقبل في عقول أطفالنا من خلال برامج تعليمية ممتعة وتفاعلية في الذكاء الاصطناعي',
+      badge: 'للأطفال',
+      ageGroup: 'الفئة العمرية: 10 - 17 سنة',
+      features: [
+        {
+          title: 'التفكير الحاسوبي',
+          description: 'تعليم الأطفال أساسيات التفكير المنطقي وحل المشكلات باستخدام مفاهيم الذكاء الاصطناعي',
+        },
+        {
+          title: 'مشاريع تفاعلية',
+          description: 'بناء مشاريع حقيقية مثل روبوتات المحادثة والتعرف على الصور بطريقة ممتعة',
+        },
+        {
+          title: 'وكيل ذكاء اصطناعي',
+          description: 'تعليم الأطفال بناء وكلاء ذكاء اصطناعي (AI Agents) قادرين على اتخاذ القرارات وتنفيذ المهام بشكل مستقل',
+        },
+        {
+          title: 'الإبداع الرقمي',
+          description: 'استخدام أدوات الذكاء الاصطناعي لإنشاء فنون رقمية وقصص تفاعلية وألعاب',
+        },
+        {
+          title: 'مستقبل آمن',
+          description: 'تعليم الأطفال الاستخدام الآمن والأخلاقي للتكنولوجيا والذكاء الاصطناعي',
+        },
+      ],
+      cta: 'سجّل طفلك الآن',
+    },
     credibility: {
       title: 'موثوقون من كبرى المؤسسات',
       subtitle: 'شركاء النجاح في رحلة التحول الرقمي',
@@ -186,6 +215,35 @@ const dictionaries: Record<Language, Dictionary> = {
         'Emirati specialized team that understands local context and culture',
         'Customized content with Emirati identity for every organization',
       ],
+    },
+    childrenProgram: {
+      title: 'AI Program for Children',
+      subtitle: 'Planting the seeds of the future in our children\'s minds through fun and interactive AI educational programs',
+      badge: 'For Kids',
+      ageGroup: 'Age Group: 10 - 17 Years',
+      features: [
+        {
+          title: 'Computational Thinking',
+          description: 'Teaching children the fundamentals of logical thinking and problem-solving using AI concepts',
+        },
+        {
+          title: 'Interactive Projects',
+          description: 'Building real projects like chatbots and image recognition in a fun and engaging way',
+        },
+        {
+          title: 'AI Agent',
+          description: 'Teaching children to build AI Agents capable of making decisions and executing tasks autonomously',
+        },
+        {
+          title: 'Digital Creativity',
+          description: 'Using AI tools to create digital art, interactive stories, and games',
+        },
+        {
+          title: 'Safe Future',
+          description: 'Teaching children the safe and ethical use of technology and artificial intelligence',
+        },
+      ],
+      cta: 'Register Your Child Now',
     },
     credibility: {
       title: 'Trusted by Leading Organizations',

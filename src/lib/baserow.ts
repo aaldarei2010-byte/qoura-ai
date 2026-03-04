@@ -59,9 +59,9 @@ function mapBaserowRowToLead(row: BaserowLeadRow): Lead {
     audience_type: row.audience_type as Lead['audience_type'],
     interest: row.interest as Lead['interest'],
     message: row.message,
-    status: row.status as LeadStatus,
+    status: (row.status || 'new') as LeadStatus,
     notes: row.notes || '',
-    created_at: row.created_at,
+    created_at: '',
   };
 }
 
@@ -76,11 +76,10 @@ export async function createLead(data: LeadFormData): Promise<Lead> {
     message: data.message,
     status: 'new',
     notes: '',
-    created_at: new Date().toISOString(),
   };
 
   const result = await baserowFetch<BaserowLeadRow>(
-    `/api/database/rows/table/${BASEROW_TABLE_ID}/`,
+    `/api/database/rows/table/${BASEROW_TABLE_ID}/?user_field_names=true`,
     {
       method: 'POST',
       body: JSON.stringify(payload),
@@ -106,9 +105,6 @@ export async function listLeads(params?: {
     queryParams.set('size', params.size.toString());
   }
 
-  // Add ordering by created_at descending (newest first)
-  queryParams.set('order_by', '-created_at');
-
   // Build filter for status if provided
   if (params?.status) {
     queryParams.set('filter__status__equal', params.status);
@@ -119,8 +115,9 @@ export async function listLeads(params?: {
     queryParams.set('search', params.search);
   }
 
+  queryParams.set('user_field_names', 'true');
   const queryString = queryParams.toString();
-  const endpoint = `/api/database/rows/table/${BASEROW_TABLE_ID}/${queryString ? `?${queryString}` : ''}`;
+  const endpoint = `/api/database/rows/table/${BASEROW_TABLE_ID}/?${queryString}`;
 
   const result = await baserowFetch<BaserowListResponse>(endpoint);
 
@@ -142,7 +139,7 @@ export async function updateLeadStatus(
   }
 
   const result = await baserowFetch<BaserowLeadRow>(
-    `/api/database/rows/table/${BASEROW_TABLE_ID}/${leadId}/`,
+    `/api/database/rows/table/${BASEROW_TABLE_ID}/${leadId}/?user_field_names=true`,
     {
       method: 'PATCH',
       body: JSON.stringify(payload),
@@ -154,7 +151,7 @@ export async function updateLeadStatus(
 
 export async function getLead(leadId: number): Promise<Lead> {
   const result = await baserowFetch<BaserowLeadRow>(
-    `/api/database/rows/table/${BASEROW_TABLE_ID}/${leadId}/`
+    `/api/database/rows/table/${BASEROW_TABLE_ID}/${leadId}/?user_field_names=true`
   );
 
   return mapBaserowRowToLead(result);
