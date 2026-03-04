@@ -1,0 +1,42 @@
+# Qoura AI - قرى للذكاء الاصطناعي
+> Emirati team specialized in AI training, consulting, and solutions
+
+## About
+Qoura AI (قرى للذكاء الاصطناعي) is an Emirati company based in Abu Dhabi, UAE, specializing in artificial intelligence training, consulting, and technology solutions. We empower government entities, private organizations, students, and employees with practical AI skills and strategies.
+
+## Services
+
+### AI Training Programs
+- Professional AI training for government and private sector
+- Children AI Program (ages 10-17): Computational thinking, interactive projects, AI agents, digital creativity
+- Customized training workshops for organizations
+- Hands-on practical AI skills development
+
+### AI Consulting
+- AI strategy development for organizations
+- Digital transformation consulting
+- AI readiness assessment
+- Implementation roadmaps
+
+### AI Solutions
+- Custom AI solution development
+- AI integration for existing systems
+- Automation and optimization tools
+
+## Contact
+- Website: https://qoura.ai
+- Email: info@qoura.ai
+- Phone: +971 50 730 0052
+- Location: Abu Dhabi, United Arab Emirates
+- Working Hours: Monday - Friday, 9 AM - 6 PM (Gulf Standard Time)
+
+## Target Audience
+- Government entities in the UAE
+- Private sector organizations
+- Students and educational institutions
+- Employees seeking AI upskilling
+- Children aged 10-17 (AI programs)
+
+## Languages
+- Arabic (primary)
+- English
