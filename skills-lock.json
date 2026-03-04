@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "nano-banana-2": {
+      "source": "inference-sh/skills",
+      "sourceType": "github",
+      "computedHash": "a72739200cb9f70d0e94289270aa641681a6849e3bfbb3df2cd630ab921dc417"
+    }
+  }
+}
