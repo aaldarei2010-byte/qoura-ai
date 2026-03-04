@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 import { createLead } from '@/lib/baserow';
 import { localCreateLead } from '@/lib/local-store';
 import { LeadFormData } from '@/types';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const isBaserowConfigured = () =>
   !!process.env.BASEROW_API_TOKEN && !!process.env.BASEROW_TABLE_ID;
@@ -87,6 +90,45 @@ export async function POST(request: NextRequest) {
       // Fallback: save locally when Baserow is not configured
       console.log('[Leads] Baserow not configured — saving locally');
       lead = localCreateLead(leadData);
+    }
+
+    // Send email notification
+    if (process.env.RESEND_API_KEY) {
+      try {
+        const emailResult = await resend.emails.send({
+          from: 'Qoura AI <onboarding@resend.dev>',
+          to: process.env.NOTIFICATION_EMAIL || 'a.aldarei2010@gmail.com',
+          subject: `New Inquiry from ${leadData.full_name} - ${leadData.organization}`,
+          html: `
+            <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;background:#f9f9f9;border-radius:12px;">
+              <div style="background:#000;color:#fff;padding:20px;border-radius:8px 8px 0 0;text-align:center;">
+                <h1 style="margin:0;font-size:24px;">Qoura AI - New Inquiry</h1>
+              </div>
+              <div style="background:#fff;padding:24px;border-radius:0 0 8px 8px;border:1px solid #eee;">
+                <h2 style="color:#FF7A00;margin-top:0;">Customer Details</h2>
+                <table style="width:100%;border-collapse:collapse;">
+                  <tr><td style="padding:8px 0;color:#666;width:140px;">Name</td><td style="padding:8px 0;font-weight:bold;">${leadData.full_name}</td></tr>
+                  <tr><td style="padding:8px 0;color:#666;">Email</td><td style="padding:8px 0;"><a href="mailto:${leadData.email}">${leadData.email}</a></td></tr>
+                  <tr><td style="padding:8px 0;color:#666;">Phone</td><td style="padding:8px 0;"><a href="tel:${leadData.phone}">${leadData.phone}</a></td></tr>
+                  <tr><td style="padding:8px 0;color:#666;">Organization</td><td style="padding:8px 0;font-weight:bold;">${leadData.organization}</td></tr>
+                  <tr><td style="padding:8px 0;color:#666;">Type</td><td style="padding:8px 0;">${leadData.audience_type}</td></tr>
+                  <tr><td style="padding:8px 0;color:#666;">Interest</td><td style="padding:8px 0;">${leadData.interest}</td></tr>
+                </table>
+                <div style="margin-top:16px;padding:16px;background:#f5f5f5;border-radius:8px;">
+                  <strong style="color:#666;">Message:</strong>
+                  <p style="margin:8px 0 0;color:#333;">${leadData.message}</p>
+                </div>
+                <div style="margin-top:20px;text-align:center;">
+                  <a href="https://qoura.ai/admin" style="background:#000;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;display:inline-block;">View in Dashboard</a>
+                </div>
+              </div>
+            </div>
+          `,
+        });
+        console.log('[Email] Notification sent:', emailResult);
+      } catch (emailErr) {
+        console.error('[Email] Failed to send notification:', emailErr);
+      }
     }
 
     return NextResponse.json(
