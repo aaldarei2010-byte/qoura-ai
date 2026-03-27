@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qoura AI — Company Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --orange: #FF7A00;
+    --white: #FFFFFF;
+    --gray-light: #F2F2F2;
+    --gray-medium: #CCCCCC;
+    --gray-dark: #545454;
+    --gray-text: #999999;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--black);
+    background: #e8e8e8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    background: var(--white);
+    box-shadow: 0 4px 40px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  /* ===== COVER PAGE ===== */
+  .cover {
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+    min-height: 297mm;
+    position: relative;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: var(--orange);
+  }
+
+  .cover-logo {
+    width: 280px;
+    filter: invert(1);
+    margin-bottom: 60px;
+  }
+
+  .cover-divider {
+    width: 80px;
+    height: 4px;
+    background: var(--orange);
+    margin: 0 auto 50px;
+  }
+
+  .cover h1 {
+    font-size: 44px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .cover h2 {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--orange);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 80px;
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+  }
+
+  .cover-footer p {
+    font-size: 12px;
+    color: #666;
+    margin: 4px 0;
+  }
+
+  /* ===== CONTENT PAGES ===== */
+  .content-page {
+    padding: 60px 65px;
+    min-height: 297mm;
+    position: relative;
+  }
+
+  .content-page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--orange);
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .page-header-logo {
+    height: 30px;
+    opacity: 0.8;
+  }
+
+  .page-number {
+    font-size: 11px;
+    color: var(--gray-dark);
+    font-weight: 500;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--black);
+    margin-bottom: 30px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  .section-subtitle {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--black);
+    margin: 35px 0 18px;
+    line-height: 1.3;
+  }
+
+  .accent-line {
+    width: 48px;
+    height: 3px;
+    background: var(--orange);
+    margin-bottom: 25px;
+  }
+
+  .body-text {
+    font-size: 14px;
+    line-height: 1.85;
+    color: #333;
+    margin-bottom: 18px;
+  }
+
+  .highlight-box {
+    background: var(--gray-light);
+    border-left: 4px solid var(--orange);
+    padding: 28px 30px;
+    margin: 25px 0;
+    line-height: 1.85;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .highlight-box-dark {
+    background: var(--black);
+    border-left: 4px solid var(--orange);
+    padding: 28px 30px;
+    margin: 25px 0;
+    line-height: 1.85;
+    font-size: 15px;
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 30px 0;
+  }
+
+  .stat-card {
+    background: var(--black);
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: #ccc;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* Service Cards */
+  .service-block {
+    margin: 30px 0;
+    padding: 30px;
+    background: var(--gray-light);
+    position: relative;
+  }
+
+  .service-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--orange);
+  }
+
+  .service-number {
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--orange);
+    opacity: 0.3;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    line-height: 1;
+  }
+
+  .service-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--black);
+  }
+
+  .service-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .service-list li {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #444;
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .service-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 8px;
+    height: 2px;
+    background: var(--orange);
+  }
+
+  /* Methodology Steps */
+  .method-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 18px 0;
+    padding: 18px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .method-step:last-child { border-bottom: none; }
+
+  .step-num {
+    min-width: 40px;
+    height: 40px;
+    background: var(--orange);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-content h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--black);
+  }
+
+  .step-content p {
+    font-size: 13px;
+    color: var(--gray-dark);
+    line-height: 1.6;
+  }
+
+  /* Client Cards */
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 25px 0;
+  }
+
+  .client-card {
+    background: var(--gray-light);
+    padding: 22px 25px;
+    border-bottom: 3px solid var(--orange);
+    text-align: center;
+  }
+
+  .client-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 2px;
+  }
+
+  .client-card p {
+    font-size: 11px;
+    color: var(--gray-dark);
+  }
+
+  /* Why Us Grid */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin: 25px 0;
+  }
+
+  .why-card {
+    padding: 22px;
+    border: 1px solid #eee;
+    position: relative;
+  }
+
+  .why-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--orange);
+  }
+
+  .why-card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+
+  .why-card p {
+    font-size: 12px;
+    color: var(--gray-dark);
+    line-height: 1.6;
+  }
+
+  /* Use Cases Table */
+  .use-case-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+
+  .use-case-table th {
+    background: var(--black);
+    color: var(--white);
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .use-case-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    line-height: 1.5;
+  }
+
+  .use-case-table tr:nth-child(even) td {
+    background: var(--gray-light);
+  }
+
+  /* Achievement List */
+  .achievement-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+
+  .achievement-list li {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #333;
+    padding: 10px 0 10px 24px;
+    position: relative;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .achievement-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 10px;
+    height: 10px;
+    background: var(--orange);
+  }
+
+  /* ===== CONTACT PAGE ===== */
+  .contact-page {
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+    min-height: 297mm;
+    position: relative;
+  }
+
+  .contact-page::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 5px;
+    background: var(--orange);
+  }
+
+  .contact-logo {
+    width: 200px;
+    filter: invert(1);
+    margin-bottom: 50px;
+  }
+
+  .contact-divider {
+    width: 64px;
+    height: 3px;
+    background: var(--orange);
+    margin: 0 auto 50px;
+  }
+
+  .contact-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 50px;
+    letter-spacing: -0.5px;
+  }
+
+  .contact-item {
+    text-align: center;
+    margin: 22px 0;
+  }
+
+  .contact-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+
+  .contact-value {
+    font-size: 18px;
+    color: #ccc;
+    font-weight: 400;
+  }
+
+  .contact-footer {
+    position: absolute;
+    bottom: 40px;
+    text-align: center;
+  }
+
+  .contact-footer p {
+    font-size: 11px;
+    color: #555;
+    margin: 3px 0;
+  }
+
+  /* ===== DOWNLOAD BUTTON ===== */
+  .download-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--black);
+    padding: 14px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .download-bar span {
+    color: #999;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+  }
+
+  .download-btn {
+    background: var(--orange);
+    color: var(--white);
+    border: none;
+    padding: 10px 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+  }
+
+  .download-btn:hover { opacity: 0.85; }
+
+  /* ===== PRINT ===== */
+  @media print {
+    body { background: white; }
+    .page { margin: 0; box-shadow: none; }
+    .download-bar { display: none !important; }
+    .cover, .contact-page { min-height: 100vh; }
+    .content-page { min-height: 100vh; }
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- Download Bar -->
+<div class="download-bar">
+  <span>Qoura AI &mdash; Company Profile 2026</span>
+  <button class="download-btn" onclick="window.print()">Download as PDF</button>
+</div>
+
+<!-- ==================== PAGE 1: COVER ==================== -->
+<div class="page cover">
+  <img src="https://files.manuscdn.com/user_upload_by_module/session_file/97586964/kwubDEidSzISAtVE.PNG" alt="Qoura AI" class="cover-logo" />
+  <div class="cover-divider"></div>
+  <h1>Company Profile</h1>
+  <h2>2026</h2>
+  <div class="cover-footer">
+    <p style="color: #999;">Abu Dhabi &mdash; United Arab Emirates</p>
+    <p style="color: #555; margin-top: 6px;">Confidential &mdash; For Official Use</p>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2: ABOUT US ==================== -->
+<div class="page content-page">
+  <div class="page-header">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/97586964/kwubDEidSzISAtVE.PNG" alt="Qoura AI" class="page-header-logo" />
+    <span class="page-number">02</span>
+  </div>
+
+  <div class="section-label">Who We Are</div>
+  <div class="accent-line"></div>
+  <h1 class="section-title">About Qoura AI</h1>
+
+  <p class="body-text">
+    <strong>Qoura AI</strong> is a UAE-based artificial intelligence training and solutions company, dedicated to empowering organizations, governments, and individuals to effectively adopt and utilize AI technologies.
+  </p>
+
+  <p class="body-text">
+    We specialize in simplifying complex AI concepts and transforming them into practical, real-world applications that enhance productivity, decision-making, and innovation.
+  </p>
+
+  <p class="body-text">
+    With deep understanding of the Emirati culture and business environment, Qoura AI delivers localized, impactful, and results-driven AI programs. The name "Qoura" (meaning "villages" in Arabic) reflects our commitment to ensuring that the opportunities of the digital future reach everyone&mdash;leaving no community behind.
+  </p>
+
+  <div class="highlight-box-dark">
+    <em>"Talent exists everywhere. What is needed is the right path, practical training, and a supportive environment."</em>
+  </div>
+
+  <h2 class="section-subtitle">Our Vision</h2>
+  <div class="highlight-box">
+    To become a leading AI enablement partner in the UAE and the region, driving transformation through accessible and applied AI solutions.
+  </div>
+
+  <h2 class="section-subtitle">Our Mission</h2>
+  <p class="body-text">
+    To enable organizations and communities to leverage artificial intelligence as a practical tool for growth, efficiency, and innovation.
+  </p>
+</div>
+
+<!-- ==================== PAGE 3: SERVICES ==================== -->
+<div class="page content-page">
+  <div class="page-header">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/97586964/kwubDEidSzISAtVE.PNG" alt="Qoura AI" class="page-header-logo" />
+    <span class="page-number">03</span>
+  </div>
+
+  <div class="section-label">What We Do</div>
+  <div class="accent-line"></div>
+  <h1 class="section-title">Our Services</h1>
+
+  <!-- Service 1 -->
+  <div class="service-block">
+    <div class="service-number">01</div>
+    <div class="service-title">AI Training & Enablement Programs</div>
+    <p style="font-size: 13px; color: #555; margin-bottom: 15px; line-height: 1.7;">
+      We design and deliver customized AI training programs tailored to organizations' needs, focusing on practical implementation and measurable outcomes.
+    </p>
+    <ul class="service-list">
+      <li>AI Awareness Programs</li>
+      <li>Applied AI Training</li>
+      <li>Prompt Engineering Workshops</li>
+      <li>AI for Business Productivity</li>
+      <li>AI Use Case Development Labs</li>
+      <li>Executive AI Sessions (Leadership Level)</li>
+    </ul>
+  </div>
+
+  <!-- Service 2 -->
+  <div class="service-block">
+    <div class="service-number">02</div>
+    <div class="service-title">AI Solutions & Consulting</div>
+    <p style="font-size: 13px; color: #555; margin-bottom: 15px; line-height: 1.7;">
+      We support organizations in integrating AI into their operations through tailored solutions.
+    </p>
+    <ul class="service-list">
+      <li>AI Strategy Development</li>
+      <li>Workflow Automation using AI Agents</li>
+      <li>Custom AI Tools & Applications</li>
+      <li>Data-Driven Decision Support Systems</li>
+    </ul>
+  </div>
+
+  <!-- Service 3 -->
+  <div class="service-block">
+    <div class="service-number">03</div>
+    <div class="service-title">Youth & Community AI Programs</div>
+    <p style="font-size: 13px; color: #555; margin-bottom: 15px; line-height: 1.7;">
+      We design impactful AI programs for youth and communities, focusing on future skills and innovation.
+    </p>
+    <ul class="service-list">
+      <li>AI Programs for Students (ages 10&ndash;17)</li>
+      <li>Competitions & Project-Based Learning</li>
+      <li>Community-Based AI Initiatives</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== PAGE 4: METHODOLOGY ==================== -->
+<div class="page content-page">
+  <div class="page-header">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/97586964/kwubDEidSzISAtVE.PNG" alt="Qoura AI" class="page-header-logo" />
+    <span class="page-number">04</span>
+  </div>
+
+  <div class="section-label">How We Work</div>
+  <div class="accent-line"></div>
+  <h1 class="section-title">Our Methodology</h1>
+
+  <p class="body-text">
+    At Qoura AI, we follow a practical and results-oriented approach across every engagement:
+  </p>
+
+  <div class="method-step">
+    <div class="step-num">01</div>
+    <div class="step-content">
+      <h4>Simplification</h4>
+      <p>Breaking down complex AI concepts into easy-to-understand frameworks that are actionable and clear.</p>
+    </div>
+  </div>
+
+  <div class="method-step">
+    <div class="step-num">02</div>
+    <div class="step-content">
+      <h4>Customization</h4>
+      <p>Tailoring content to each organization's industry, challenges, and specific needs&mdash;never generic.</p>
+    </div>
+  </div>
+
+  <div class="method-step">
+    <div class="step-num">03</div>
+    <div class="step-content">
+      <h4>Hands-on Learning</h4>
+      <p>Focus on real use cases and direct application. Every program ends with practical deliverables.</p>
+    </div>
+  </div>
+
+  <div class="method-step">
+    <div class="step-num">04</div>
+    <div class="step-content">
+      <h4>Cultural Relevance</h4>
+      <p>Aligning content with UAE work environments, expectations, and cultural context.</p>
+    </div>
+  </div>
+
+  <div class="method-step">
+    <div class="step-num">05</div>
+    <div class="step-content">
+      <h4>Outcome-Driven</h4>
+      <p>Ensuring measurable impact and continuous performance improvement with clear KPIs.</p>
+    </div>
+  </div>
+
+  <br/>
+
+  <h2 class="section-subtitle">Example Use Cases</h2>
+
+  <table class="use-case-table">
+    <thead>
+      <tr>
+        <th>Use Case</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Report Automation</strong></td>
+        <td>Automating report writing using AI tools for faster, consistent output</td>
+      </tr>
+      <tr>
+        <td><strong>Customer Service</strong></td>
+        <td>Enhancing customer service with intelligent AI assistants</td>
+      </tr>
+      <tr>
+        <td><strong>Marketing Content</strong></td>
+        <td>Generating marketing content&mdash;text, image, and video&mdash;at scale</td>
+      </tr>
+      <tr>
+        <td><strong>Data Analysis</strong></td>
+        <td>Data analysis and AI-powered decision support</td>
+      </tr>
+      <tr>
+        <td><strong>Internal AI Tools</strong></td>
+        <td>Building custom internal tools for operational efficiency</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ==================== PAGE 5: IMPACT ==================== -->
+<div class="page content-page">
+  <div class="page-header">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/97586964/kwubDEidSzISAtVE.PNG" alt="Qoura AI" class="page-header-logo" />
+    <span class="page-number">05</span>
+  </div>
+
+  <div class="section-label">Our Track Record</div>
+  <div class="accent-line"></div>
+  <h1 class="section-title">Impact & Achievements</h1>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">5,000+</div>
+      <div class="stat-label">Participants<br/>Trained</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">500+</div>
+      <div class="stat-label">Students<br/>Empowered</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">10+</div>
+      <div class="stat-label">AI Agents<br/>Developed</div>
+    </div>
+  </div>
+
+  <ul class="achievement-list">
+    <li>Delivered AI training to government entities and leading organizations across the UAE</li>
+    <li>Empowered 500+ students through hands-on AI programs and community initiatives</li>
+    <li>Developed 10+ functional AI agents and practical automation solutions</li>
+    <li>Supported entrepreneurs and businesses in adopting AI tools for growth</li>
+    <li>Showcased at <strong>ADIPEC</strong>&mdash;one of the world's largest energy exhibitions</li>
+    <li>Participated in the <strong>Middle East Youth Conference</strong></li>
+  </ul>
+
+  <br/>
+
+  <h2 class="section-subtitle">Key Clients & Partners</h2>
+
+  <div class="clients-grid">
+    <div class="client-card">
+      <h4>Crown Prince Court</h4>
+      <p>Abu Dhabi</p>
+    </div>
+    <div class="client-card">
+      <h4>Khalifa Fund</h4>
+      <p>Entrepreneurship Support</p>
+    </div>
+    <div class="client-card">
+      <h4>ADNOC</h4>
+      <p>Energy Sector</p>
+    </div>
+    <div class="client-card">
+      <h4>Government Entities</h4>
+      <p>Federal & Local</p>
+    </div>
+    <div class="client-card">
+      <h4>Educational Institutions</h4>
+      <p>Schools & Universities</p>
+    </div>
+    <div class="client-card">
+      <h4>Private Sector</h4>
+      <p>SMEs & Enterprises</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 6: WHY QOURA AI ==================== -->
+<div class="page content-page">
+  <div class="page-header">
+    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/97586964/kwubDEidSzISAtVE.PNG" alt="Qoura AI" class="page-header-logo" />
+    <span class="page-number">06</span>
+  </div>
+
+  <div class="section-label">Our Difference</div>
+  <div class="accent-line"></div>
+  <h1 class="section-title">Why Qoura AI?</h1>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <h4>Cultural Understanding</h4>
+      <p>Deep understanding of UAE government and business culture, ensuring relevance and resonance in every program.</p>
+    </div>
+    <div class="why-card">
+      <h4>Proven Experience</h4>
+      <p>Demonstrated track record with leading public and private sector clients across multiple industries.</p>
+    </div>
+    <div class="why-card">
+      <h4>AI Simplified</h4>
+      <p>Unique ability to simplify AI for all audience levels&mdash;from executives to students&mdash;without losing depth.</p>
+    </div>
+    <div class="why-card">
+      <h4>Customized Programs</h4>
+      <p>Every program is tailored to the client's specific context. No generic, off-the-shelf training.</p>
+    </div>
+    <div class="why-card">
+      <h4>Real Impact Focus</h4>
+      <p>Strong focus on measurable outcomes, practical deliverables, and implementation&mdash;not just theory.</p>
+    </div>
+    <div class="why-card">
+      <h4>World-Class Team</h4>
+      <p>Executive and technical expertise with international experience (Silicon Valley, PwC) combined with local insight.</p>
+    </div>
+  </div>
+
+  <br/>
+
+  <h2 class="section-subtitle">Target Segments</h2>
+
+  <table class="use-case-table">
+    <thead>
+      <tr>
+        <th>Segment</th>
+        <th>Service Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Government & Semi-Government</strong></td>
+        <td>Training + Consulting + Technical Solutions</td>
+      </tr>
+      <tr>
+        <td><strong>Private Sector & Enterprises</strong></td>
+        <td>Training + Automation + Data Analytics</td>
+      </tr>
+      <tr>
+        <td><strong>Educational Institutions</strong></td>
+        <td>Applied AI Learning Programs</td>
+      </tr>
+      <tr>
+        <td><strong>Youth & Students</strong></td>
+        <td>Interactive Learning Tracks (ages 10&ndash;17)</td>
+      </tr>
+      <tr>
+        <td><strong>Rural & Remote Communities</strong></td>
+        <td>Digital Empowerment (In-person & Remote)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ==================== PAGE 7: CONTACT ==================== -->
+<div class="page contact-page">
+  <img src="https://files.manuscdn.com/user_upload_by_module/session_file/97586964/kwubDEidSzISAtVE.PNG" alt="Qoura AI" class="contact-logo" />
+  <div class="contact-divider"></div>
+  <div class="contact-title">Let's Build the Future Together</div>
+
+  <div class="contact-item">
+    <div class="contact-label">Email</div>
+    <div class="contact-value">info@qoura.ai</div>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-label">Phone</div>
+    <div class="contact-value">+971 50 730 0052</div>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-label">Location</div>
+    <div class="contact-value">Abu Dhabi, United Arab Emirates</div>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-label">Website</div>
+    <div class="contact-value">www.qoura.ai</div>
+  </div>
+
+  <div class="contact-footer">
+    <p>All rights reserved. Qoura AI &copy; 2026</p>
+    <p>Confidential &mdash; For Official Use</p>
+  </div>
+</div>
+
+</body>
+</html>
