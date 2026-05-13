@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Verdant — AI Plant Rescue Assistant</title>
+<meta name="description" content="Upload a photo of your sick or dying plant. Verdant's AI assistant diagnoses problems and gives you a step-by-step recovery plan." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+        },
+        colors: {
+          moss:   { 50:'#f3f7f1', 100:'#e3ecdd', 200:'#c6d9bb', 300:'#9fbf90', 400:'#75a165', 500:'#558547', 600:'#406b36', 700:'#34552d', 800:'#2b4426', 900:'#243821' },
+          cream:  '#FAF7F0',
+          bark:   '#3b2f24',
+          terracotta: '#c9684b',
+        },
+        boxShadow: {
+          soft: '0 1px 2px rgba(36,56,33,.06), 0 12px 32px -12px rgba(36,56,33,.18)',
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html, body { background: #FAF7F0; }
+  .grain::before {
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.06;
+    background-image: radial-gradient(rgba(36,56,33,.6) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+  .leaf-mask {
+    -webkit-mask: radial-gradient(120% 60% at 50% 0%, #000 60%, transparent 100%);
+            mask: radial-gradient(120% 60% at 50% 0%, #000 60%, transparent 100%);
+  }
+  .dropzone.dragover { background:#e3ecdd; border-color:#558547; }
+  .prose-care h3 { font-family:'Fraunces',serif; font-weight:600; color:#34552d; margin-top:1.25rem; margin-bottom:.5rem; font-size:1.125rem; }
+  .prose-care ul { list-style: disc; padding-left:1.25rem; }
+  .prose-care li { margin:.2rem 0; }
+  .prose-care p { margin:.5rem 0; }
+  .prose-care strong { color:#2b4426; }
+  @keyframes sway { 0%,100%{transform:rotate(-2deg)} 50%{transform:rotate(2deg)} }
+  .sway { transform-origin: 50% 100%; animation: sway 6s ease-in-out infinite; }
+  .spinner { border:3px solid #c6d9bb; border-top-color:#406b36; border-radius:9999px; width:1.25rem; height:1.25rem; animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body class="font-sans text-bark antialiased">
+
+<!-- nav -->
+<header class="sticky top-0 z-30 backdrop-blur bg-cream/80 border-b border-moss-100">
+  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2">
+      <svg width="28" height="28" viewBox="0 0 32 32" class="sway" aria-hidden="true">
+        <path fill="#558547" d="M16 30c0-8 4-13 12-14-1 8-5 13-12 14Z"/>
+        <path fill="#406b36" d="M16 30c0-9-4-14-12-15 1 9 5 14 12 15Z"/>
+        <path fill="#34552d" d="M15.4 30h1.2v-9h-1.2z"/>
+      </svg>
+      <span class="font-display text-xl font-semibold text-moss-800">Verdant</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-moss-800/80">
+      <a href="#diagnose" class="hover:text-moss-800">Diagnose</a>
+      <a href="#how" class="hover:text-moss-800">How it works</a>
+      <a href="#guides" class="hover:text-moss-800">Care guides</a>
+    </nav>
+    <a href="#diagnose" class="inline-flex items-center gap-1.5 rounded-full bg-moss-700 hover:bg-moss-800 text-cream text-sm px-4 py-2 transition">
+      Rescue my plant →
+    </a>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="relative grain overflow-hidden">
+  <div class="absolute -top-24 -right-24 w-[28rem] h-[28rem] rounded-full bg-moss-200/60 blur-3xl"></div>
+  <div class="absolute -bottom-32 -left-24 w-[26rem] h-[26rem] rounded-full bg-moss-100 blur-3xl"></div>
+
+  <div class="relative max-w-6xl mx-auto px-5 pt-16 pb-20 md:pt-24 md:pb-28 grid md:grid-cols-12 gap-10 items-center">
+    <div class="md:col-span-7">
+      <span class="inline-flex items-center gap-2 rounded-full bg-moss-100 text-moss-800 px-3 py-1 text-xs font-medium">
+        <span class="w-1.5 h-1.5 rounded-full bg-moss-500 animate-pulse"></span>
+        AI plant doctor · powered by Claude vision
+      </span>
+      <h1 class="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.02] tracking-tight text-moss-900 mt-5">
+        Bring your <span class="italic text-moss-700">dying plants</span> back to life.
+      </h1>
+      <p class="mt-5 text-lg text-moss-900/70 max-w-xl">
+        Snap a photo of any sad-looking houseplant. Verdant identifies what's wrong — overwatering, root rot, pests, light burn — and writes you a precise rescue plan in under a minute.
+      </p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a href="#diagnose" class="inline-flex items-center gap-2 rounded-full bg-moss-700 hover:bg-moss-800 text-cream px-5 py-3 text-sm font-medium shadow-soft transition">
+          Diagnose a plant now
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#how" class="inline-flex items-center gap-2 rounded-full border border-moss-300 text-moss-800 px-5 py-3 text-sm font-medium hover:bg-moss-50 transition">
+          How it works
+        </a>
+      </div>
+      <div class="mt-8 flex items-center gap-6 text-sm text-moss-800/70">
+        <div class="flex items-center gap-2"><span class="text-moss-600">✓</span> Photo + symptoms in</div>
+        <div class="flex items-center gap-2"><span class="text-moss-600">✓</span> Diagnosis + action plan out</div>
+      </div>
+    </div>
+
+    <div class="md:col-span-5">
+      <div class="relative">
+        <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-moss-200/60 to-cream blur-2xl"></div>
+        <div class="relative rounded-[2rem] bg-white shadow-soft border border-moss-100 p-5">
+          <div class="aspect-[4/5] rounded-2xl bg-moss-50 relative overflow-hidden leaf-mask">
+            <!-- decorative SVG plant -->
+            <svg viewBox="0 0 400 500" class="absolute inset-0 w-full h-full">
+              <defs>
+                <linearGradient id="pot" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stop-color="#c9684b"/>
+                  <stop offset="1" stop-color="#a04e35"/>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="400" height="500" fill="#e3ecdd"/>
+              <ellipse cx="200" cy="470" rx="160" ry="14" fill="#243821" opacity=".15"/>
+              <path d="M120 460 L150 360 L250 360 L280 460 Z" fill="url(#pot)"/>
+              <ellipse cx="200" cy="360" rx="55" ry="10" fill="#3b2f24"/>
+              <g class="sway">
+                <path d="M200 360 C 190 270 130 240 110 180 C 160 200 200 260 205 320 Z" fill="#558547"/>
+                <path d="M200 360 C 215 280 280 240 300 180 C 250 210 215 270 210 320 Z" fill="#406b36"/>
+                <path d="M200 360 C 200 240 190 160 200 90 C 215 160 210 250 210 360 Z" fill="#34552d"/>
+                <circle cx="200" cy="88" r="6" fill="#75a165"/>
+              </g>
+            </svg>
+            <span class="absolute top-3 left-3 text-[10px] font-medium uppercase tracking-wider bg-cream/90 text-moss-800 px-2 py-1 rounded-full">photo preview</span>
+          </div>
+          <div class="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
+            <div class="rounded-xl bg-moss-50 p-3"><div class="text-moss-700 font-semibold">Light</div><div class="text-moss-900/60">Bright indirect</div></div>
+            <div class="rounded-xl bg-moss-50 p-3"><div class="text-terracotta font-semibold">Water</div><div class="text-moss-900/60">Overwatered</div></div>
+            <div class="rounded-xl bg-moss-50 p-3"><div class="text-moss-700 font-semibold">Soil</div><div class="text-moss-900/60">Compacted</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- diagnose tool -->
+<section id="diagnose" class="relative py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="max-w-2xl">
+      <span class="text-xs uppercase tracking-[0.2em] text-moss-600 font-medium">The clinic</span>
+      <h2 class="font-display text-4xl md:text-5xl text-moss-900 mt-2">Show me your patient.</h2>
+      <p class="mt-3 text-moss-900/70">Upload one or more photos and tell Verdant what's been happening. The clearer the photo (and the more honest you are about the watering schedule), the better the diagnosis.</p>
+    </div>
+
+    <div class="mt-10 grid lg:grid-cols-12 gap-6">
+      <!-- form -->
+      <div class="lg:col-span-7 rounded-3xl bg-white border border-moss-100 shadow-soft p-6 md:p-8">
+        <form id="diagnose-form" class="space-y-6">
+          <!-- dropzone -->
+          <div>
+            <label class="block text-sm font-medium text-moss-800 mb-2">Plant photos <span class="text-moss-500 font-normal">(up to 4)</span></label>
+            <div id="dropzone" class="dropzone group cursor-pointer rounded-2xl border-2 border-dashed border-moss-200 bg-moss-50/50 hover:bg-moss-50 transition p-8 text-center">
+              <input id="file-input" type="file" accept="image/*" multiple class="hidden" />
+              <div class="mx-auto w-12 h-12 rounded-full bg-moss-100 flex items-center justify-center text-moss-700 mb-3">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              </div>
+              <p class="text-moss-900 font-medium">Drop photos here, or <span class="text-moss-700 underline underline-offset-4">browse</span></p>
+              <p class="text-xs text-moss-700/70 mt-1">JPG or PNG · we never upload your photo anywhere except to the AI model you choose.</p>
+            </div>
+            <div id="previews" class="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2"></div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-moss-800 mb-1">Plant (if you know)</label>
+              <input id="species" type="text" placeholder="e.g. Monstera, Pothos, unsure…" class="w-full rounded-xl border border-moss-200 bg-cream px-3 py-2.5 text-sm focus:border-moss-500 focus:ring-0" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-moss-800 mb-1">How long has it looked off?</label>
+              <select id="duration" class="w-full rounded-xl border border-moss-200 bg-cream px-3 py-2.5 text-sm focus:border-moss-500 focus:ring-0">
+                <option>A few days</option>
+                <option>1–2 weeks</option>
+                <option>A month</option>
+                <option>Longer than a month</option>
+                <option>Not sure</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-moss-800 mb-2">Symptoms <span class="text-moss-500 font-normal">(pick any)</span></label>
+            <div class="flex flex-wrap gap-2" id="symptom-chips">
+              <!-- chips injected by JS -->
+            </div>
+          </div>
+
+          <div>
+            <label for="notes" class="block text-sm font-medium text-moss-800 mb-1">Anything else? <span class="text-moss-500 font-normal">(watering, light, recent changes)</span></label>
+            <textarea id="notes" rows="3" placeholder="I water roughly once a week. It sits 6 feet from a south window. I just repotted it…" class="w-full rounded-xl border border-moss-200 bg-cream px-3 py-2.5 text-sm focus:border-moss-500 focus:ring-0"></textarea>
+          </div>
+
+          <details class="rounded-xl border border-moss-100 bg-moss-50/50 p-4">
+            <summary class="cursor-pointer text-sm font-medium text-moss-800">Use real AI (Anthropic API key)</summary>
+            <div class="mt-3 space-y-2">
+              <p class="text-xs text-moss-900/70">Paste an Anthropic API key to get a real diagnosis from Claude (Sonnet 4.6 with vision). Your key stays in this browser. Without a key, Verdant runs a demo diagnosis based on the symptoms you picked.</p>
+              <input id="api-key" type="password" autocomplete="off" placeholder="sk-ant-…" class="w-full rounded-xl border border-moss-200 bg-white px-3 py-2.5 text-sm font-mono focus:border-moss-500 focus:ring-0" />
+              <label class="inline-flex items-center gap-2 text-xs text-moss-900/70">
+                <input id="remember-key" type="checkbox" class="rounded border-moss-300 text-moss-700 focus:ring-moss-500" />
+                Remember on this device (localStorage)
+              </label>
+            </div>
+          </details>
+
+          <div class="flex items-center justify-between gap-4 pt-2">
+            <p class="text-xs text-moss-900/60">Verdant gives advice, not guarantees. When in doubt, check the roots.</p>
+            <button id="submit-btn" type="submit" class="inline-flex items-center gap-2 rounded-full bg-moss-700 hover:bg-moss-800 text-cream px-5 py-3 text-sm font-medium shadow-soft transition disabled:opacity-60 disabled:cursor-not-allowed">
+              <span id="submit-label">Diagnose plant</span>
+              <span id="submit-spinner" class="spinner hidden"></span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- result -->
+      <div class="lg:col-span-5">
+        <div id="result-empty" class="rounded-3xl bg-gradient-to-br from-moss-700 to-moss-800 text-cream p-8 shadow-soft min-h-[420px] flex flex-col justify-between">
+          <div>
+            <div class="text-xs uppercase tracking-[0.2em] text-moss-200">Verdant says</div>
+            <h3 class="font-display text-3xl mt-2">Waiting for your patient.</h3>
+            <p class="mt-3 text-moss-100/80">Once you upload a photo and hit diagnose, you'll see a tailored care plan here — likely cause, urgency, and the next 7 days of recovery steps.</p>
+          </div>
+          <ul class="mt-6 space-y-2 text-sm text-moss-100/90">
+            <li class="flex gap-2"><span class="text-moss-200">01</span> Identify the likely cause</li>
+            <li class="flex gap-2"><span class="text-moss-200">02</span> Triage: what to do today</li>
+            <li class="flex gap-2"><span class="text-moss-200">03</span> A 7-day recovery plan</li>
+          </ul>
+        </div>
+
+        <article id="result" class="hidden rounded-3xl bg-white border border-moss-100 shadow-soft p-6 md:p-8 min-h-[420px]">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <div class="text-xs uppercase tracking-[0.2em] text-moss-600 font-medium">Diagnosis</div>
+              <h3 id="result-title" class="font-display text-2xl text-moss-900 mt-1">—</h3>
+            </div>
+            <span id="result-urgency" class="rounded-full px-3 py-1 text-xs font-medium"></span>
+          </div>
+          <div id="result-body" class="prose-care text-moss-900/85 text-[15px] mt-4"></div>
+          <div class="mt-6 pt-4 border-t border-moss-100 flex items-center justify-between text-xs text-moss-700/70">
+            <span id="result-meta">Demo diagnosis</span>
+            <button id="result-reset" class="text-moss-700 hover:text-moss-800 underline underline-offset-4">Diagnose another</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- how it works -->
+<section id="how" class="py-16 md:py-24 bg-moss-50/60 border-y border-moss-100">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="max-w-2xl">
+      <span class="text-xs uppercase tracking-[0.2em] text-moss-600 font-medium">How it works</span>
+      <h2 class="font-display text-4xl md:text-5xl text-moss-900 mt-2">Three steps to a happier plant.</h2>
+    </div>
+    <div class="mt-10 grid md:grid-cols-3 gap-5">
+      <div class="rounded-2xl bg-white border border-moss-100 p-6 shadow-soft">
+        <div class="font-display text-3xl text-moss-700">01</div>
+        <h3 class="font-display text-xl text-moss-900 mt-2">Snap & upload</h3>
+        <p class="text-moss-900/70 text-sm mt-2">A clear photo of leaves and stem, in natural light if possible. Multiple angles help.</p>
+      </div>
+      <div class="rounded-2xl bg-white border border-moss-100 p-6 shadow-soft">
+        <div class="font-display text-3xl text-moss-700">02</div>
+        <h3 class="font-display text-xl text-moss-900 mt-2">Tell us the story</h3>
+        <p class="text-moss-900/70 text-sm mt-2">How often you water, where it lives, what changed recently. Context turns guesses into answers.</p>
+      </div>
+      <div class="rounded-2xl bg-white border border-moss-100 p-6 shadow-soft">
+        <div class="font-display text-3xl text-moss-700">03</div>
+        <h3 class="font-display text-xl text-moss-900 mt-2">Get a rescue plan</h3>
+        <p class="text-moss-900/70 text-sm mt-2">A diagnosis, urgency level, and a step-by-step plan you can act on today.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- guides -->
+<section id="guides" class="py-16 md:py-24">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="flex items-end justify-between gap-4">
+      <div class="max-w-2xl">
+        <span class="text-xs uppercase tracking-[0.2em] text-moss-600 font-medium">Care guides</span>
+        <h2 class="font-display text-4xl md:text-5xl text-moss-900 mt-2">Common reasons plants get sad.</h2>
+      </div>
+    </div>
+    <div class="mt-10 grid md:grid-cols-3 gap-5">
+      <article class="rounded-2xl border border-moss-100 bg-cream p-6 hover:shadow-soft transition">
+        <div class="text-2xl">💧</div>
+        <h3 class="font-display text-xl text-moss-900 mt-2">Overwatering</h3>
+        <p class="text-sm text-moss-900/70 mt-2">Yellow droopy leaves, mushy stems, soil that won't dry. The #1 killer of houseplants.</p>
+      </article>
+      <article class="rounded-2xl border border-moss-100 bg-cream p-6 hover:shadow-soft transition">
+        <div class="text-2xl">☀️</div>
+        <h3 class="font-display text-xl text-moss-900 mt-2">Light burn</h3>
+        <p class="text-sm text-moss-900/70 mt-2">Crispy brown patches, faded color. Move it back from the window, or filter the sun.</p>
+      </article>
+      <article class="rounded-2xl border border-moss-100 bg-cream p-6 hover:shadow-soft transition">
+        <div class="text-2xl">🐛</div>
+        <h3 class="font-display text-xl text-moss-900 mt-2">Pests</h3>
+        <p class="text-sm text-moss-900/70 mt-2">Sticky residue, webbing, tiny bugs on the undersides. Isolate, wipe, treat.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer class="border-t border-moss-100 py-10">
+  <div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-moss-900/60">
+    <div class="flex items-center gap-2">
+      <svg width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+        <path fill="#558547" d="M16 30c0-8 4-13 12-14-1 8-5 13-12 14Z"/>
+        <path fill="#406b36" d="M16 30c0-9-4-14-12-15 1 9 5 14 12 15Z"/>
+        <path fill="#34552d" d="M15.4 30h1.2v-9h-1.2z"/>
+      </svg>
+      <span class="font-display text-moss-800">Verdant</span>
+    </div>
+    <div>Made with care. Not a substitute for an actual horticulturist.</div>
+  </div>
+</footer>
+
+<script>
+  // ---------- state ----------
+  const SYMPTOMS = [
+    'Yellow leaves','Brown crispy tips','Drooping','Mushy stems',
+    'Leaf drop','Spots on leaves','White webbing','Sticky residue',
+    'No new growth','Pale color','Soil stays wet','Soil pulls from pot'
+  ];
+  const chosenSymptoms = new Set();
+  /** @type {{name:string, dataUrl:string, mediaType:string}[]} */
+  let images = [];
+
+  // ---------- elements ----------
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('file-input');
+  const previews = document.getElementById('previews');
+  const chipsBox = document.getElementById('symptom-chips');
+  const form = document.getElementById('diagnose-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const submitLabel = document.getElementById('submit-label');
+  const submitSpinner = document.getElementById('submit-spinner');
+  const emptyCard = document.getElementById('result-empty');
+  const resultCard = document.getElementById('result');
+  const resultTitle = document.getElementById('result-title');
+  const resultUrgency = document.getElementById('result-urgency');
+  const resultBody = document.getElementById('result-body');
+  const resultMeta = document.getElementById('result-meta');
+  const resultReset = document.getElementById('result-reset');
+  const apiKeyInput = document.getElementById('api-key');
+  const rememberKey = document.getElementById('remember-key');
+
+  // restore api key
+  const SAVED_KEY = 'verdant.apiKey';
+  if (localStorage.getItem(SAVED_KEY)) {
+    apiKeyInput.value = localStorage.getItem(SAVED_KEY);
+    rememberKey.checked = true;
+  }
+
+  // ---------- symptom chips ----------
+  SYMPTOMS.forEach(s => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = s;
+    b.className = 'rounded-full border border-moss-200 bg-cream text-moss-800 text-xs px-3 py-1.5 hover:bg-moss-50 transition';
+    b.addEventListener('click', () => {
+      if (chosenSymptoms.has(s)) {
+        chosenSymptoms.delete(s);
+        b.className = 'rounded-full border border-moss-200 bg-cream text-moss-800 text-xs px-3 py-1.5 hover:bg-moss-50 transition';
+      } else {
+        chosenSymptoms.add(s);
+        b.className = 'rounded-full border border-moss-700 bg-moss-700 text-cream text-xs px-3 py-1.5 transition';
+      }
+    });
+    chipsBox.appendChild(b);
+  });
+
+  // ---------- dropzone ----------
+  dropzone.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', e => handleFiles(e.target.files));
+  ;['dragenter','dragover'].forEach(ev =>
+    dropzone.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.add('dragover'); }));
+  ;['dragleave','drop'].forEach(ev =>
+    dropzone.addEventListener(ev, e => { e.preventDefault(); dropzone.classList.remove('dragover'); }));
+  dropzone.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
+
+  function handleFiles(fileList) {
+    const files = Array.from(fileList).filter(f => f.type.startsWith('image/')).slice(0, 4 - images.length);
+    for (const f of files) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        images.push({ name: f.name, dataUrl: reader.result, mediaType: f.type });
+        renderPreviews();
+      };
+      reader.readAsDataURL(f);
+    }
+  }
+
+  function renderPreviews() {
+    previews.innerHTML = '';
+    images.forEach((img, i) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'relative group rounded-xl overflow-hidden border border-moss-100 aspect-square bg-moss-50';
+      wrap.innerHTML = `
+        <img src="${img.dataUrl}" alt="${img.name}" class="w-full h-full object-cover" />
+        <button type="button" data-i="${i}" class="absolute top-1.5 right-1.5 bg-white/90 hover:bg-white text-moss-800 rounded-full w-6 h-6 text-xs leading-none flex items-center justify-center shadow">×</button>`;
+      wrap.querySelector('button').addEventListener('click', () => {
+        images.splice(i, 1);
+        renderPreviews();
+      });
+      previews.appendChild(wrap);
+    });
+  }
+
+  // ---------- submit ----------
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    setLoading(true);
+
+    const species = document.getElementById('species').value.trim();
+    const duration = document.getElementById('duration').value;
+    const notes = document.getElementById('notes').value.trim();
+    const symptoms = Array.from(chosenSymptoms);
+
+    // persist key
+    if (rememberKey.checked && apiKeyInput.value) localStorage.setItem(SAVED_KEY, apiKeyInput.value);
+    else localStorage.removeItem(SAVED_KEY);
+
+    try {
+      const key = apiKeyInput.value.trim();
+      const out = key
+        ? await callClaude({ key, species, duration, notes, symptoms, images })
+        : await demoDiagnosis({ species, duration, notes, symptoms, images });
+      renderResult(out);
+    } catch (err) {
+      renderResult({
+        title: 'Could not reach the AI service',
+        urgency: 'low',
+        bodyHtml: `<p>${escapeHtml(err.message || String(err))}</p><p>Falling back to a quick rule-of-thumb diagnosis below — try again later, or use demo mode without an API key.</p>` +
+          (await demoDiagnosis({ species, duration, notes, symptoms, images })).bodyHtml,
+        meta: 'Error — showing fallback'
+      });
+    } finally {
+      setLoading(false);
+    }
+  });
+
+  resultReset.addEventListener('click', () => {
+    resultCard.classList.add('hidden');
+    emptyCard.classList.remove('hidden');
+    window.scrollTo({ top: document.getElementById('diagnose').offsetTop - 60, behavior: 'smooth' });
+  });
+
+  function setLoading(b) {
+    submitBtn.disabled = b;
+    submitLabel.textContent = b ? 'Examining…' : 'Diagnose plant';
+    submitSpinner.classList.toggle('hidden', !b);
+  }
+
+  function renderResult({ title, urgency, bodyHtml, meta }) {
+    resultTitle.textContent = title;
+    resultBody.innerHTML = bodyHtml;
+    resultMeta.textContent = meta || '';
+    const tone = {
+      low:    'bg-moss-100 text-moss-800',
+      medium: 'bg-amber-100 text-amber-800',
+      high:   'bg-rose-100 text-rose-800',
+    }[urgency] || 'bg-moss-100 text-moss-800';
+    resultUrgency.className = 'rounded-full px-3 py-1 text-xs font-medium ' + tone;
+    resultUrgency.textContent = urgency ? `${urgency} urgency` : '';
+    emptyCard.classList.add('hidden');
+    resultCard.classList.remove('hidden');
+  }
+
+  // ---------- demo diagnosis (no API) ----------
+  async function demoDiagnosis({ species, duration, notes, symptoms, images }) {
+    await new Promise(r => setTimeout(r, 700));
+    const s = new Set(symptoms.map(x => x.toLowerCase()));
+    let title = 'General stress';
+    let urgency = 'low';
+    const reasons = [];
+    const plan = [];
+
+    if (s.has('mushy stems') || s.has('soil stays wet') || (s.has('yellow leaves') && s.has('drooping'))) {
+      title = 'Likely overwatering / early root rot';
+      urgency = 'high';
+      reasons.push('Soggy soil suffocates roots; they rot and stop drinking, so leaves yellow and droop even though the pot feels wet.');
+      plan.push('Stop watering. Take the plant out of the pot today.',
+                'Trim any brown, mushy roots with clean scissors. Healthy roots are firm and white.',
+                'Repot in fresh, well-draining mix (potting soil + perlite, 2:1). Use a pot with drainage.',
+                'Water only when the top 2 inches of soil are dry. Empty the saucer after watering.');
+    } else if (s.has('brown crispy tips') || s.has('pale color')) {
+      title = 'Light burn or low humidity';
+      urgency = 'medium';
+      reasons.push('Crispy edges and faded color usually mean too much direct sun or dry air.');
+      plan.push('Move 1–2 feet back from the window, or filter with a sheer curtain.',
+                'Mist nearby air (not the leaves) or group plants together to raise humidity.',
+                'Trim the crispy tips with sharp scissors — they won\'t heal.');
+    } else if (s.has('white webbing') || s.has('sticky residue')) {
+      title = 'Pest infestation (spider mites or scale)';
+      urgency = 'high';
+      reasons.push('Webbing points to spider mites; sticky residue means scale or mealybugs.');
+      plan.push('Isolate the plant from others immediately.',
+                'Rinse leaves (top and bottom) in the shower with lukewarm water.',
+                'Wipe with diluted insecticidal soap or neem oil every 5–7 days for 3 weeks.');
+    } else if (s.has('spots on leaves')) {
+      title = 'Fungal or bacterial leaf spot';
+      urgency = 'medium';
+      reasons.push('Dark, expanding spots — often from water sitting on leaves or poor air flow.');
+      plan.push('Remove affected leaves and discard (do not compost).',
+                'Water at the soil, not on leaves. Improve airflow.',
+                'If it spreads, apply a copper-based fungicide.');
+    } else if (s.has('no new growth') || s.has('leaf drop')) {
+      title = 'Dormancy or transplant shock';
+      urgency = 'low';
+      reasons.push('Plants pause growth in low light, cool months, or after a move/repot.');
+      plan.push('Hold off on fertilizer until you see new growth.',
+                'Keep light and watering consistent for 2–3 weeks.',
+                'Don\'t repot or relocate again right now.');
+    } else {
+      reasons.push('Not enough signal to pinpoint a single cause — try adding more symptoms or a clearer photo.');
+      plan.push('Check the roots: firm and white = ok; brown and mushy = rot.',
+                'Stick a finger 2 inches into the soil — water only if it\'s dry there.',
+                'Note any pests on the undersides of leaves.');
+    }
+
+    const bodyHtml = `
+      <h3>Likely cause</h3>
+      <p>${escapeHtml(reasons.join(' '))}</p>
+      <h3>What to do this week</h3>
+      <ul>${plan.map(p => `<li>${escapeHtml(p)}</li>`).join('')}</ul>
+      <h3>Context I used</h3>
+      <p>${escapeHtml(species ? `Species: ${species}. ` : '')}${escapeHtml(duration ? `Going on for: ${duration}. ` : '')}${escapeHtml(symptoms.length ? `Symptoms: ${symptoms.join(', ')}. ` : '')}${escapeHtml(notes ? `Notes: ${notes}` : '')}</p>
+    `;
+    return { title, urgency, bodyHtml, meta: `Demo diagnosis · ${images.length} photo${images.length===1?'':'s'} attached` };
+  }
+
+  // ---------- real Claude call ----------
+  async function callClaude({ key, species, duration, notes, symptoms, images }) {
+    const content = [];
+    for (const img of images) {
+      content.push({
+        type: 'image',
+        source: {
+          type: 'base64',
+          media_type: img.mediaType || 'image/jpeg',
+          data: img.dataUrl.split(',')[1]
+        }
+      });
+    }
+    const prompt = `You are Verdant, a friendly but precise houseplant doctor.
+Given the photo(s) and the owner's notes, return a diagnosis as JSON.
+
+Owner says:
+- Suspected plant: ${species || 'unknown'}
+- Symptoms checked: ${symptoms.join(', ') || 'none'}
+- Duration: ${duration}
+- Notes: ${notes || '(none)'}
+
+Respond ONLY with a JSON object matching this shape:
+{
+  "title": "short headline diagnosis (max 8 words)",
+  "urgency": "low" | "medium" | "high",
+  "likely_cause": "1-2 sentence explanation, plain English",
+  "do_today": ["3-5 actions, imperative, specific"],
+  "next_7_days": ["3-5 follow-up steps"],
+  "watch_for": ["2-3 warning signs that mean it's getting worse"]
+}
+No prose outside the JSON.`;
+
+    content.push({ type: 'text', text: prompt });
+
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': key,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1024,
+        messages: [{ role: 'user', content }],
+      })
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`Anthropic API ${res.status}: ${text.slice(0, 300)}`);
+    }
+    const data = await res.json();
+    const text = (data.content || []).map(c => c.text || '').join('').trim();
+    const jsonText = text.replace(/^```json|^```|```$/g, '').trim();
+    let parsed;
+    try { parsed = JSON.parse(jsonText); }
+    catch { throw new Error('Could not parse the AI response as JSON. Raw: ' + text.slice(0, 200)); }
+
+    const li = arr => (arr || []).map(x => `<li>${escapeHtml(x)}</li>`).join('');
+    const bodyHtml = `
+      <h3>Likely cause</h3>
+      <p>${escapeHtml(parsed.likely_cause || '')}</p>
+      <h3>Do today</h3>
+      <ul>${li(parsed.do_today)}</ul>
+      <h3>Next 7 days</h3>
+      <ul>${li(parsed.next_7_days)}</ul>
+      <h3>Warning signs to watch</h3>
+      <ul>${li(parsed.watch_for)}</ul>
+    `;
+    return {
+      title: parsed.title || 'Diagnosis',
+      urgency: parsed.urgency || 'low',
+      bodyHtml,
+      meta: `Claude Sonnet 4.6 · ${images.length} photo${images.length===1?'':'s'} attached`,
+    };
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+</script>
+</body>
+</html>
