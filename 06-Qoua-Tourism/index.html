@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>القوع — اكتشف جمال صحراء الإمارات</title>
+<meta name="description" content="دليلك السياحي التفاعلي لمنطقة القوع في الإمارات. أجمل الأماكن، أفضل المطاعم، وخرائط دقيقة لكل وجهة." />
+<meta property="og:title" content="القوع — اكتشف جمال صحراء الإمارات" />
+<meta property="og:description" content="دليلك السياحي التفاعلي لزيارة القوع: أكبر رملة في الإمارات، مدار السرطان، عرقوب الشعبية، الحياة الريفية، والملكي وي." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1542213308-2c0d3f1b1d29?w=1200" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Tajawal', 'system-ui', 'sans-serif'],
+          display: ['Amiri', 'Tajawal', 'serif'],
+        },
+        colors: {
+          sand:   { 50:'#FAF6EE', 100:'#F3E9D2', 200:'#E6D2A6', 300:'#D9B97A', 400:'#CDA456', 500:'#B8893C', 600:'#9A6F2D', 700:'#7A5622', 800:'#5A3F19', 900:'#3A2A12' },
+          bark:   '#2A1E10',
+          cream:  '#FFFBF2',
+          gold:   '#C9A24B',
+        },
+        boxShadow: {
+          soft: '0 4px 18px -8px rgba(58,42,18,.25)',
+          card: '0 1px 2px rgba(58,42,18,.06), 0 14px 36px -16px rgba(58,42,18,.22)',
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html, body { background: #FFFBF2; }
+  body { font-family: 'Tajawal', sans-serif; color: #2A1E10; }
+  .font-display { font-family: 'Amiri', 'Tajawal', serif; }
+  /* hero gradient overlay */
+  .hero-shade {
+    background: linear-gradient(180deg, rgba(42,30,16,.15) 0%, rgba(42,30,16,.55) 60%, rgba(42,30,16,.85) 100%);
+  }
+  .sand-grain::before {
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.06;
+    background-image: radial-gradient(rgba(58,42,18,.7) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+  /* fade-up animation on scroll */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  /* star rating */
+  .star { color: #C9A24B; }
+  .star.off { color: #E6D2A6; }
+  /* dune underline */
+  .dune-underline { background-image: linear-gradient(90deg, #C9A24B 0, #C9A24B 100%); background-position: 0 100%; background-repeat: no-repeat; background-size: 100% 4px; padding-bottom: 4px; }
+  /* smooth scroll */
+  html { scroll-behavior: smooth; }
+  /* card hover */
+  .card { transition: transform .35s ease, box-shadow .35s ease; }
+  .card:hover { transform: translateY(-4px); }
+  /* hide scrollbar on horizontal scroll */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- nav -->
+<header class="fixed top-0 inset-x-0 z-40 backdrop-blur bg-cream/80 border-b border-sand-200">
+  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#home" class="flex items-center gap-2">
+      <svg width="32" height="32" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="30" cy="12" r="6" fill="#C9A24B"/>
+        <path d="M2 32 C 8 26, 14 30, 20 26 C 26 22, 32 28, 38 24 L 38 36 L 2 36 Z" fill="#B8893C"/>
+        <path d="M2 36 C 10 32, 18 36, 26 32 C 32 30, 36 34, 38 32 L 38 38 L 2 38 Z" fill="#7A5622"/>
+      </svg>
+      <span class="font-display text-2xl font-bold text-sand-800">القوع</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-sand-800">
+      <a href="#home" class="hover:text-gold">الرئيسية</a>
+      <a href="#places" class="hover:text-gold">الأماكن السياحية</a>
+      <a href="#restaurants" class="hover:text-gold">المطاعم</a>
+      <a href="#map" class="hover:text-gold">الخريطة</a>
+    </nav>
+    <a href="#places" class="inline-flex items-center gap-1.5 rounded-full bg-sand-800 hover:bg-bark text-cream text-sm px-4 py-2 transition">
+      استكشف الآن
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="rotate-180"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="relative h-[100vh] min-h-[640px] overflow-hidden">
+  <img src="https://images.unsplash.com/photo-1542213308-2c0d3f1b1d29?w=1920&q=80" alt="صحراء القوع" class="absolute inset-0 w-full h-full object-cover" />
+  <div class="absolute inset-0 hero-shade"></div>
+  <div class="relative h-full max-w-7xl mx-auto px-5 flex flex-col justify-end pb-20 md:pb-28">
+    <span class="inline-flex items-center gap-2 self-start rounded-full bg-cream/15 backdrop-blur text-cream px-3 py-1 text-xs border border-cream/20">
+      <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+      الإمارات العربية المتحدة — أبوظبي
+    </span>
+    <h1 class="font-display text-5xl sm:text-6xl md:text-8xl font-bold text-cream leading-[1.05] mt-5 max-w-3xl">
+      اكتشف جمال <span class="text-gold">القوع</span>
+    </h1>
+    <p class="text-cream/90 text-lg md:text-xl mt-5 max-w-2xl">
+      حيث تلتقي أكبر رملة في الإمارات بمدار السرطان. رحلة بين الكثبان الذهبية، العزب الشعبية، والحياة الريفية الأصيلة.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="#places" class="inline-flex items-center gap-2 rounded-full bg-gold hover:bg-sand-500 text-bark px-6 py-3 text-sm font-bold shadow-soft transition">
+        استكشف الأماكن
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="rotate-180"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#restaurants" class="inline-flex items-center gap-2 rounded-full border border-cream/40 text-cream hover:bg-cream/10 px-6 py-3 text-sm font-medium transition">
+        أفضل المطاعم
+      </a>
+    </div>
+
+    <!-- quick stats -->
+    <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl">
+      <div class="rounded-2xl bg-cream/10 backdrop-blur border border-cream/15 p-4">
+        <div class="font-display text-3xl text-gold">5+</div>
+        <div class="text-xs text-cream/80">وجهات سياحية</div>
+      </div>
+      <div class="rounded-2xl bg-cream/10 backdrop-blur border border-cream/15 p-4">
+        <div class="font-display text-3xl text-gold">5</div>
+        <div class="text-xs text-cream/80">مطاعم مميزة</div>
+      </div>
+      <div class="rounded-2xl bg-cream/10 backdrop-blur border border-cream/15 p-4">
+        <div class="font-display text-3xl text-gold">300م</div>
+        <div class="text-xs text-cream/80">أعلى كثبان</div>
+      </div>
+      <div class="rounded-2xl bg-cream/10 backdrop-blur border border-cream/15 p-4">
+        <div class="font-display text-3xl text-gold">23°</div>
+        <div class="text-xs text-cream/80">مدار السرطان</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- scroll hint -->
+  <a href="#intro" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-cream/80 hover:text-cream text-xs flex flex-col items-center gap-2">
+    <span>اكتشف المزيد</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="animate-bounce"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </a>
+</section>
+
+<!-- INTRO + small map -->
+<section id="intro" class="relative py-20 md:py-28 sand-grain overflow-hidden">
+  <div class="max-w-7xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
+    <div class="reveal">
+      <span class="text-xs uppercase tracking-[0.25em] text-sand-600 font-bold">أهلاً بك في</span>
+      <h2 class="font-display text-4xl md:text-5xl text-sand-900 mt-2"><span class="dune-underline">قلب الصحراء الإماراتية</span></h2>
+      <p class="mt-5 text-sand-800/90 leading-relaxed">
+        تقع منطقة القوع في إمارة أبوظبي، وتشتهر برمالها الذهبية الشاهقة التي تُعدّ من الأعلى في الإمارات.
+        المنطقة تجمع بين روعة الطبيعة الصحراوية، أصالة الحياة البدوية، ومعالم جغرافية فريدة كمدار السرطان.
+        دليل القوع التفاعلي يأخذك في جولة بين أبرز معالمها وأفضل أماكنها.
+      </p>
+      <div class="mt-7 flex flex-wrap gap-3 text-sm">
+        <span class="rounded-full bg-sand-100 text-sand-800 px-3 py-1.5">🏜️ كثبان رملية</span>
+        <span class="rounded-full bg-sand-100 text-sand-800 px-3 py-1.5">🐪 تراث بدوي</span>
+        <span class="rounded-full bg-sand-100 text-sand-800 px-3 py-1.5">🌅 غروب ساحر</span>
+        <span class="rounded-full bg-sand-100 text-sand-800 px-3 py-1.5">📍 مدار السرطان</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="relative rounded-3xl overflow-hidden shadow-card border border-sand-200">
+        <iframe
+          title="موقع القوع على خريطة الإمارات"
+          src="https://maps.google.com/maps?q=Al%20Quaa%20UAE&t=&z=8&ie=UTF8&iwloc=&output=embed"
+          class="w-full h-[380px]"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="absolute top-3 right-3 bg-cream/95 backdrop-blur rounded-xl px-3 py-2 text-xs font-bold text-sand-800 shadow-soft flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A24B"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+          القوع · الإمارات
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLACES -->
+<section id="places" class="py-20 md:py-28 bg-gradient-to-b from-cream to-sand-50">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="max-w-2xl reveal">
+      <span class="text-xs uppercase tracking-[0.25em] text-sand-600 font-bold">الأماكن السياحية</span>
+      <h2 class="font-display text-4xl md:text-5xl text-sand-900 mt-2">أجمل الوجهات في القوع</h2>
+      <p class="mt-3 text-sand-800/80">خمس وجهات لا تفوّت — من أعلى كثبان الإمارات إلى نقطة مدار السرطان الشهيرة.</p>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- 1. أكبر رملة -->
+      <article class="card reveal rounded-3xl overflow-hidden bg-white border border-sand-100 shadow-card">
+        <div class="relative h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=900&q=80" alt="أكبر رملة في الإمارات" class="w-full h-full object-cover hover:scale-105 transition duration-700" />
+          <span class="absolute top-3 right-3 rounded-full bg-gold text-bark text-xs font-bold px-3 py-1">الأشهر</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl text-sand-900">أكبر رملة في الإمارات</h3>
+          <p class="text-sand-800/80 text-sm mt-2 leading-relaxed">كثيب رملي شاهق يصل ارتفاعه لمئات الأمتار. وجهة المغامرين لتسلّق الرمال والتزلج والتصوير عند الغروب.</p>
+          <div class="mt-5 flex items-center justify-between">
+            <a href="https://www.google.com/maps/search/?api=1&query=Tel+Moreeb+Liwa+UAE" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-full bg-sand-800 hover:bg-bark text-cream text-sm px-4 py-2 transition">
+              عرض الموقع
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </a>
+            <button onclick="sharePlace('أكبر رملة في الإمارات')" class="text-sand-700 hover:text-gold text-sm flex items-center gap-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+              مشاركة
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. مدار السرطان -->
+      <article class="card reveal rounded-3xl overflow-hidden bg-white border border-sand-100 shadow-card">
+        <div class="relative h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=900&q=80" alt="مدار السرطان" class="w-full h-full object-cover hover:scale-105 transition duration-700" />
+          <span class="absolute top-3 right-3 rounded-full bg-sand-800 text-cream text-xs font-bold px-3 py-1">معلم جغرافي</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl text-sand-900">مدار السرطان</h3>
+          <p class="text-sand-800/80 text-sm mt-2 leading-relaxed">نقطة جغرافية شهيرة يمر فوقها خط مدار السرطان (23.5° شمالاً). توقّف وصوّر الإحداثيات وأنت في قلب الصحراء.</p>
+          <div class="mt-5 flex items-center justify-between">
+            <a href="https://www.google.com/maps/search/?api=1&query=Tropic+of+Cancer+Al+Quaa+UAE" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-full bg-sand-800 hover:bg-bark text-cream text-sm px-4 py-2 transition">
+              عرض الموقع
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </a>
+            <button onclick="sharePlace('مدار السرطان')" class="text-sand-700 hover:text-gold text-sm flex items-center gap-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+              مشاركة
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. الملكي وي -->
+      <article class="card reveal rounded-3xl overflow-hidden bg-white border border-sand-100 shadow-card">
+        <div class="relative h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&q=80" alt="الملكي وي" class="w-full h-full object-cover hover:scale-105 transition duration-700" />
+          <span class="absolute top-3 right-3 rounded-full bg-sand-200 text-sand-900 text-xs font-bold px-3 py-1">وجهة فاخرة</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl text-sand-900">الملكي وي</h3>
+          <p class="text-sand-800/80 text-sm mt-2 leading-relaxed">منتجع صحراوي راقٍ يجمع بين الخدمة الملكية والإطلالات الذهبية. تجربة فريدة لمن يبحث عن الهدوء والفخامة.</p>
+          <div class="mt-5 flex items-center justify-between">
+            <a href="https://www.google.com/maps/search/?api=1&query=Al+Malki+Wai+Al+Quaa+UAE" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-full bg-sand-800 hover:bg-bark text-cream text-sm px-4 py-2 transition">
+              عرض الموقع
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </a>
+            <button onclick="sharePlace('الملكي وي')" class="text-sand-700 hover:text-gold text-sm flex items-center gap-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+              مشاركة
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. عرقوب الشعبية -->
+      <article class="card reveal rounded-3xl overflow-hidden bg-white border border-sand-100 shadow-card">
+        <div class="relative h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=900&q=80" alt="عرقوب الشعبية" class="w-full h-full object-cover hover:scale-105 transition duration-700" />
+          <span class="absolute top-3 right-3 rounded-full bg-sand-200 text-sand-900 text-xs font-bold px-3 py-1">تراث</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl text-sand-900">عرقوب الشعبية</h3>
+          <p class="text-sand-800/80 text-sm mt-2 leading-relaxed">عزبة شعبية أصيلة تعكس روح الحياة البدوية. مكان مثالي لتجربة الضيافة الإماراتية، القهوة العربية، والمأكولات التقليدية.</p>
+          <div class="mt-5 flex items-center justify-between">
+            <a href="https://www.google.com/maps/search/?api=1&query=Arqoub+Sha3biya+Al+Quaa+UAE" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-full bg-sand-800 hover:bg-bark text-cream text-sm px-4 py-2 transition">
+              عرض الموقع
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </a>
+            <button onclick="sharePlace('عرقوب الشعبية')" class="text-sand-700 hover:text-gold text-sm flex items-center gap-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+              مشاركة
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. الحياة الريفية -->
+      <article class="card reveal rounded-3xl overflow-hidden bg-white border border-sand-100 shadow-card lg:col-span-2">
+        <div class="grid md:grid-cols-2 h-full">
+          <div class="relative h-56 md:h-full overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&q=80" alt="الحياة الريفية" class="w-full h-full object-cover hover:scale-105 transition duration-700" />
+            <span class="absolute top-3 right-3 rounded-full bg-gold text-bark text-xs font-bold px-3 py-1">عائلي</span>
+          </div>
+          <div class="p-6 md:p-8 flex flex-col justify-center">
+            <h3 class="font-display text-2xl md:text-3xl text-sand-900">الحياة الريفية</h3>
+            <p class="text-sand-800/80 text-sm md:text-base mt-3 leading-relaxed">مزرعة عائلية تعرض الحياة الريفية بأبهى صورها — حيوانات الإبل والماعز، النخيل، وأنشطة تفاعلية تناسب الأطفال والكبار.</p>
+            <div class="mt-6 flex items-center gap-3 flex-wrap">
+              <a href="https://www.google.com/maps/search/?api=1&query=Rural+Life+Al+Quaa+UAE" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-full bg-sand-800 hover:bg-bark text-cream text-sm px-4 py-2 transition">
+                عرض الموقع
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+              </a>
+              <button onclick="sharePlace('الحياة الريفية')" class="text-sand-700 hover:text-gold text-sm flex items-center gap-1">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+                مشاركة
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- RESTAURANTS -->
+<section id="restaurants" class="py-20 md:py-28 bg-sand-900 text-cream relative overflow-hidden">
+  <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-gold/20 blur-3xl"></div>
+  <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-sand-500/20 blur-3xl"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5">
+    <div class="max-w-2xl reveal">
+      <span class="text-xs uppercase tracking-[0.25em] text-gold font-bold">المطاعم</span>
+      <h2 class="font-display text-4xl md:text-5xl text-cream mt-2">أفضل 5 مطاعم في القوع</h2>
+      <p class="mt-3 text-cream/70">من المشاوي والشاورما إلى المأكولات الشعبية الأصيلة — لائحة المسافر الذواق.</p>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="restaurants-grid">
+      <!-- cards injected by JS for cleanliness -->
+    </div>
+  </div>
+</section>
+
+<!-- BIG MAP -->
+<section id="map" class="py-20 md:py-28 bg-cream">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="max-w-2xl reveal">
+      <span class="text-xs uppercase tracking-[0.25em] text-sand-600 font-bold">الخريطة</span>
+      <h2 class="font-display text-4xl md:text-5xl text-sand-900 mt-2">خريطة القوع التفاعلية</h2>
+      <p class="mt-3 text-sand-800/80">تصفّح القوع، حدّد وجهتك، واحفظ المسار قبل الانطلاق في رحلتك الصحراوية.</p>
+    </div>
+    <div class="mt-10 rounded-3xl overflow-hidden border border-sand-200 shadow-card reveal">
+      <iframe
+        title="خريطة القوع الكاملة"
+        src="https://maps.google.com/maps?q=Al%20Quaa%20Abu%20Dhabi%20UAE&t=&z=11&ie=UTF8&iwloc=&output=embed"
+        class="w-full h-[500px]"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 md:py-24 bg-gradient-to-l from-sand-200 to-sand-50">
+  <div class="max-w-5xl mx-auto px-5 text-center reveal">
+    <h2 class="font-display text-3xl md:text-5xl text-sand-900">جاهز لمغامرتك الصحراوية؟</h2>
+    <p class="mt-4 text-sand-800/80 max-w-2xl mx-auto">احزم كاميرتك، البس مريحاً، واحمل الكثير من الماء. القوع تنتظرك بكل تفاصيلها الذهبية.</p>
+    <div class="mt-7 flex flex-wrap gap-3 justify-center">
+      <a href="https://wa.me/971500000000?text=مرحبا،%20أريد%20الاستفسار%20عن%20زيارة%20القوع" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-[#25D366] hover:opacity-90 text-white px-6 py-3 text-sm font-bold transition">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        تواصل عبر واتساب
+      </a>
+      <button onclick="shareSite()" class="inline-flex items-center gap-2 rounded-full bg-sand-800 hover:bg-bark text-cream px-6 py-3 text-sm font-bold transition">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+        شارك الموقع
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer class="bg-bark text-cream/70 py-10">
+  <div class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+    <div class="flex items-center gap-2">
+      <svg width="22" height="22" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="30" cy="12" r="6" fill="#C9A24B"/>
+        <path d="M2 32 C 8 26, 14 30, 20 26 C 26 22, 32 28, 38 24 L 38 36 L 2 36 Z" fill="#B8893C"/>
+      </svg>
+      <span class="font-display text-cream text-lg">القوع</span>
+    </div>
+    <div>دليل سياحي · صُمّم بحبّ للصحراء الإماراتية</div>
+    <div class="flex items-center gap-4">
+      <a href="#home" class="hover:text-gold">الرئيسية</a>
+      <a href="#places" class="hover:text-gold">الأماكن</a>
+      <a href="#restaurants" class="hover:text-gold">المطاعم</a>
+    </div>
+  </div>
+</footer>
+
+<!-- floating buttons -->
+<a href="https://wa.me/971500000000?text=مرحبا،%20أريد%20الاستفسار%20عن%20زيارة%20القوع" target="_blank" rel="noopener"
+   class="fixed bottom-6 left-6 z-50 group flex items-center gap-2 rounded-full bg-[#25D366] hover:bg-[#1ebd5b] text-white shadow-soft px-4 py-3 transition">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  <span class="hidden md:inline text-sm font-bold">واتساب</span>
+</a>
+
+<button onclick="shareSite()" aria-label="مشاركة الموقع"
+   class="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-sand-800 hover:bg-bark text-cream shadow-soft p-3 transition">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+</button>
+
+<!-- toast -->
+<div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 hidden rounded-full bg-bark text-cream text-sm px-5 py-2.5 shadow-soft"></div>
+
+<script>
+  // restaurants data
+  const restaurants = [
+    { name:'تشاو',           type:'مطبخ آسيوي',       rating:4.6, img:'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=900&q=80', q:'Chao+Restaurant+Al+Quaa+UAE' },
+    { name:'عشية أول',       type:'مأكولات شعبية',     rating:4.8, img:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&q=80', q:'Eshaya+Awal+Al+Quaa+UAE' },
+    { name:'بريقو',          type:'مشاوي ومأكولات',    rating:4.5, img:'https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=80', q:'Brego+Restaurant+Al+Quaa+UAE' },
+    { name:'راشد علي',       type:'مطبخ إماراتي',       rating:4.7, img:'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=900&q=80', q:'Rashed+Ali+Restaurant+Al+Quaa+UAE' },
+    { name:'شورما القوع',    type:'شاورما وسناك',       rating:4.4, img:'https://images.unsplash.com/photo-1561651823-34feb02250e4?w=900&q=80', q:'Shawarma+Al+Quaa+UAE' },
+  ];
+
+  const grid = document.getElementById('restaurants-grid');
+  restaurants.forEach((r, i) => {
+    const stars = Array.from({length:5}, (_,k) => `<span class="star ${k < Math.round(r.rating) ? '' : 'off'}">★</span>`).join('');
+    const card = document.createElement('article');
+    card.className = 'card reveal rounded-3xl overflow-hidden bg-sand-800/40 backdrop-blur border border-cream/10';
+    card.innerHTML = `
+      <div class="relative h-52 overflow-hidden">
+        <img src="${r.img}" alt="${r.name}" class="w-full h-full object-cover hover:scale-105 transition duration-700" loading="lazy" />
+        <div class="absolute bottom-2 right-2 rounded-full bg-cream/95 text-bark text-xs font-bold px-3 py-1">${r.type}</div>
+      </div>
+      <div class="p-6">
+        <div class="flex items-start justify-between gap-3">
+          <h3 class="font-display text-2xl text-cream">${r.name}</h3>
+          <div class="text-sm text-cream/70 whitespace-nowrap">
+            <span class="text-gold font-bold">${r.rating.toFixed(1)}</span>
+            <span class="text-xs">/5</span>
+          </div>
+        </div>
+        <div class="text-base mt-1">${stars}</div>
+        <div class="mt-5 flex items-center justify-between">
+          <a href="https://www.google.com/maps/search/?api=1&query=${r.q}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 rounded-full bg-gold hover:bg-sand-500 text-bark text-sm font-bold px-4 py-2 transition">
+            عرض الموقع
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          </a>
+          <button data-name="${r.name}" class="restaurant-share text-cream/70 hover:text-gold text-sm flex items-center gap-1">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+            مشاركة
+          </button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('.restaurant-share').forEach(b => b.addEventListener('click', () => sharePlace(b.dataset.name)));
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // share
+  async function shareSite() {
+    const data = { title: 'القوع — دليل سياحي', text: 'اكتشف جمال القوع في الإمارات', url: location.href };
+    try {
+      if (navigator.share) await navigator.share(data);
+      else { await navigator.clipboard.writeText(location.href); toast('تم نسخ رابط الموقع ✓'); }
+    } catch {}
+  }
+  async function sharePlace(name) {
+    const url = location.href;
+    const text = `شاهد "${name}" في دليل القوع السياحي`;
+    try {
+      if (navigator.share) await navigator.share({ title:name, text, url });
+      else { await navigator.clipboard.writeText(`${text} — ${url}`); toast('تم نسخ الرابط ✓'); }
+    } catch {}
+  }
+  function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.remove('hidden');
+    setTimeout(() => t.classList.add('hidden'), 2200);
+  }
+</script>
+</body>
+</html>
