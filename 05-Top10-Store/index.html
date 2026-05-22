@@ -5,24 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>توب تن للأسر المنتجة · مدينة العين</title>
 <meta name="description" content="توب تن للأسر المنتجة — منصة تمكين اقتصادية في القوع، مدينة العين. أكل شعبي إماراتي، قهوة، حلويات ومشروبات من صنع الأسر المنتجة. منذ أبريل ٢٠١٩.">
-<meta name="theme-color" content="#0a3b32">
+<meta name="theme-color" content="#48604f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@200;300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:    #f8f3ea;
-    --paper-2:  #f0e9da;
-    --green:     #0e5246;
-    --green-deep:#0a3b32;
-    --green-ink: #14241f;
-    --gold:      #c68a3c;
-    --gold-soft: #d6a661;
-    --ink:       #1a221e;
-    --ink-2:     #43504a;
-    --stone:     #8a948d;
-    --line:      rgba(14,82,70,0.16);
-    --line-soft: rgba(14,82,70,0.08);
+    --paper:    #fbf8f1;
+    --paper-2:  #f2eee3;
+    --green:     #6f8f77;
+    --green-deep:#48604f;
+    --green-ink: #36413a;
+    --gold:      #bf9a63;
+    --gold-soft: #d3b78c;
+    --ink:       #3a443d;
+    --ink-2:     #5c665e;
+    --stone:     #989d93;
+    --line:      rgba(111,143,119,0.22);
+    --line-soft: rgba(111,143,119,0.11);
     --ease:      cubic-bezier(0.22, 1, 0.36, 1);
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
@@ -88,29 +88,29 @@
   @keyframes fadeScale{ from{opacity:0; transform:scale(.97);} to{opacity:1; transform:scale(1);} }
   .hero-frame{
     position:absolute; inset:0; border-radius:240px 240px 24px 24px; overflow:hidden;
-    border:1px solid var(--line); box-shadow:0 50px 90px -50px rgba(10,59,50,0.6);
-    background:linear-gradient(165deg, #11675a, #0a3b32);
+    border:1px solid var(--line); box-shadow:0 50px 90px -50px rgba(72,96,79,0.6);
+    background:linear-gradient(165deg, #8aa890, #5c7a64);
   }
   .hero-frame img{ width:100%; height:100%; object-fit:cover; }
   .hero-frame img.failed{ display:none; }
   .hero-frame .fb{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:200px; color:rgba(248,243,234,0.16); }
-  .hero-frame::after{ content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(10,59,50,0.5), transparent 45%); }
+  .hero-frame::after{ content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(72,96,79,0.55), transparent 45%); }
   .hero-stamp{
     position:absolute; bottom:34px; right:50%; transform:translateX(50%); z-index:2;
     font-family:'Aref Ruqaa',serif; font-size:14px; letter-spacing:3px; color:var(--paper);
     border-top:1px solid rgba(248,243,234,0.4); padding-top:12px; width:62%; text-align:center;
   }
-  .price-tag{ position:absolute; top:70px; left:-12px; z-index:3; background:var(--paper); border:1px solid var(--line); padding:14px 22px; border-radius:4px; text-align:center; box-shadow:0 20px 40px -24px rgba(10,59,50,0.5); animation:floaty 6s ease-in-out infinite; }
+  .price-tag{ position:absolute; top:70px; left:-12px; z-index:3; background:var(--paper); border:1px solid var(--line); padding:14px 22px; border-radius:4px; text-align:center; box-shadow:0 20px 40px -24px rgba(72,96,79,0.5); animation:floaty 6s ease-in-out infinite; }
   .price-tag .l{ font-size:12px; letter-spacing:2px; color:var(--stone); } .price-tag .v{ font-family:'Aref Ruqaa',serif; font-size:22px; color:var(--green); }
   @keyframes floaty{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-12px);} }
   .seal{ position:absolute; bottom:40px; left:-26px; z-index:3; width:118px; height:118px; animation:spin 32s linear infinite; }
   @keyframes spin{ to{ transform:rotate(360deg);} }
 
   /* ===== STRIP ===== */
-  .strip{ background:var(--green); color:var(--paper); padding:16px 0; overflow:hidden; }
+  .strip{ background:var(--paper-2); color:var(--green); padding:16px 0; overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .strip-track{ display:flex; gap:56px; white-space:nowrap; width:max-content; animation:marquee 28s linear infinite; }
   .strip-track span{ font-family:'Aref Ruqaa',serif; font-size:19px; display:flex; align-items:center; gap:56px; }
-  .strip-track span::after{ content:'✦'; color:var(--gold-soft); font-size:11px; }
+  .strip-track span::after{ content:'✦'; color:var(--gold); font-size:11px; }
   @keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(50%);} }
 
   /* ===== SECTIONS ===== */
@@ -122,12 +122,12 @@
 
   /* ===== CATEGORIES ===== */
   .cats{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-  .cat{ position:relative; aspect-ratio:4/5; border-radius:4px; overflow:hidden; border:1px solid var(--line); cursor:pointer; background:linear-gradient(160deg,#11675a,#0a3b32); }
+  .cat{ position:relative; aspect-ratio:4/5; border-radius:4px; overflow:hidden; border:1px solid var(--line); cursor:pointer; background:linear-gradient(160deg,#8aa890,#5c7a64); }
   .cat img{ width:100%; height:100%; object-fit:cover; transition:transform 1s var(--ease); }
   .cat img.failed{ display:none; }
   .cat:hover img{ transform:scale(1.06); }
-  .cat .fb{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:90px; color:rgba(248,243,234,0.18); }
-  .cat::after{ content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(10,59,50,0.85), rgba(10,59,50,0.1) 60%); }
+  .cat .fb{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:90px; color:rgba(251,248,241,0.28); }
+  .cat::after{ content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(54,65,58,0.82), rgba(54,65,58,0.08) 62%); }
   .cat .meta{ position:absolute; right:24px; bottom:22px; left:24px; z-index:2; color:var(--paper); display:flex; align-items:flex-end; justify-content:space-between; }
   .cat .meta .no{ font-family:'Aref Ruqaa',serif; font-size:13px; color:var(--gold-soft); letter-spacing:2px; }
   .cat .meta .nm{ font-family:'Aref Ruqaa',serif; font-size:26px; font-weight:700; }
@@ -135,8 +135,9 @@
   .cat:hover .meta .ar{ transform:translateX(-8px); }
 
   /* ===== PRODUCTS ===== */
-  .products{ display:grid; grid-template-columns:repeat(3,1fr); gap:50px 40px; }
-  .product .frame{ position:relative; aspect-ratio:3/4; overflow:hidden; border:1px solid var(--line); border-radius:3px; margin-bottom:20px; background:linear-gradient(160deg, var(--c1,#11675a), var(--c2,#0a3b32)); }
+  .products{ display:grid; grid-template-columns:repeat(3,1fr); gap:50px 40px; grid-auto-rows:1fr; }
+  .product{ display:flex; flex-direction:column; height:100%; }
+  .product .frame{ position:relative; aspect-ratio:3/4; overflow:hidden; border:1px solid var(--line); border-radius:3px; margin-bottom:20px; background:linear-gradient(160deg, var(--c1,#8aa890), var(--c2,#5c7a64)); }
   .product .frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; transition:transform .9s var(--ease); }
   .product .frame img.failed{ display:none; }
   .product:hover .frame img{ transform:scale(1.07); }
@@ -145,12 +146,12 @@
   .product .frame .tag{ position:absolute; top:16px; right:16px; z-index:2; font-family:'El Messiri',serif; font-size:12px; letter-spacing:1px; color:var(--green); background:var(--paper); padding:4px 12px; border-radius:2px; }
   .product .frame .fav{ position:absolute; top:14px; left:14px; z-index:2; width:36px; height:36px; border-radius:50%; border:none; background:rgba(248,243,234,0.85); backdrop-filter:blur(4px); cursor:pointer; color:var(--ink-2); font-size:15px; display:flex; align-items:center; justify-content:center; transition:color .3s, transform .3s; }
   .product .frame .fav:hover, .product .frame .fav.on{ color:var(--gold); transform:scale(1.12); }
-  .product .frame .quick{ position:absolute; bottom:0; right:0; left:0; z-index:2; padding:14px; background:linear-gradient(to top, rgba(10,59,50,0.92), transparent); transform:translateY(100%); transition:transform .5s var(--ease); text-align:center; }
+  .product .frame .quick{ position:absolute; bottom:0; right:0; left:0; z-index:2; padding:14px; background:linear-gradient(to top, rgba(54,65,58,0.92), transparent); transform:translateY(100%); transition:transform .5s var(--ease); text-align:center; }
   .product:hover .frame .quick{ transform:translateY(0); }
   .product .frame .quick button{ background:none; border:none; color:var(--paper); cursor:pointer; font-family:'El Messiri',serif; font-size:16px; letter-spacing:1px; padding-bottom:4px; border-bottom:1px solid var(--gold-soft); }
   .product .family{ font-size:12px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; margin-bottom:6px; }
   .product h3{ font-family:'Aref Ruqaa',serif; font-size:26px; font-weight:700; margin-bottom:8px; color:var(--ink); }
-  .product .row{ display:flex; align-items:center; justify-content:space-between; }
+  .product .row{ display:flex; align-items:center; justify-content:space-between; margin-top:auto; }
   .product .price{ font-family:'El Messiri',serif; font-size:20px; color:var(--green); } .product .price small{ font-size:13px; color:var(--stone); font-weight:400; }
   .product .stars{ color:var(--gold-soft); font-size:13px; letter-spacing:2px; }
   .products-foot{ text-align:center; margin-top:70px; }
@@ -204,9 +205,9 @@
   .foot-social{ display:flex; gap:22px; } .foot-social a{ color:rgba(248,243,234,0.7); text-decoration:none; font-size:15px; transition:color .3s; } .foot-social a:hover{ color:var(--gold-soft); }
 
   /* ===== CART ===== */
-  .overlay{ position:fixed; inset:0; background:rgba(10,59,50,0.5); z-index:199; opacity:0; visibility:hidden; transition:.4s; }
+  .overlay{ position:fixed; inset:0; background:rgba(72,96,79,0.5); z-index:199; opacity:0; visibility:hidden; transition:.4s; }
   .overlay.open{ opacity:1; visibility:visible; }
-  .drawer{ position:fixed; top:0; left:0; height:100vh; width:min(92vw,440px); z-index:200; background:var(--paper); border-left:1px solid var(--line); transform:translateX(-100%); transition:transform .55s var(--ease); display:flex; flex-direction:column; box-shadow:30px 0 80px -40px rgba(10,59,50,0.6); }
+  .drawer{ position:fixed; top:0; left:0; height:100vh; width:min(92vw,440px); z-index:200; background:var(--paper); border-left:1px solid var(--line); transform:translateX(-100%); transition:transform .55s var(--ease); display:flex; flex-direction:column; box-shadow:30px 0 80px -40px rgba(72,96,79,0.6); }
   .drawer.open{ transform:translateX(0); }
   .drawer-head{ display:flex; align-items:center; justify-content:space-between; padding:30px; border-bottom:1px solid var(--line); }
   .drawer-head h3{ font-family:'Aref Ruqaa',serif; font-size:26px; font-weight:700; color:var(--green); }
@@ -215,7 +216,7 @@
   .empty{ text-align:center; color:var(--stone); padding:80px 20px; }
   .empty .g{ font-size:54px; opacity:.4; display:block; margin-bottom:18px; }
   .ci{ display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--line-soft); align-items:center; }
-  .ci .cig{ width:60px; height:72px; border-radius:2px; overflow:hidden; background:linear-gradient(160deg,#11675a,#0a3b32); flex-shrink:0; position:relative; }
+  .ci .cig{ width:60px; height:72px; border-radius:2px; overflow:hidden; background:linear-gradient(160deg,#8aa890,#5c7a64); flex-shrink:0; position:relative; }
   .ci .cig img{ width:100%; height:100%; object-fit:cover; } .ci .cig img.failed{ display:none; }
   .ci .cig .g{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:28px; color:rgba(248,243,234,0.6); }
   .ci .cii{ flex:1; min-width:0; } .ci .cii .n{ font-family:'Aref Ruqaa',serif; font-size:18px; } .ci .cii .p{ color:var(--gold); font-size:15px; }
@@ -294,7 +295,7 @@
       <div class="fb">☕</div>
       <div class="hero-stamp">صناعة الأسر المنتجة</div>
     </div>
-    <svg class="seal" viewBox="0 0 120 120"><defs><path id="c" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs><text font-family="Aref Ruqaa, serif" font-size="11" letter-spacing="3" fill="#c68a3c"><textPath href="#c">توب تن · أصالة · جودة · توب تن · أصالة · جودة ·</textPath></text></svg>
+    <svg class="seal" viewBox="0 0 120 120"><defs><path id="c" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs><text font-family="Aref Ruqaa, serif" font-size="11" letter-spacing="3" fill="#bf9a63"><textPath href="#c">توب تن · أصالة · جودة · توب تن · أصالة · جودة ·</textPath></text></svg>
   </div>
 </header>
 
@@ -396,12 +397,12 @@
   const IMG = (id,w=800)=>`https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
 
   const PRODUCTS = [
-    { id:1, name:'قهوة عربية', family:'أسرة المنصوري', img:'1509042239860-f550ce710b93', glyph:'☕', price:15, rating:5, tag:'مميّز', c1:'#11675a', c2:'#0a3b32' },
-    { id:2, name:'لقيمات بالدبس', family:'أسرة الكعبي', img:'1606471191009-63994c53433b', glyph:'🍮', price:20, rating:5, tag:'الأكثر طلباً', c1:'#c68a3c', c2:'#8a5a1e' },
-    { id:3, name:'هريس بيتي', family:'أسرة الدرعي', img:'1547592180-85f173990554', glyph:'🥘', price:35, rating:4, c1:'#11675a', c2:'#0a3b32' },
-    { id:4, name:'شاي كرك', family:'أسرة الشامسي', img:'1571934811356-5cc061b6821f', glyph:'🫖', price:8, rating:5, c1:'#c68a3c', c2:'#8a5a1e' },
-    { id:5, name:'معمول التمر', family:'أسرة النعيمي', img:'1558961363-fa8fdf82db35', glyph:'🍪', price:25, rating:5, tag:'موسمي', c1:'#11675a', c2:'#0a3b32' },
-    { id:6, name:'بلاليط', family:'أسرة المزروعي', img:'1612927601601-6638404737ce', glyph:'🍜', price:18, rating:4, c1:'#c68a3c', c2:'#8a5a1e' },
+    { id:1, name:'قهوة عربية', family:'أسرة المنصوري', img:'1509042239860-f550ce710b93', glyph:'☕', price:15, rating:5, tag:'مميّز', c1:'#8aa890', c2:'#5c7a64' },
+    { id:2, name:'لقيمات بالدبس', family:'أسرة الكعبي', img:'1606471191009-63994c53433b', glyph:'🍮', price:20, rating:5, tag:'الأكثر طلباً', c1:'#d3b78c', c2:'#bf9a63' },
+    { id:3, name:'هريس بيتي', family:'أسرة الدرعي', img:'1547592180-85f173990554', glyph:'🥘', price:35, rating:4, c1:'#8aa890', c2:'#5c7a64' },
+    { id:4, name:'شاي كرك', family:'أسرة الشامسي', img:'1571934811356-5cc061b6821f', glyph:'🫖', price:8, rating:5, c1:'#d3b78c', c2:'#bf9a63' },
+    { id:5, name:'معمول التمر', family:'أسرة النعيمي', img:'1558961363-fa8fdf82db35', glyph:'🍪', price:25, rating:5, tag:'موسمي', c1:'#8aa890', c2:'#5c7a64' },
+    { id:6, name:'بلاليط', family:'أسرة المزروعي', img:'1612927601601-6638404737ce', glyph:'🍜', price:18, rating:4, c1:'#d3b78c', c2:'#bf9a63' },
   ];
 
   const CATS = [
