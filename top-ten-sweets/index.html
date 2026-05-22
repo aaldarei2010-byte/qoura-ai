@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Top Ten Sweets — Freshly Made Sweets in Al Buraimi</title>
+<meta name="description" content="Top Ten Sweets in Al Buraimi, Oman — freshly made Arabic & traditional sweets, mithai, cakes, and pastries. Come in, sit down, and treat yourself." />
+<meta name="theme-color" content="#7a1f2b" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Top Ten Sweets — Sweetness, the way it should be" />
+<meta property="og:description" content="Freshly made Arabic sweets, mithai, cakes & pastries in Al Buraimi, Oman." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<!-- Emoji favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#127856;</text></svg>" />
+
+<style>
+  :root{
+    --maroon:#7a1f2b;
+    --maroon-deep:#5e141f;
+    --gold:#d4a017;
+    --gold-soft:#e8c25a;
+    --cream:#fdf6ec;
+    --cream-2:#f7ead7;
+    --ink:#3a2317;
+    --ink-soft:#6b4f3f;
+    --rose:#c46a6a;
+    --pistachio:#7a8b3c;
+    --white:#fffaf3;
+    --shadow:0 18px 40px -18px rgba(94,20,31,.45);
+    --radius:22px;
+    --maxw:1180px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Poppins',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,serif}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .ar{font-family:'Tajawal',sans-serif;direction:rtl}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  section{position:relative}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:.55rem;
+    padding:.85rem 1.6rem;border-radius:999px;font-weight:600;
+    font-size:.98rem;cursor:pointer;border:2px solid transparent;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-3px)}
+  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:#3a2300;box-shadow:0 12px 26px -10px rgba(212,160,23,.7)}
+  .btn-ghost{background:transparent;border-color:rgba(255,255,255,.6);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.14)}
+  .btn-maroon{background:var(--maroon);color:#fff;box-shadow:var(--shadow)}
+  .btn-outline{background:transparent;border-color:var(--maroon);color:var(--maroon)}
+  .btn-outline:hover{background:var(--maroon);color:#fff}
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    background:var(--maroon-deep);color:#f7ddc0;font-size:.82rem;
+    letter-spacing:.02em;
+  }
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.5rem 22px;flex-wrap:wrap}
+  .topbar a{color:#f7ddc0;opacity:.92}
+  .topbar a:hover{opacity:1;color:var(--gold-soft)}
+  .topbar .dot{opacity:.4;margin:0 .55rem}
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(253,246,236,.86);backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(122,31,43,.1);
+    transition:box-shadow .3s ease, background .3s ease;
+  }
+  header.nav.scrolled{box-shadow:0 10px 30px -18px rgba(94,20,31,.4);background:rgba(253,246,236,.96)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:.7rem 22px}
+  .brand{display:flex;align-items:center;gap:.7rem;font-weight:700}
+  .brand .mark{
+    width:46px;height:46px;border-radius:14px;flex:0 0 auto;
+    background:radial-gradient(circle at 30% 25%,var(--gold-soft),var(--gold) 55%,var(--maroon) 130%);
+    display:grid;place-items:center;font-size:1.5rem;box-shadow:var(--shadow);
+    transform:rotate(-6deg);
+  }
+  .brand .name{font-family:'Playfair Display',serif;font-size:1.18rem;line-height:1.05;color:var(--maroon)}
+  .brand .name small{display:block;font-family:'Poppins';font-weight:400;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-soft)}
+  nav.links{display:flex;align-items:center;gap:1.6rem}
+  nav.links a{font-weight:500;font-size:.95rem;color:var(--ink);position:relative}
+  nav.links a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--gold);transition:width .25s}
+  nav.links a:hover::after,nav.links a.active::after{width:100%}
+  .nav-cta{display:flex;align-items:center;gap:.6rem}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{width:26px;height:2.5px;background:var(--maroon);border-radius:2px;transition:.3s}
+  .burger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;color:#fff;overflow:hidden;
+    background:
+      radial-gradient(1200px 500px at 80% -10%,rgba(212,160,23,.4),transparent 60%),
+      radial-gradient(900px 600px at 0% 110%,rgba(196,106,106,.4),transparent 55%),
+      linear-gradient(135deg,var(--maroon),var(--maroon-deep));
+  }
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:2.5rem;align-items:center;padding:clamp(3rem,7vw,6rem) 22px}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:.5rem;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+    padding:.4rem .9rem;border-radius:999px;margin-bottom:1.3rem;
+  }
+  .hero h1{font-size:clamp(2.4rem,5.4vw,4.1rem);line-height:1.05;font-weight:800;margin-bottom:1rem}
+  .hero h1 .hl{color:var(--gold-soft);font-style:italic}
+  .hero p.lead{font-size:clamp(1.02rem,1.6vw,1.22rem);max-width:34ch;opacity:.95;margin-bottom:1.9rem}
+  .hero-cta{display:flex;gap:.9rem;flex-wrap:wrap}
+  .hero-stats{display:flex;gap:2rem;margin-top:2.4rem;flex-wrap:wrap}
+  .hero-stats .st b{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--gold-soft);display:block;line-height:1}
+  .hero-stats .st span{font-size:.82rem;opacity:.85}
+
+  /* Hero art — stacked plate of sweets made of CSS */
+  .hero-art{position:relative;display:grid;place-items:center;min-height:340px}
+  .platter{
+    width:min(420px,80vw);aspect-ratio:1;border-radius:50%;
+    background:
+      radial-gradient(circle at 50% 38%,rgba(255,255,255,.25),transparent 45%),
+      conic-gradient(from 200deg,#f7ead7,#fff4e2,#f3d9b3,#f7ead7);
+    box-shadow:0 40px 80px -30px rgba(0,0,0,.55), inset 0 0 0 14px rgba(255,255,255,.35), inset 0 0 0 22px rgba(212,160,23,.3);
+    display:grid;place-items:center;position:relative;animation:float 6s ease-in-out infinite;
+  }
+  .platter .emoji-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.2rem;font-size:clamp(2.4rem,7vw,3.6rem);filter:drop-shadow(0 8px 10px rgba(0,0,0,.25))}
+  .floaty{position:absolute;font-size:2.6rem;filter:drop-shadow(0 10px 12px rgba(0,0,0,.3))}
+  .floaty.f1{top:4%;left:2%;animation:float 5s ease-in-out infinite}
+  .floaty.f2{bottom:6%;right:0;animation:float 7s ease-in-out infinite .6s}
+  .floaty.f3{top:12%;right:8%;animation:float 6.4s ease-in-out infinite .3s}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-16px) rotate(3deg)}}
+
+  .wave{display:block;width:100%;height:auto;margin-bottom:-6px}
+
+  /* ---------- Section heading ---------- */
+  .head{text-align:center;max-width:660px;margin:0 auto 2.8rem}
+  .eyebrow{display:inline-block;color:var(--gold);font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:.78rem;margin-bottom:.7rem}
+  .head h2{font-size:clamp(1.9rem,4vw,2.8rem);color:var(--maroon);line-height:1.1;margin-bottom:.7rem}
+  .head p{color:var(--ink-soft)}
+  .pad{padding:clamp(3.5rem,8vw,6rem) 0}
+
+  /* ---------- Features ---------- */
+  .features{background:var(--white)}
+  .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+  .feat{
+    background:var(--cream);border-radius:var(--radius);padding:1.6rem 1.4rem;text-align:center;
+    border:1px solid rgba(122,31,43,.07);transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .feat:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .feat .ic{font-size:2rem;margin-bottom:.7rem}
+  .feat h3{font-family:'Poppins';font-weight:600;font-size:1.05rem;color:var(--maroon);margin-bottom:.3rem}
+  .feat p{font-size:.9rem;color:var(--ink-soft)}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+  .about-visual{
+    border-radius:var(--radius);min-height:380px;position:relative;overflow:hidden;
+    background:
+      radial-gradient(circle at 70% 20%,rgba(212,160,23,.35),transparent 50%),
+      linear-gradient(135deg,#fbe6c8,#f3cf9e);
+    box-shadow:var(--shadow);display:grid;place-items:center;
+  }
+  .about-visual .big{font-size:clamp(5rem,16vw,9rem);filter:drop-shadow(0 16px 18px rgba(0,0,0,.18))}
+  .about-visual .tag{
+    position:absolute;bottom:18px;left:18px;right:18px;background:rgba(94,20,31,.92);color:#fff;
+    border-radius:16px;padding:1rem 1.2rem;display:flex;align-items:center;gap:.9rem;backdrop-filter:blur(4px);
+  }
+  .about-visual .tag .em{font-size:1.8rem}
+  .about-visual .tag b{display:block;font-family:'Playfair Display',serif}
+  .about-visual .tag span{font-size:.82rem;opacity:.85}
+  .about-text h2{font-size:clamp(1.8rem,3.6vw,2.6rem);color:var(--maroon);line-height:1.12;margin-bottom:1.1rem}
+  .about-text p{color:var(--ink-soft);margin-bottom:1rem}
+  .about-text .ar{background:var(--cream-2);border-right:4px solid var(--gold);padding:.9rem 1.1rem;border-radius:12px;color:var(--ink)}
+
+  /* ---------- Menu ---------- */
+  .menu{background:linear-gradient(180deg,var(--cream),var(--cream-2))}
+  .tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-bottom:2.4rem}
+  .tab{
+    padding:.6rem 1.3rem;border-radius:999px;border:2px solid rgba(122,31,43,.18);
+    background:#fff;color:var(--maroon);font-weight:600;font-size:.92rem;cursor:pointer;transition:.25s;
+    display:inline-flex;align-items:center;gap:.45rem;
+  }
+  .tab:hover{border-color:var(--gold)}
+  .tab.active{background:var(--maroon);color:#fff;border-color:var(--maroon);box-shadow:var(--shadow)}
+  .menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem 2.4rem}
+  .panel{display:none;animation:fade .4s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .item{
+    display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.1rem;border-radius:16px;
+    transition:background .25s ease, transform .25s ease;background:rgba(255,255,255,.55);
+    border:1px solid rgba(122,31,43,.06);
+  }
+  .item:hover{background:#fff;transform:translatex(4px);box-shadow:var(--shadow)}
+  .item .em{font-size:1.9rem;flex:0 0 auto;line-height:1}
+  .item .info{flex:1}
+  .item .row{display:flex;justify-content:space-between;gap:.6rem;align-items:baseline}
+  .item .nm{font-weight:600;color:var(--ink)}
+  .item .nm small{display:block;font-weight:400;font-size:.78rem;color:var(--ink-soft)}
+  .dots{flex:1;border-bottom:2px dotted rgba(122,31,43,.25);margin:0 .4rem;transform:translateY(-4px)}
+  .item .price{font-family:'Playfair Display',serif;font-weight:700;color:var(--maroon);white-space:nowrap}
+  .item .desc{font-size:.85rem;color:var(--ink-soft);margin-top:.15rem}
+  .pill{display:inline-block;font-size:.66rem;letter-spacing:.04em;text-transform:uppercase;background:var(--gold-soft);color:#5a3d00;padding:.1rem .5rem;border-radius:999px;margin-left:.4rem;vertical-align:middle;font-weight:600}
+  .menu-note{text-align:center;color:var(--ink-soft);font-size:.86rem;margin-top:2rem}
+
+  /* ---------- Signature / bestsellers ---------- */
+  .sig{background:var(--maroon);color:#fff}
+  .sig .head h2{color:#fff}
+  .sig .eyebrow{color:var(--gold-soft)}
+  .sig .head p{color:rgba(255,255,255,.8)}
+  .sig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .sig-card{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);
+    padding:1.8rem 1.5rem;text-align:center;transition:.3s;position:relative;overflow:hidden;
+  }
+  .sig-card:hover{transform:translateY(-8px);background:rgba(255,255,255,.1);border-color:var(--gold-soft)}
+  .sig-card .em{font-size:3rem;display:block;margin-bottom:.7rem}
+  .sig-card h3{font-size:1.3rem;margin-bottom:.4rem}
+  .sig-card p{font-size:.9rem;opacity:.84;margin-bottom:.9rem}
+  .sig-card .star{color:var(--gold-soft);letter-spacing:2px}
+
+  /* ---------- Gallery ---------- */
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:.9rem}
+  .g{
+    border-radius:18px;display:grid;place-items:center;font-size:3rem;overflow:hidden;position:relative;
+    box-shadow:var(--shadow);cursor:default;transition:.35s;
+  }
+  .g:hover{transform:scale(1.03)}
+  .g::after{content:attr(data-label);position:absolute;inset:auto 0 0 0;background:linear-gradient(transparent,rgba(94,20,31,.85));color:#fff;font-family:'Poppins';font-size:.78rem;padding:1.4rem .8rem .6rem;opacity:0;transition:.3s;text-align:center}
+  .g:hover::after{opacity:1}
+  .g.big{grid-column:span 2;grid-row:span 2;font-size:5rem}
+  .g.c1{background:linear-gradient(135deg,#fbe6c8,#f3cf9e)}
+  .g.c2{background:linear-gradient(135deg,#f6d2d2,#e8a9a9)}
+  .g.c3{background:linear-gradient(135deg,#e8e6c0,#cfd29a)}
+  .g.c4{background:linear-gradient(135deg,#f7ddc0,#e9c08c)}
+  .g.c5{background:linear-gradient(135deg,#f4cda0,#e3aa6a)}
+
+  /* ---------- Testimonials ---------- */
+  .testi{background:var(--white)}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .quote{
+    background:var(--cream);border-radius:var(--radius);padding:1.8rem 1.6rem;border:1px solid rgba(122,31,43,.07);
+    transition:.3s;position:relative;
+  }
+  .quote:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .quote .stars{color:var(--gold);letter-spacing:2px;margin-bottom:.7rem}
+  .quote p{font-style:italic;color:var(--ink);margin-bottom:1.1rem}
+  .quote .who{display:flex;align-items:center;gap:.7rem}
+  .quote .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold-soft),var(--maroon));display:grid;place-items:center;color:#fff;font-weight:700}
+  .quote .who b{font-size:.95rem}
+  .quote .who span{font-size:.8rem;color:var(--ink-soft)}
+
+  /* ---------- Visit ---------- */
+  .visit{background:linear-gradient(180deg,var(--cream-2),var(--cream))}
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.2rem;align-items:stretch}
+  .map-box{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-height:380px;border:6px solid #fff}
+  .map-box iframe{width:100%;height:100%;min-height:380px;border:0;display:block}
+  .info-card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:1.1rem}
+  .info-row{display:flex;gap:.9rem;align-items:flex-start}
+  .info-row .ic{width:44px;height:44px;border-radius:12px;flex:0 0 auto;display:grid;place-items:center;background:var(--cream-2);font-size:1.3rem}
+  .info-row b{display:block;color:var(--maroon)}
+  .info-row span,.info-row a{color:var(--ink-soft);font-size:.92rem}
+  .info-row a:hover{color:var(--maroon)}
+  .hours{list-style:none;font-size:.9rem;color:var(--ink-soft)}
+  .hours li{display:flex;justify-content:space-between;padding:.18rem 0;border-bottom:1px dashed rgba(122,31,43,.12)}
+  .hours li.today{color:var(--maroon);font-weight:600}
+  .visit-cta{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.3rem}
+
+  /* ---------- CTA banner ---------- */
+  .band{background:linear-gradient(135deg,var(--gold),var(--gold-soft));text-align:center;color:#4a3200}
+  .band .wrap{padding:clamp(2.5rem,6vw,4rem) 22px}
+  .band h2{font-size:clamp(1.8rem,4vw,2.6rem);color:#4a2a00;margin-bottom:.6rem}
+  .band p{margin-bottom:1.5rem;color:#5a3d00}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--maroon-deep);color:#f1d9c2}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem;padding:3rem 0 2rem}
+  .foot-grid .brand .name{color:#fff}
+  .foot-grid p{font-size:.9rem;opacity:.8;margin-top:1rem;max-width:34ch}
+  .foot h4{color:var(--gold-soft);font-family:'Poppins';font-size:.95rem;margin-bottom:1rem;letter-spacing:.04em}
+  .foot ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+  .foot ul a{font-size:.9rem;opacity:.85}
+  .foot ul a:hover{opacity:1;color:var(--gold-soft)}
+  .socials{display:flex;gap:.6rem;margin-top:.4rem}
+  .socials a{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);font-size:1.1rem;transition:.25s}
+  .socials a:hover{background:var(--gold);color:#3a2300;transform:translateY(-3px)}
+  .copy{border-top:1px solid rgba(255,255,255,.12);text-align:center;padding:1.2rem 0;font-size:.82rem;opacity:.75}
+
+  /* Back to top + Floating WhatsApp */
+  .fab{position:fixed;right:18px;z-index:60;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;box-shadow:var(--shadow);cursor:pointer;border:0;font-size:1.4rem;transition:transform .25s, opacity .25s}
+  .fab:hover{transform:translateY(-4px)}
+  .wa{bottom:84px;background:#25d366;color:#fff}
+  .totop{bottom:22px;background:var(--maroon);color:#fff;opacity:0;pointer-events:none}
+  .totop.show{opacity:1;pointer-events:auto}
+
+  /* Reveal animation */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:900px){
+    nav.links{
+      position:fixed;inset:0 0 0 30%;background:var(--maroon);flex-direction:column;justify-content:center;
+      gap:1.6rem;transform:translateX(100%);transition:transform .35s ease;padding:2rem;box-shadow:var(--shadow);
+    }
+    nav.links.open{transform:none}
+    nav.links a{color:#fff;font-size:1.15rem}
+    nav.links a::after{background:var(--gold-soft)}
+    .burger{display:flex}
+    .nav-cta .btn{display:none}
+    .hero .wrap{grid-template-columns:1fr;text-align:center}
+    .hero p.lead{margin-left:auto;margin-right:auto}
+    .hero-cta,.hero-stats{justify-content:center}
+    .hero-art{order:-1}
+    .feat-grid{grid-template-columns:repeat(2,1fr)}
+    .about-grid,.visit-grid{grid-template-columns:1fr}
+    .menu-grid{grid-template-columns:1fr;gap:.6rem}
+    .sig-grid,.testi-grid{grid-template-columns:1fr}
+    .gallery-grid{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr;gap:1.6rem;text-align:center}
+    .foot ul{align-items:center}
+    .socials{justify-content:center}
+    .about-text .ar{border-right:0;border-left:4px solid var(--gold)}
+  }
+  @media(max-width:480px){
+    .feat-grid{grid-template-columns:1fr}
+    .hero-stats{gap:1.2rem}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Top bar ===== -->
+<div class="topbar">
+  <div class="wrap">
+    <div>🍯 Freshly made every single day in Al Buraimi, Oman</div>
+    <div>
+      <a href="tel:+96800000000">📞 +968 0000 0000</a>
+      <span class="dot">•</span>
+      <a href="#visit">📍 Get Directions</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Nav ===== -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#home" class="brand">
+      <span class="mark">🍬</span>
+      <span class="name">Top Ten Sweets<small>Al Buraimi · Oman</small></span>
+    </a>
+    <nav class="links" id="navlinks">
+      <a href="#home">Home</a>
+      <a href="#about">Our Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#signature">Signatures</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#visit">Visit Us</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#menu" class="btn btn-maroon">View Menu</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="hero-badge">✨ A little bit of happiness, freshly made</span>
+      <h1>Sweetness, <span class="hl">the way it should be.</span></h1>
+      <p class="lead">Step inside Top Ten Sweets and let the aroma of warm syrup, roasted pistachio, and golden ghee welcome you home. Pull up a chair — you're going to want to stay.</p>
+      <div class="hero-cta">
+        <a href="#menu" class="btn btn-gold">🍰 Explore the Menu</a>
+        <a href="#visit" class="btn btn-ghost">📍 Find Us</a>
+      </div>
+      <div class="hero-stats">
+        <div class="st"><b>10+</b><span>Years of sweetness</span></div>
+        <div class="st"><b>50+</b><span>Handmade treats</span></div>
+        <div class="st"><b>100%</b><span>Halal & fresh</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <span class="floaty f1">🧁</span>
+      <span class="floaty f2">🍮</span>
+      <span class="floaty f3">🍩</span>
+      <div class="platter">
+        <div class="emoji-grid">
+          <span>🍰</span><span>🥮</span><span>🍪</span>
+          <span>🧁</span><span>🍯</span><span>🍩</span>
+          <span>🥧</span><span>🍮</span><span>🫖</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#fdf6ec" d="M0,40 C240,90 480,0 720,30 C960,60 1200,90 1440,40 L1440,80 L0,80 Z"></path>
+  </svg>
+</section>
+
+<!-- ===== Features ===== -->
+<section class="features pad">
+  <div class="wrap">
+    <div class="feat-grid">
+      <div class="feat reveal"><div class="ic">👐</div><h3>Handmade Daily</h3><p>Every tray is prepared fresh each morning — never frozen, never yesterday's.</p></div>
+      <div class="feat reveal"><div class="ic">🌿</div><h3>Pure Ingredients</h3><p>Real ghee, premium nuts, and recipes passed down through generations.</p></div>
+      <div class="feat reveal"><div class="ic">☕</div><h3>Sit & Stay</h3><p>A cozy corner, free karak tea refills, and a smile that makes you linger.</p></div>
+      <div class="feat reveal"><div class="ic">🎁</div><h3>Gifts & Orders</h3><p>Beautiful boxes for weddings, Eid, and every reason to celebrate.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="about pad" id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual reveal">
+      <span class="big">🥮</span>
+      <div class="tag">
+        <span class="em">🏆</span>
+        <div><b>Made with love since day one</b><span>A neighbourhood favourite in Al Buraimi</span></div>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <span class="eyebrow">Our Story</span>
+      <h2>More than sweets — a warm welcome on every plate.</h2>
+      <p>Top Ten Sweets began with a simple belief: that the best memories are made around something sweet. From bubbling pots of golden syrup to trays of pistachio-dusted treats, every recipe is crafted by hand with the same care we'd give our own family.</p>
+      <p>Whether you're grabbing a box of mithai for a celebration, sharing kunafa with friends, or simply pausing for a quiet cup of karak, our doors — and our hearts — are open.</p>
+      <p class="ar">حلويات تُصنع بحب كل يوم. تفضّلوا بزيارتنا في البريمي وذوقوا الفرق.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Menu ===== -->
+<section class="menu pad" id="menu">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Taste Everything</span>
+      <h2>Our Menu</h2>
+      <p>From traditional Arabic delights to beloved mithai, cakes, and warm drinks — there's something here to make everyone smile.</p>
+    </div>
+
+    <div class="tabs reveal" id="tabs">
+      <button class="tab active" data-tab="arabic">🥮 Arabic Sweets</button>
+      <button class="tab" data-tab="mithai">🍥 Indian Mithai</button>
+      <button class="tab" data-tab="cakes">🎂 Cakes &amp; Pastries</button>
+      <button class="tab" data-tab="drinks">☕ Drinks</button>
+    </div>
+
+    <!-- Arabic -->
+    <div class="panel active" id="arabic">
+      <div class="menu-grid">
+        <div class="item reveal"><span class="em">🧀</span><div class="info"><div class="row"><span class="nm">Kunafa <span class="pill">Bestseller</span></span><span class="dots"></span><span class="price">2.500</span></div><div class="desc">Crispy golden pastry over molten cheese, soaked in rose syrup.</div></div></div>
+        <div class="item reveal"><span class="em">🍯</span><div class="info"><div class="row"><span class="nm">Baklava (per kg)</span><span class="dots"></span><span class="price">4.000</span></div><div class="desc">Layered filo with pistachio &amp; walnut, drenched in honey.</div></div></div>
+        <div class="item reveal"><span class="em">🍩</span><div class="info"><div class="row"><span class="nm">Luqaimat</span><span class="dots"></span><span class="price">1.000</span></div><div class="desc">Crunchy golden dumplings drizzled with date syrup.</div></div></div>
+        <div class="item reveal"><span class="em">🟫</span><div class="info"><div class="row"><span class="nm">Basbousa</span><span class="dots"></span><span class="price">1.200</span></div><div class="desc">Semolina cake soaked in syrup, topped with almond.</div></div></div>
+        <div class="item reveal"><span class="em">🥮</span><div class="info"><div class="row"><span class="nm">Omani Halwa (per kg)</span><span class="dots"></span><span class="price">3.500</span></div><div class="desc">The classic — rosewater, saffron, and toasted nuts.</div></div></div>
+        <div class="item reveal"><span class="em">🌰</span><div class="info"><div class="row"><span class="nm">Maamoul (box of 12)</span><span class="dots"></span><span class="price">2.000</span></div><div class="desc">Buttery date &amp; pistachio filled shortbread.</div></div></div>
+      </div>
+    </div>
+
+    <!-- Mithai -->
+    <div class="panel" id="mithai">
+      <div class="menu-grid">
+        <div class="item reveal"><span class="em">🟠</span><div class="info"><div class="row"><span class="nm">Gulab Jamun <span class="pill">Bestseller</span></span><span class="dots"></span><span class="price">0.800</span></div><div class="desc">Warm milk-dough balls in fragrant cardamom syrup.</div></div></div>
+        <div class="item reveal"><span class="em">🍥</span><div class="info"><div class="row"><span class="nm">Jalebi (per kg)</span><span class="dots"></span><span class="price">2.500</span></div><div class="desc">Crispy spirals soaked in saffron syrup, served warm.</div></div></div>
+        <div class="item reveal"><span class="em">⬜</span><div class="info"><div class="row"><span class="nm">Barfi (per kg)</span><span class="dots"></span><span class="price">3.200</span></div><div class="desc">Soft milk fudge with cashew, pistachio &amp; silver leaf.</div></div></div>
+        <div class="item reveal"><span class="em">⚪</span><div class="info"><div class="row"><span class="nm">Rasgulla</span><span class="dots"></span><span class="price">0.700</span></div><div class="desc">Spongy cheese dumplings in light sugar syrup.</div></div></div>
+        <div class="item reveal"><span class="em">🟡</span><div class="info"><div class="row"><span class="nm">Laddu (box of 10)</span><span class="dots"></span><span class="price">1.800</span></div><div class="desc">Golden gram-flour spheres rich with ghee.</div></div></div>
+        <div class="item reveal"><span class="em">🟧</span><div class="info"><div class="row"><span class="nm">Soan Papdi (per kg)</span><span class="dots"></span><span class="price">2.200</span></div><div class="desc">Flaky, melt-in-the-mouth cardamom delight.</div></div></div>
+      </div>
+    </div>
+
+    <!-- Cakes -->
+    <div class="panel" id="cakes">
+      <div class="menu-grid">
+        <div class="item reveal"><span class="em">🎂</span><div class="info"><div class="row"><span class="nm">Celebration Cake (1 kg)</span><span class="dots"></span><span class="price">6.000</span></div><div class="desc">Custom-decorated for birthdays &amp; occasions. Order ahead.</div></div></div>
+        <div class="item reveal"><span class="em">🧁</span><div class="info"><div class="row"><span class="nm">Cupcakes (box of 6)</span><span class="dots"></span><span class="price">2.400</span></div><div class="desc">Vanilla, chocolate &amp; red velvet with buttercream swirls.</div></div></div>
+        <div class="item reveal"><span class="em">🥐</span><div class="info"><div class="row"><span class="nm">Butter Croissant</span><span class="dots"></span><span class="price">0.500</span></div><div class="desc">Flaky, golden, baked fresh each morning.</div></div></div>
+        <div class="item reveal"><span class="em">🍩</span><div class="info"><div class="row"><span class="nm">Glazed Donuts (6)</span><span class="dots"></span><span class="price">1.500</span></div><div class="desc">Soft, pillowy, and dipped in a shiny glaze.</div></div></div>
+        <div class="item reveal"><span class="em">🍫</span><div class="info"><div class="row"><span class="nm">Chocolate Brownie</span><span class="dots"></span><span class="price">0.800</span></div><div class="desc">Fudgy, rich, and loaded with chocolate chunks.</div></div></div>
+        <div class="item reveal"><span class="em">🥧</span><div class="info"><div class="row"><span class="nm">Cheesecake Slice</span><span class="dots"></span><span class="price">1.200</span></div><div class="desc">Creamy baked cheesecake with seasonal fruit.</div></div></div>
+      </div>
+    </div>
+
+    <!-- Drinks -->
+    <div class="panel" id="drinks">
+      <div class="menu-grid">
+        <div class="item reveal"><span class="em">🫖</span><div class="info"><div class="row"><span class="nm">Karak Chai <span class="pill">Favourite</span></span><span class="dots"></span><span class="price">0.300</span></div><div class="desc">Strong, sweet, spiced milk tea — the perfect companion.</div></div></div>
+        <div class="item reveal"><span class="em">☕</span><div class="info"><div class="row"><span class="nm">Arabic Coffee (Gahwa)</span><span class="dots"></span><span class="price">0.500</span></div><div class="desc">Cardamom-infused, served with dates.</div></div></div>
+        <div class="item reveal"><span class="em">🥭</span><div class="info"><div class="row"><span class="nm">Fresh Mango Juice</span><span class="dots"></span><span class="price">0.700</span></div><div class="desc">Thick, cold, and 100% real fruit.</div></div></div>
+        <div class="item reveal"><span class="em">🥤</span><div class="info"><div class="row"><span class="nm">Mango Lassi</span><span class="dots"></span><span class="price">0.800</span></div><div class="desc">Creamy yogurt blend with a hint of cardamom.</div></div></div>
+        <div class="item reveal"><span class="em">🧋</span><div class="info"><div class="row"><span class="nm">Saffron Milk</span><span class="dots"></span><span class="price">0.600</span></div><div class="desc">Warm milk with saffron, pistachio &amp; honey.</div></div></div>
+        <div class="item reveal"><span class="em">🍋</span><div class="info"><div class="row"><span class="nm">Fresh Lemon Mint</span><span class="dots"></span><span class="price">0.600</span></div><div class="desc">Cool, zesty, and refreshing.</div></div></div>
+      </div>
+    </div>
+
+    <p class="menu-note">All prices in Omani Rial (OMR). 🌙 Special trays available for Eid, Ramadan &amp; weddings — just ask!</p>
+  </div>
+</section>
+
+<!-- ===== Signature ===== -->
+<section class="sig pad" id="signature">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Loved by Everyone</span>
+      <h2>Our Signature Treats</h2>
+      <p>The ones people drive across town for. Try them once, and you'll understand.</p>
+    </div>
+    <div class="sig-grid">
+      <div class="sig-card reveal">
+        <span class="em">🧀</span><h3>Hot Kunafa</h3>
+        <p>Served warm and stretchy, straight from the tray to your table. Pure comfort.</p>
+        <div class="star">★★★★★</div>
+      </div>
+      <div class="sig-card reveal">
+        <span class="em">🍯</span><h3>Pistachio Baklava</h3>
+        <p>Forty delicate layers, a generous handful of pistachio, and just enough honey.</p>
+        <div class="star">★★★★★</div>
+      </div>
+      <div class="sig-card reveal">
+        <span class="em">🟠</span><h3>Warm Gulab Jamun</h3>
+        <p>Soft, syrup-soaked, and impossible to eat just one. A house favourite.</p>
+        <div class="star">★★★★★</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Gallery ===== -->
+<section class="gallery pad" id="gallery">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">A Feast for the Eyes</span>
+      <h2>From Our Counter</h2>
+      <p>A little glimpse of what's waiting for you. Replace these with photos of your own creations.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="g big c1" data-label="Fresh Kunafa Tray">🥮</div>
+      <div class="g c2" data-label="Assorted Mithai">🍥</div>
+      <div class="g c3" data-label="Pistachio Baklava">🍯</div>
+      <div class="g c4" data-label="Celebration Cakes">🎂</div>
+      <div class="g c5" data-label="Warm Luqaimat">🍩</div>
+      <div class="g c2" data-label="Karak & Sweets">🫖</div>
+      <div class="g c1" data-label="Gift Boxes">🎁</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Testimonials ===== -->
+<section class="testi pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Kind Words</span>
+      <h2>People Love It Here</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>"The kunafa is the best I've had in the region. Warm, fresh, and the staff treat you like family. We come every weekend."</p>
+        <div class="who"><span class="av">A</span><div><b>Aisha M.</b><span>Al Buraimi</span></div></div>
+      </div>
+      <div class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Ordered a full sweet tray for our Eid gathering. Beautiful presentation and everyone asked where it was from. Highly recommend!"</p>
+        <div class="who"><span class="av">R</span><div><b>Rashid K.</b><span>Al Ain</span></div></div>
+      </div>
+      <div class="quote reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Cozy place to sit with a karak and some gulab jamun. Friendly, clean, and so welcoming. My go-to sweet spot."</p>
+        <div class="who"><span class="av">S</span><div><b>Sara P.</b><span>Regular customer</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Visit ===== -->
+<section class="visit pad" id="visit">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Come Say Hello</span>
+      <h2>Visit Us</h2>
+      <p>We're right by Al Qoaa Park in Al Buraimi. Drop by — the kettle's always on.</p>
+    </div>
+    <div class="visit-grid">
+      <div class="map-box reveal">
+        <iframe
+          title="Top Ten Sweets location"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=23.4161825,55.426021&z=16&output=embed"></iframe>
+      </div>
+      <div class="info-card reveal">
+        <div class="info-row">
+          <div class="ic">📍</div>
+          <div><b>Find Us</b><span>Near Al Qoaa Park, Al Buraimi, Sultanate of Oman</span></div>
+        </div>
+        <div class="info-row">
+          <div class="ic">📞</div>
+          <div><b>Call / WhatsApp</b><a href="tel:+96800000000">+968 0000 0000</a></div>
+        </div>
+        <div class="info-row">
+          <div class="ic">🕒</div>
+          <div style="flex:1">
+            <b>Opening Hours</b>
+            <ul class="hours">
+              <li><span>Saturday – Thursday</span><span>8:00 AM – 11:00 PM</span></li>
+              <li><span>Friday</span><span>2:00 PM – 11:00 PM</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="visit-cta">
+          <a class="btn btn-maroon" target="_blank" rel="noopener"
+             href="https://www.google.com/maps/dir/?api=1&destination=23.4161825,55.426021">🧭 Get Directions</a>
+          <a class="btn btn-outline" href="tel:+96800000000">📞 Call Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA band ===== -->
+<section class="band">
+  <div class="wrap">
+    <h2>Come for the sweets. Stay for the warmth.</h2>
+    <p>Bring your family, your friends, or just yourself. There's always a fresh tray waiting.</p>
+    <a class="btn btn-maroon" href="#visit">📍 Plan Your Visit</a>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <a href="#home" class="brand">
+        <span class="mark">🍬</span>
+        <span class="name">Top Ten Sweets<small>Al Buraimi · Oman</small></span>
+      </a>
+      <p>Freshly made Arabic sweets, mithai, cakes &amp; warm drinks. A sweet little corner where everyone's welcome.</p>
+      <div class="socials">
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="WhatsApp">💬</a>
+        <a href="#" aria-label="Facebook">👍</a>
+        <a href="https://www.google.com/maps?q=23.4161825,55.426021" target="_blank" rel="noopener" aria-label="Map">📍</a>
+      </div>
+    </div>
+    <div class="foot">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#signature">Signatures</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+    <div class="foot">
+      <h4>Visit</h4>
+      <ul>
+        <li><a href="#visit">Find Us</a></li>
+        <li><a href="tel:+96800000000">+968 0000 0000</a></li>
+        <li><span style="opacity:.85">Sat–Thu: 8 AM – 11 PM</span></li>
+        <li><span style="opacity:.85">Fri: 2 PM – 11 PM</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copy">© <span id="year"></span> Top Ten Sweets · Al Buraimi, Oman · Made with 🍯 &amp; love</div>
+</footer>
+
+<!-- Floating buttons -->
+<a class="fab wa" href="https://wa.me/96800000000" target="_blank" rel="noopener" aria-label="WhatsApp us" title="WhatsApp us">💬</a>
+<button class="fab totop" id="totop" aria-label="Back to top">↑</button>
+
+<script>
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // mobile nav
+  const burger = document.getElementById('burger');
+  const navlinks = document.getElementById('navlinks');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    navlinks.classList.toggle('open');
+  });
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    navlinks.classList.remove('open');
+  }));
+
+  // nav shadow + back to top
+  const nav = document.getElementById('nav');
+  const totop = document.getElementById('totop');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 20);
+    totop.classList.toggle('show', y > 600);
+  });
+  totop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // menu tabs
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    const panel = document.getElementById(tab.dataset.tab);
+    panel.classList.add('active');
+    panel.querySelectorAll('.reveal').forEach(r => r.classList.add('in'));
+  }));
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // active nav link on scroll
+  const sections = ['home','about','menu','signature','gallery','visit'];
+  const linkMap = {};
+  document.querySelectorAll('nav.links a').forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    linkMap[id] = a;
+  });
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){
+        Object.values(linkMap).forEach(a => a.classList.remove('active'));
+        if (linkMap[e.target.id]) linkMap[e.target.id].classList.add('active');
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  sections.forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+</script>
+</body>
+</html>
