@@ -165,6 +165,25 @@
   .news-form input::placeholder{ color:rgba(250,248,243,0.5); }
   .news-form button{ background:none; border:none; cursor:pointer; color:var(--paper); font-size:12px; letter-spacing:3px; text-transform:uppercase; padding:14px 8px; white-space:nowrap; font-family:'Tajawal',sans-serif; }
 
+  /* ===== STORY ===== */
+  .story-sec{ background:var(--paper-2); }
+  .story-wrap{ max-width:1320px; margin-inline:auto; display:grid; grid-template-columns:1fr 1.4fr; gap:70px; align-items:start; }
+  .story-aside{ position:sticky; top:110px; }
+  .story-aside .eyebrow{ display:block; margin-bottom:18px; }
+  .story-aside h2{ font-family:'Playfair Display','Amiri',serif; font-weight:500; font-size:clamp(32px,4vw,52px); color:var(--ink); line-height:1.2; }
+  .story-aside .facts{ margin-top:36px; border-top:1px solid var(--line); }
+  .story-aside .fact{ display:flex; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--line-soft); }
+  .story-aside .fact .k{ font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--stone); }
+  .story-aside .fact .v{ font-family:'Amiri',serif; font-size:16px; color:var(--ink); text-align:left; }
+  .story-body p{ font-size:18px; color:var(--ink-2); margin-bottom:22px; }
+  .story-body p:first-of-type{ font-family:'Amiri',serif; font-size:22px; line-height:1.8; color:var(--ink); }
+  .story-body p:first-of-type::first-letter{ font-family:'Playfair Display',serif; font-size:62px; float:right; line-height:.8; margin:6px 0 0 12px; color:var(--ink); }
+  .story-body h3{ font-family:'Amiri',serif; font-weight:700; font-size:23px; color:var(--ink); margin:38px 0 14px; }
+  .story-body .pull{ font-family:'Amiri',serif; font-style:italic; font-size:24px; line-height:1.7; color:var(--ink); border-right:2px solid var(--ink); padding:6px 24px 6px 0; margin:34px 0; }
+  .story-body ul{ list-style:none; margin:0 0 22px; }
+  .story-body li{ position:relative; padding-right:24px; margin-bottom:10px; color:var(--ink-2); font-size:17px; }
+  .story-body li::before{ content:'—'; position:absolute; right:0; color:var(--stone); }
+
   /* ===== FOOTER ===== */
   footer{ background:var(--paper); color:var(--ink); padding:80px 4vw 36px; border-top:1px solid var(--line); }
   .foot-top{ display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:50px; margin-bottom:60px; max-width:1320px; margin-inline:auto; }
@@ -220,6 +239,7 @@
     .cats{ grid-template-columns:1fr; } .products{ grid-template-columns:repeat(2,1fr); gap:36px 20px; }
     .edit{ grid-template-columns:1fr; } .edit .img{ min-height:55vh; }
     .stories{ grid-template-columns:1fr; gap:50px; } .foot-top{ grid-template-columns:1fr 1fr; }
+    .story-wrap{ grid-template-columns:1fr; gap:36px; } .story-aside{ position:static; }
     .impact-grid{ grid-template-columns:1fr 1fr; } .impact-cell:nth-child(3){ border-left:none; } .impact-cell{ padding:30px; } .impact-cell:nth-child(n+3){ border-top:1px solid var(--line); }
   }
   @media (max-width:560px){
@@ -341,6 +361,44 @@
   <h2>جديدنا يصلك أولاً</h2>
   <p>منتجاتٌ موسمية ومختاراتٌ من الأسر المنتجة، مباشرةً إلى بريدك.</p>
   <form class="news-form" id="newsForm" onsubmit="return false;"><input type="email" placeholder="بريدك الإلكتروني" required aria-label="البريد الإلكتروني"><button type="submit">اشترك ←</button></form>
+</section>
+
+<!-- STORY -->
+<section class="story-sec reveal">
+  <div class="story-wrap">
+    <div class="story-aside">
+      <span class="eyebrow">عن المحل</span>
+      <h2>قصة توب تن</h2>
+      <div class="facts">
+        <div class="fact"><span class="k">الموقع</span><span class="v">القوع · مدينة العين · أبوظبي</span></div>
+        <div class="fact"><span class="k">التأسيس</span><span class="v">أبريل ٢٠١٩</span></div>
+        <div class="fact"><span class="k">التخصص</span><span class="v">أطعمة · مشروبات · حلويات</span></div>
+        <div class="fact"><span class="k">الأسر المنتجة</span><span class="v">من ٥ إلى ٣١٨ أسرة</span></div>
+        <div class="fact"><span class="k">المشاريع المحلية</span><span class="v">من ٢ إلى ٨٠ مشروعاً</span></div>
+      </div>
+    </div>
+    <div class="story-body">
+      <p>توب تن للأسر المنتجة هو محلٌّ ومنصة تمكينٍ اقتصادية محلية في منطقة القوع بمدينة العين، افتُتح في أبريل ٢٠١٩ بهدف توفير منفذ بيعٍ منظّمٍ للأسر المنتجة المتخصصة في إعداد الأطعمة المنزلية، والأكل الشعبي الإماراتي، والحلويات، والقهوة، والمشروبات.</p>
+
+      <p>جاءت الفكرة من وجود أسرٍ كثيرة في القوع تمتلك مهاراتٍ متميّزة في إعداد المأكولات والحلويات والمشروبات، لكنها كانت تواجه صعوبة الوصول إلى العملاء، وضعف التسويق، وغياب منفذ بيعٍ ثابت. فجاء توب تن ليكون منصةً محلية تجمع هذه المنتجات في مكانٍ واحد، وتمنحها فرصةً للوصول إلى العملاء بشكلٍ يوميٍّ ومنظّم، مع المحافظة على الطابع المحلي والهوية الإماراتية.</p>
+
+      <h3>ماذا يقدّم توب تن؟</h3>
+      <p>لا يكتفي توب تن ببيع المنتجات، بل يقدّم منظومة دعمٍ متكاملة ترافق الأسرة المنتجة خطوةً بخطوة:</p>
+      <ul>
+        <li>دعم الهوية واستكمال التراخيص اللازمة</li>
+        <li>تحسين التغليف والطباعة وطريقة العرض</li>
+        <li>توفير المواد الأولية بأفضل جودة</li>
+        <li>النقل اللوجستي من المنزل إلى المحل</li>
+        <li>عرض المنتجات في أرففٍ للجاف وثلاجاتٍ للبارد والساخن</li>
+        <li>تسوية المبيعات شهرياً مع تغذيةٍ راجعة لتحسين الجودة</li>
+      </ul>
+
+      <div class="pull">«لا نبيع الطعام فقط، بل نبيع قصة الأسرة المنتجة، والهوية الإماراتية، والقدرة على تحويل المهارة البسيطة إلى مصدر دخلٍ واستقلال».</div>
+
+      <h3>الأثر</h3>
+      <p>أحدث المشروع تحوّلاً واضحاً في القوع: ارتفع عدد الأسر المنتجة من ٥ أسرٍ إلى ٣١٨ أسرة، وعدد المشاريع المحلية المُدارة بأيدي أبناء المنطقة من ٢ إلى ٨٠ مشروعاً. ولم يكتفِ النموذج بتسويق المنتجات، بل أسّس بنيةً تحتية للتمكين الاقتصادي المحلي، وفتح الباب أمام جيلٍ جديد من رائدات الأعمال والأسر المنتجة.</p>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
