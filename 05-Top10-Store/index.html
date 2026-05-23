@@ -4,238 +4,217 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TOP TEN · توب تن للأسر المنتجة</title>
-<meta name="description" content="توب تن للأسر المنتجة — بيتٌ يجمع أرقى ما تصنعه الأسر المنتجة في مدينة العين: قهوة، أكل شعبي إماراتي، حلويات ومشروبات. منذ ٢٠١٩.">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="description" content="توب تن للأسر المنتجة — تجربة ثلاثية الأبعاد لأرقى ما تصنعه الأسر المنتجة في مدينة العين: قهوة، أكل شعبي، حلويات ومشروبات. منذ ٢٠١٩.">
+<meta name="theme-color" content="#070706">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
   :root{
-    --paper:   #ffffff;
-    --paper-2: #f3f2ef;
-    --ink:     #0a0a0a;
-    --ink-2:   #4a4a4a;
-    --stone:   #9a9a9a;
-    --gold:    #0a0a0a;
-    --line:    rgba(10,10,10,0.15);
-    --line-soft: rgba(10,10,10,0.07);
+    --bg:      #070706;
+    --ink:     #f4f2ec;
+    --ink-2:   rgba(244,242,236,0.62);
+    --stone:   rgba(244,242,236,0.42);
+    --gold:    #cbb27e;
+    --line:    rgba(244,242,236,0.16);
+    --line-soft: rgba(244,242,236,0.08);
+    --panel:   rgba(14,14,13,0.55);
+    --panel-2: rgba(20,20,19,0.78);
     --ease:    cubic-bezier(0.22, 1, 0.36, 1);
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
   html,body{ overflow-x:hidden; max-width:100%; }
   html{ scroll-behavior:smooth; scroll-padding-top:80px; }
-  body{
-    font-family:'Tajawal',sans-serif; color:var(--ink); background:var(--paper);
-    line-height:1.9; font-weight:300; -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3,h4{ font-family:'Playfair Display','Amiri',serif; font-weight:500; line-height:1.25; }
-  .ar-serif{ font-family:'Amiri',serif; }
-  ::selection{ background:var(--ink); color:var(--paper); }
+  body{ font-family:'Tajawal',sans-serif; color:var(--ink); background:var(--bg); line-height:1.9; font-weight:300; -webkit-font-smoothing:antialiased; }
+
+  /* fixed immersive 3D layer */
+  #bg3d{ position:fixed; inset:0; z-index:0; display:block; width:100%; height:100%; }
+  .page{ position:relative; z-index:1; }
+  /* vignette over the 3D for depth + legibility */
+  .veil{ position:fixed; inset:0; z-index:0; pointer-events:none; background:radial-gradient(120% 90% at 50% 30%, rgba(7,7,6,0) 30%, rgba(7,7,6,0.55) 100%); }
+
+  h1,h2,h3,h4{ font-family:'Playfair Display','Amiri',serif; font-weight:500; line-height:1.25; color:var(--ink); }
+  ::selection{ background:var(--gold); color:var(--bg); }
   *:focus-visible{ outline:1px solid var(--gold); outline-offset:4px; }
-  a{ color:inherit; }
-  img{ display:block; max-width:100%; }
+  a{ color:inherit; } img{ display:block; max-width:100%; }
 
   .eyebrow{ font-size:11px; font-weight:500; letter-spacing:5px; text-transform:uppercase; color:var(--gold); }
-
   .ul{ display:inline-flex; align-items:center; gap:10px; font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--ink); text-decoration:none; cursor:pointer; background:none; border:none; padding-bottom:6px; position:relative; font-family:'Tajawal',sans-serif; }
   .ul::after{ content:''; position:absolute; bottom:0; right:0; left:0; height:1px; background:currentColor; transform:scaleX(1); transform-origin:right; transition:transform .5s var(--ease); }
   .ul:hover::after{ transform:scaleX(0); transform-origin:left; }
-  .ul.light{ color:var(--paper); }
 
   .progress{ position:fixed; top:0; right:0; left:0; height:2px; z-index:300; }
   .progress span{ display:block; height:100%; width:0; background:var(--gold); transition:width .1s linear; }
 
-  /* ===== NAV ===== */
-  nav{ position:fixed; top:0; right:0; left:0; z-index:100; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:26px 4vw; transition:padding .4s var(--ease), background .4s, box-shadow .4s; }
-  nav.solid{ padding:16px 4vw; background:var(--paper); box-shadow:0 1px 0 var(--line-soft); }
+  /* NAV */
+  nav{ position:fixed; top:0; right:0; left:0; z-index:100; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:24px 4vw; transition:padding .4s var(--ease), background .4s, backdrop-filter .4s; }
+  nav.solid{ padding:14px 4vw; background:rgba(7,7,6,0.7); backdrop-filter:blur(14px); }
   nav .links{ display:flex; gap:30px; }
   nav .links a{ font-size:12px; letter-spacing:2.5px; text-transform:uppercase; text-decoration:none; color:var(--ink-2); position:relative; transition:color .3s; }
-  nav .links a::after{ content:''; position:absolute; bottom:-6px; right:0; width:0; height:1px; background:var(--ink); transition:width .4s var(--ease); }
-  nav .links a:hover{ color:var(--ink); } nav .links a:hover::after, nav .links a.active::after{ width:100%; } nav .links a.active{ color:var(--ink); }
-  nav.over .links a, nav.over .wordmark, nav.over .icon-btn{ color:var(--paper); }
-  nav.over .links a{ color:rgba(250,248,243,0.85); } nav.over .links a:hover{ color:var(--paper); } nav.over .links a::after{ background:var(--paper); }
-  .wordmark{ justify-self:center; text-align:center; text-decoration:none; transition:color .4s; }
-  .wordmark .en{ font-family:'Playfair Display',serif; font-size:26px; font-weight:500; letter-spacing:8px; line-height:1; }
+  nav .links a::after{ content:''; position:absolute; bottom:-6px; right:0; width:0; height:1px; background:var(--gold); transition:width .4s var(--ease); }
+  nav .links a:hover{ color:var(--ink); } nav .links a:hover::after, nav .links a.active::after{ width:100%; } nav .links a.active{ color:var(--gold); }
+  .wordmark{ justify-self:center; text-align:center; text-decoration:none; }
+  .wordmark .en{ font-family:'Playfair Display',serif; font-size:26px; font-weight:500; letter-spacing:8px; line-height:1; color:var(--ink); }
   .wordmark .ar{ font-family:'Amiri',serif; font-size:12px; letter-spacing:4px; color:var(--stone); margin-top:3px; }
-  nav.over .wordmark .ar{ color:rgba(250,248,243,0.7); }
   .nav-right{ display:flex; align-items:center; gap:18px; justify-self:end; }
-  .icon-btn{ background:none; border:none; cursor:pointer; color:inherit; position:relative; display:flex; align-items:center; gap:6px; transition:color .4s; }
+  .icon-btn{ background:none; border:none; cursor:pointer; color:var(--ink); position:relative; display:flex; align-items:center; gap:6px; }
   .icon-btn .ic{ width:22px; height:22px; }
-  .cart-count{ font-size:11px; font-weight:700; letter-spacing:1px; min-width:12px; }
+  .cart-count{ font-size:11px; font-weight:700; min-width:12px; color:var(--gold); }
   .menu-btn{ display:none; }
 
-  /* ===== HERO (full-bleed + 3D) ===== */
-  .hero{ position:relative; height:100vh; min-height:600px; width:100%; overflow:hidden; display:flex; align-items:flex-end; }
-  .hero-bg{ position:absolute; inset:0; background:radial-gradient(120% 95% at 50% 32%, #303030 0%, #151515 46%, #060606 100%); }
-  .hero-bg img{ width:100%; height:100%; object-fit:cover; }
-  .hero-bg img.failed{ display:none; }
-  .hero-canvas{ position:absolute; inset:0; z-index:1; width:100%; height:100%; display:block; cursor:grab; }
-  .hero-canvas:active{ cursor:grabbing; }
-  .hero::after{ content:''; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(to top, rgba(6,6,6,0.9), rgba(6,6,6,0) 42%); }
-  .hero-inner{ position:relative; z-index:3; width:100%; max-width:1320px; margin-inline:auto; padding:0 5vw 9vh; color:var(--paper); pointer-events:none; }
-  .hero-inner .ul{ pointer-events:auto; }
-  .hero .eyebrow{ display:block; margin-bottom:22px; color:rgba(250,248,243,0.85); opacity:0; animation:rise 1s var(--ease) .3s forwards; }
-  .hero h1{ font-family:'Amiri',serif; font-weight:400; font-size:clamp(40px,6vw,86px); line-height:1.15; color:var(--paper); max-width:14ch; margin-bottom:34px; opacity:0; animation:rise 1.1s var(--ease) .45s forwards; text-shadow:0 2px 30px rgba(0,0,0,0.4); }
-  .hero .ul{ opacity:0; animation:rise 1s var(--ease) .65s forwards; }
+  /* HERO */
+  .hero{ position:relative; min-height:100vh; display:flex; align-items:center; padding:120px 4vw 80px; }
+  .hero-inner{ max-width:1320px; margin-inline:auto; width:100%; }
+  .hero .eyebrow{ display:block; margin-bottom:24px; opacity:0; animation:rise 1s var(--ease) .3s forwards; }
+  .hero h1{ font-family:'Amiri',serif; font-weight:400; font-size:clamp(44px,7vw,104px); line-height:1.12; max-width:16ch; margin-bottom:34px; opacity:0; animation:rise 1.1s var(--ease) .45s forwards; text-shadow:0 4px 40px rgba(0,0,0,0.6); }
+  .hero h1 em{ font-style:normal; color:var(--gold); }
+  .hero .sub{ font-size:19px; color:var(--ink-2); max-width:460px; margin-bottom:38px; opacity:0; animation:rise 1s var(--ease) .55s forwards; }
+  .hero .cta{ display:flex; align-items:center; gap:30px; opacity:0; animation:rise 1s var(--ease) .65s forwards; }
   @keyframes rise{ from{opacity:0; transform:translateY(26px);} to{opacity:1; transform:translateY(0);} }
-  .scroll-cue{ position:absolute; bottom:34px; left:4vw; z-index:3; color:rgba(250,248,243,0.7); font-size:10px; letter-spacing:3px; text-transform:uppercase; writing-mode:vertical-rl; display:flex; align-items:center; gap:14px; pointer-events:none; }
-  .scroll-cue::after{ content:''; width:1px; height:50px; background:linear-gradient(rgba(250,248,243,0.7), transparent); animation:cue 2s ease-in-out infinite; }
+  .scroll-cue{ position:absolute; bottom:34px; left:4vw; color:var(--ink-2); font-size:10px; letter-spacing:3px; text-transform:uppercase; writing-mode:vertical-rl; display:flex; align-items:center; gap:14px; }
+  .scroll-cue::after{ content:''; width:1px; height:50px; background:linear-gradient(var(--gold), transparent); animation:cue 2s ease-in-out infinite; }
   @keyframes cue{ 0%,100%{opacity:.3; transform:scaleY(.7);} 50%{opacity:1; transform:scaleY(1);} }
 
-  /* ===== INTRO ===== */
-  .intro{ text-align:center; padding:130px 6vw; max-width:980px; margin:0 auto; }
-  .intro .eyebrow{ display:block; margin-bottom:26px; }
-  .intro h2{ font-family:'Amiri',serif; font-weight:400; font-size:clamp(26px,3.6vw,46px); line-height:1.6; color:var(--ink); }
-  .intro h2 em{ font-style:italic; color:var(--gold); }
-
-  /* ===== SECTIONS ===== */
-  section{ padding:clamp(80px,9vw,120px) 5vw; }
-  .wrap{ max-width:1320px; margin-inline:auto; }
+  /* SECTIONS */
+  section{ padding:clamp(80px,9vw,120px) 5vw; position:relative; }
+  .panel{ background:var(--panel); backdrop-filter:blur(12px); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); }
   .sec-head{ text-align:center; max-width:680px; margin:0 auto 60px; }
   .sec-head .eyebrow{ display:block; margin-bottom:16px; }
-  .sec-head h2{ font-family:'Playfair Display','Amiri',serif; font-weight:500; font-size:clamp(30px,4vw,52px); color:var(--ink); }
+  .sec-head h2{ font-family:'Playfair Display','Amiri',serif; font-weight:500; font-size:clamp(30px,4vw,52px); }
   .sec-head .line{ width:50px; height:1px; background:var(--gold); margin:22px auto 0; }
 
-  /* ===== CATEGORIES (editorial tiles) ===== */
+  /* INTRO */
+  .intro{ text-align:center; padding:130px 6vw; max-width:980px; margin:0 auto; }
+  .intro .eyebrow{ display:block; margin-bottom:26px; }
+  .intro h2{ font-family:'Amiri',serif; font-weight:400; font-size:clamp(26px,3.6vw,46px); line-height:1.6; }
+  .intro h2 em{ font-style:italic; color:var(--gold); }
+
+  /* CATEGORIES */
   .cats{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:1320px; margin-inline:auto; }
-  .cat{ position:relative; aspect-ratio:3/4; overflow:hidden; cursor:pointer; background:linear-gradient(160deg,#2a2a2a,#0a0a0a); }
-  .cat img{ width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease); }
+  .cat{ position:relative; aspect-ratio:3/4; overflow:hidden; cursor:pointer; background:#111; border:1px solid var(--line-soft); transition:transform .35s var(--ease), box-shadow .35s var(--ease); transform-style:preserve-3d; will-change:transform; }
+  .cat img{ width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease); opacity:.92; }
   .cat img.failed{ display:none; }
   .cat:hover img{ transform:scale(1.05); }
-  .cat .fb{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:80px; color:rgba(250,248,243,0.2); }
-  .cat::after{ content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,10,0.6), rgba(10,10,10,0) 55%); transition:background .4s; }
-  .cat:hover::after{ background:linear-gradient(to top, rgba(10,10,10,0.7), rgba(10,10,10,0.15) 60%); }
-  .cat .meta{ position:absolute; right:0; left:0; bottom:30px; z-index:2; text-align:center; color:var(--paper); }
+  .cat .fb{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:80px; color:rgba(244,242,236,0.2); }
+  .cat::after{ content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(7,7,6,0.85), rgba(7,7,6,0) 58%); }
+  .cat .meta{ position:absolute; right:0; left:0; bottom:30px; z-index:2; text-align:center; }
   .cat .meta .nm{ font-family:'Amiri',serif; font-size:28px; margin-bottom:12px; }
-  .cat .meta .ul{ color:var(--paper); font-size:11px; }
+  .cat .meta .ul{ font-size:11px; }
 
-  /* ===== PRODUCTS ===== */
-  .products{ display:grid; grid-template-columns:repeat(4,1fr); gap:56px 34px; grid-auto-rows:1fr; max-width:1320px; margin-inline:auto; }
-  .product{ display:flex; flex-direction:column; height:100%; text-align:center; }
-  .product .frame{ position:relative; aspect-ratio:4/5; overflow:hidden; margin-bottom:22px; background:linear-gradient(160deg, var(--c1,#f0f0ee), var(--c2,#e2e2df)); }
+  /* PRODUCTS */
+  .products{ display:grid; grid-template-columns:repeat(4,1fr); gap:50px 30px; grid-auto-rows:1fr; max-width:1320px; margin-inline:auto; }
+  .product{ display:flex; flex-direction:column; height:100%; text-align:center; transition:transform .35s var(--ease); transform-style:preserve-3d; will-change:transform; }
+  .product .frame{ position:relative; aspect-ratio:4/5; overflow:hidden; margin-bottom:22px; background:#111; border:1px solid var(--line-soft); transition:box-shadow .35s var(--ease); }
   .product .frame img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; transition:transform 1s var(--ease); }
   .product .frame img.failed{ display:none; }
   .product:hover .frame img{ transform:scale(1.05); }
   .product .frame .fb{ position:absolute; inset:0; z-index:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; }
-  .product .frame .fb .g{ font-size:74px; opacity:.45; } .product .frame .fb .w{ font-family:'Playfair Display',serif; font-size:12px; letter-spacing:4px; color:rgba(26,24,21,0.4); }
-  .product .frame .tag{ position:absolute; top:14px; right:14px; z-index:2; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--ink); background:var(--paper); padding:5px 12px; }
-  .product .frame .fav{ position:absolute; top:12px; left:12px; z-index:2; width:34px; height:34px; border-radius:50%; border:none; background:rgba(250,248,243,0.85); cursor:pointer; color:var(--ink-2); font-size:14px; display:flex; align-items:center; justify-content:center; transition:color .3s, transform .3s; opacity:0; }
+  .product .frame .fb .g{ font-size:70px; opacity:.5; } .product .frame .fb .w{ font-family:'Playfair Display',serif; font-size:12px; letter-spacing:4px; color:var(--stone); }
+  .product .frame .tag{ position:absolute; top:14px; right:14px; z-index:2; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--bg); background:var(--gold); padding:5px 12px; }
+  .product .frame .fav{ position:absolute; top:12px; left:12px; z-index:2; width:34px; height:34px; border-radius:50%; border:none; background:rgba(7,7,6,0.6); cursor:pointer; color:var(--ink); font-size:14px; display:flex; align-items:center; justify-content:center; transition:color .3s, transform .3s; opacity:0; }
   .product:hover .frame .fav{ opacity:1; }
   .product .frame .fav:hover, .product .frame .fav.on{ color:var(--gold); transform:scale(1.12); }
-  .product .frame .quick{ position:absolute; bottom:0; right:0; left:0; z-index:2; background:var(--paper); padding:14px; transform:translateY(100%); transition:transform .45s var(--ease); }
+  .product .frame .quick{ position:absolute; bottom:0; right:0; left:0; z-index:2; background:rgba(7,7,6,0.85); backdrop-filter:blur(6px); padding:14px; transform:translateY(100%); transition:transform .45s var(--ease); }
   .product:hover .frame .quick{ transform:translateY(0); }
   .product .frame .quick button{ background:none; border:none; cursor:pointer; color:var(--ink); font-size:12px; letter-spacing:3px; text-transform:uppercase; font-family:'Tajawal',sans-serif; }
   .product .family{ font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--stone); margin-bottom:8px; }
-  .product h3{ font-family:'Amiri',serif; font-weight:700; font-size:22px; margin-bottom:10px; color:var(--ink); }
-  .product .price{ font-family:'Playfair Display',serif; font-size:18px; color:var(--ink); margin-top:auto; }
+  .product h3{ font-family:'Amiri',serif; font-weight:700; font-size:22px; margin-bottom:10px; }
+  .product .price{ font-family:'Playfair Display',serif; font-size:18px; color:var(--gold); margin-top:auto; }
   .product .price small{ font-size:12px; color:var(--stone); }
   .products-foot{ text-align:center; margin-top:70px; }
 
-  /* ===== 3D TILT ===== */
-  .product, .cat{ transition:transform .35s var(--ease), box-shadow .35s var(--ease); transform-style:preserve-3d; will-change:transform; }
+  /* tilt */
   .product.tilting, .cat.tilting{ transition:transform .08s linear; }
-  .cat.tilting{ box-shadow:0 40px 70px -30px rgba(0,0,0,0.6); }
-  .product .frame{ transition:box-shadow .35s var(--ease); }
-  .product.tilting .frame{ box-shadow:0 40px 70px -34px rgba(0,0,0,0.5); }
-  .tilt-shine{ position:absolute; inset:0; z-index:3; pointer-events:none; opacity:0; transition:opacity .3s; background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.35), transparent 45%); mix-blend-mode:overlay; }
+  .product.tilting .frame{ box-shadow:0 40px 70px -30px rgba(0,0,0,0.7); }
+  .cat.tilting{ box-shadow:0 40px 70px -28px rgba(0,0,0,0.7); }
+  .tilt-shine{ position:absolute; inset:0; z-index:3; pointer-events:none; opacity:0; transition:opacity .3s; background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.28), transparent 45%); mix-blend-mode:overlay; }
   .product.tilting .tilt-shine, .cat.tilting .tilt-shine{ opacity:1; }
 
-  /* ===== EDITORIAL SPLIT ===== */
-  .edit{ display:grid; grid-template-columns:1fr 1fr; align-items:stretch; min-height:600px; }
-  .edit .img{ position:relative; overflow:hidden; background:linear-gradient(160deg,#2a2a2a,#0a0a0a); min-height:420px; }
-  .edit .img img{ width:100%; height:100%; object-fit:cover; position:absolute; inset:0; } .edit .img img.failed{ display:none; }
-  .edit .img .fb{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:120px; color:rgba(250,248,243,0.18); }
-  .edit .txt{ display:flex; flex-direction:column; justify-content:center; padding:8vh 6vw; background:var(--paper-2); }
-  .edit .txt .eyebrow{ display:block; margin-bottom:22px; }
-  .edit .txt h2{ font-family:'Amiri',serif; font-weight:400; font-size:clamp(28px,3.6vw,48px); line-height:1.4; color:var(--ink); margin-bottom:24px; }
-  .edit .txt h2 em{ font-style:italic; color:var(--gold); }
-  .edit .txt p{ color:var(--ink-2); font-size:17px; margin-bottom:32px; max-width:46ch; }
-
-  /* ===== IMPACT ===== */
+  /* IMPACT */
   .impact{ text-align:center; }
   .impact-grid{ display:grid; grid-template-columns:repeat(4,1fr); max-width:1100px; margin:0 auto; }
   .impact-cell{ padding:24px 20px; border-left:1px solid var(--line); }
   .impact-cell:first-child{ border-left:none; }
-  .impact-cell .big{ font-family:'Playfair Display',serif; font-weight:500; font-size:clamp(40px,5vw,72px); color:var(--ink); line-height:1; }
+  .impact-cell .big{ font-family:'Playfair Display',serif; font-weight:500; font-size:clamp(40px,5vw,72px); line-height:1; }
   .impact-cell .lbl{ font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--stone); margin-top:14px; }
 
-  /* ===== STORIES ===== */
+  /* STORIES */
   .stories{ display:grid; grid-template-columns:repeat(2,1fr); gap:60px; max-width:1100px; margin:0 auto; }
   .story{ text-align:center; }
   .story .qm{ font-family:'Playfair Display',serif; font-size:50px; color:var(--gold); line-height:.6; }
   .story .q{ font-family:'Amiri',serif; font-size:21px; line-height:1.8; color:var(--ink-2); margin:18px 0 26px; font-style:italic; }
-  .story .n{ font-family:'Playfair Display','Amiri',serif; font-size:16px; letter-spacing:1px; color:var(--ink); }
+  .story .n{ font-family:'Playfair Display','Amiri',serif; font-size:16px; }
   .story .r{ font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--stone); margin-top:4px; }
 
-  /* ===== NEWSLETTER ===== */
-  .news{ text-align:center; background:var(--ink); color:var(--paper); padding:120px 6vw; }
-  .news .eyebrow{ display:block; margin-bottom:20px; color:rgba(255,255,255,0.6); }
-  .news h2{ font-family:'Amiri',serif; font-weight:400; font-size:clamp(28px,4vw,50px); margin-bottom:18px; color:var(--paper); }
-  .news p{ color:rgba(250,248,243,0.6); max-width:440px; margin:0 auto 40px; }
-  .news-form{ display:flex; align-items:center; max-width:440px; margin:0 auto; border-bottom:1px solid rgba(250,248,243,0.4); }
-  .news-form input{ flex:1; background:none; border:none; padding:14px 4px; color:var(--paper); font-family:'Tajawal',sans-serif; font-size:16px; outline:none; }
-  .news-form input::placeholder{ color:rgba(250,248,243,0.5); }
-  .news-form button{ background:none; border:none; cursor:pointer; color:var(--paper); font-size:12px; letter-spacing:3px; text-transform:uppercase; padding:14px 8px; white-space:nowrap; font-family:'Tajawal',sans-serif; }
-
-  /* ===== STORY ===== */
-  .story-sec{ background:var(--paper-2); }
+  /* STORY ABOUT */
   .story-wrap{ max-width:1320px; margin-inline:auto; display:grid; grid-template-columns:1fr 1.4fr; gap:70px; align-items:start; }
   .story-aside{ position:sticky; top:110px; }
   .story-aside .eyebrow{ display:block; margin-bottom:18px; }
-  .story-aside h2{ font-family:'Playfair Display','Amiri',serif; font-weight:500; font-size:clamp(32px,4vw,52px); color:var(--ink); line-height:1.2; }
+  .story-aside h2{ font-family:'Playfair Display','Amiri',serif; font-weight:500; font-size:clamp(32px,4vw,52px); line-height:1.2; }
   .story-aside .facts{ margin-top:36px; border-top:1px solid var(--line); }
   .story-aside .fact{ display:flex; justify-content:space-between; gap:16px; padding:14px 0; border-bottom:1px solid var(--line-soft); }
   .story-aside .fact .k{ font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--stone); }
-  .story-aside .fact .v{ font-family:'Amiri',serif; font-size:16px; color:var(--ink); text-align:left; }
+  .story-aside .fact .v{ font-family:'Amiri',serif; font-size:16px; text-align:left; }
   .story-body p{ font-size:18px; color:var(--ink-2); margin-bottom:22px; }
   .story-body p:first-of-type{ font-family:'Amiri',serif; font-size:22px; line-height:1.8; color:var(--ink); }
-  .story-body p:first-of-type::first-letter{ font-family:'Playfair Display',serif; font-size:62px; float:right; line-height:.8; margin:6px 0 0 12px; color:var(--ink); }
-  .story-body h3{ font-family:'Amiri',serif; font-weight:700; font-size:23px; color:var(--ink); margin:38px 0 14px; }
-  .story-body .pull{ font-family:'Amiri',serif; font-style:italic; font-size:24px; line-height:1.7; color:var(--ink); border-right:2px solid var(--ink); padding:6px 24px 6px 0; margin:34px 0; }
+  .story-body p:first-of-type::first-letter{ font-family:'Playfair Display',serif; font-size:62px; float:right; line-height:.8; margin:6px 0 0 12px; color:var(--gold); }
+  .story-body h3{ font-family:'Amiri',serif; font-weight:700; font-size:23px; margin:38px 0 14px; }
+  .story-body .pull{ font-family:'Amiri',serif; font-style:italic; font-size:24px; line-height:1.7; color:var(--ink); border-right:2px solid var(--gold); padding:6px 24px 6px 0; margin:34px 0; }
   .story-body ul{ list-style:none; margin:0 0 22px; }
   .story-body li{ position:relative; padding-right:24px; margin-bottom:10px; color:var(--ink-2); font-size:17px; }
-  .story-body li::before{ content:'—'; position:absolute; right:0; color:var(--stone); }
+  .story-body li::before{ content:'—'; position:absolute; right:0; color:var(--gold); }
 
-  /* ===== FOOTER ===== */
-  footer{ background:var(--paper); color:var(--ink); padding:80px 4vw 36px; border-top:1px solid var(--line); }
+  /* NEWSLETTER */
+  .news{ text-align:center; }
+  .news .eyebrow{ display:block; margin-bottom:20px; }
+  .news h2{ font-family:'Amiri',serif; font-weight:400; font-size:clamp(28px,4vw,50px); margin-bottom:18px; }
+  .news p{ color:var(--ink-2); max-width:440px; margin:0 auto 40px; }
+  .news-form{ display:flex; align-items:center; max-width:440px; margin:0 auto; border-bottom:1px solid var(--line); }
+  .news-form input{ flex:1; background:none; border:none; padding:14px 4px; color:var(--ink); font-family:'Tajawal',sans-serif; font-size:16px; outline:none; }
+  .news-form input::placeholder{ color:var(--stone); }
+  .news-form button{ background:none; border:none; cursor:pointer; color:var(--gold); font-size:12px; letter-spacing:3px; text-transform:uppercase; padding:14px 8px; white-space:nowrap; font-family:'Tajawal',sans-serif; }
+
+  /* FOOTER */
+  footer{ background:rgba(7,7,6,0.85); backdrop-filter:blur(10px); padding:80px 4vw 36px; border-top:1px solid var(--line); }
   .foot-top{ display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:50px; margin-bottom:60px; max-width:1320px; margin-inline:auto; }
   .foot-brand .en{ font-family:'Playfair Display',serif; font-size:30px; letter-spacing:8px; }
   .foot-brand .ar{ font-family:'Amiri',serif; font-size:12px; letter-spacing:4px; color:var(--stone); margin-bottom:18px; }
   .foot-brand p{ color:var(--ink-2); max-width:300px; font-size:15px; }
-  .foot-col h4{ font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--ink); margin-bottom:20px; font-family:'Tajawal',sans-serif; font-weight:500; }
+  .foot-col h4{ font-size:11px; letter-spacing:3px; text-transform:uppercase; margin-bottom:20px; font-family:'Tajawal',sans-serif; font-weight:500; }
   .foot-col a{ display:block; color:var(--ink-2); text-decoration:none; margin-bottom:12px; font-size:14px; transition:color .3s; }
   .foot-col a:hover{ color:var(--gold); }
   .foot-bottom{ display:flex; justify-content:space-between; align-items:center; padding-top:28px; border-top:1px solid var(--line-soft); flex-wrap:wrap; gap:14px; max-width:1320px; margin-inline:auto; }
-  .foot-bottom p{ color:var(--stone); font-size:12px; letter-spacing:1px; }
+  .foot-bottom p{ color:var(--stone); font-size:12px; }
   .foot-social{ display:flex; gap:24px; } .foot-social a{ color:var(--ink-2); text-decoration:none; font-size:11px; letter-spacing:2px; text-transform:uppercase; transition:color .3s; } .foot-social a:hover{ color:var(--gold); }
 
-  /* ===== CART ===== */
-  .overlay{ position:fixed; inset:0; background:rgba(10,10,10,0.5); z-index:199; opacity:0; visibility:hidden; transition:.4s; }
+  /* CART */
+  .overlay{ position:fixed; inset:0; background:rgba(7,7,6,0.6); z-index:199; opacity:0; visibility:hidden; transition:.4s; }
   .overlay.open{ opacity:1; visibility:visible; }
-  .drawer{ position:fixed; top:0; left:0; height:100vh; width:min(92vw,430px); z-index:200; background:var(--paper); transform:translateX(-100%); transition:transform .55s var(--ease); display:flex; flex-direction:column; }
+  .drawer{ position:fixed; top:0; left:0; height:100vh; width:min(92vw,430px); z-index:200; background:#0d0d0c; border-left:1px solid var(--line); transform:translateX(-100%); transition:transform .55s var(--ease); display:flex; flex-direction:column; }
   .drawer.open{ transform:translateX(0); }
   .drawer-head{ display:flex; align-items:center; justify-content:space-between; padding:28px 30px; border-bottom:1px solid var(--line); }
   .drawer-head h3{ font-family:'Playfair Display',serif; font-size:14px; letter-spacing:4px; text-transform:uppercase; }
-  .drawer-head button{ background:none; border:none; font-size:24px; cursor:pointer; color:var(--ink); line-height:1; }
+  .drawer-head button{ background:none; border:none; font-size:24px; cursor:pointer; color:var(--ink); }
   .drawer-items{ flex:1; overflow-y:auto; padding:20px 30px; }
-  .empty{ text-align:center; color:var(--stone); padding:80px 20px; font-size:14px; letter-spacing:1px; }
-  .empty .g{ font-size:48px; opacity:.35; display:block; margin-bottom:18px; }
+  .empty{ text-align:center; color:var(--stone); padding:80px 20px; font-size:14px; }
+  .empty .g{ font-size:46px; opacity:.4; display:block; margin-bottom:18px; }
   .ci{ display:flex; gap:16px; padding:18px 0; border-bottom:1px solid var(--line-soft); align-items:center; }
-  .ci .cig{ width:56px; height:70px; overflow:hidden; background:var(--paper-2); flex-shrink:0; position:relative; }
+  .ci .cig{ width:56px; height:70px; overflow:hidden; background:#1a1a18; flex-shrink:0; position:relative; }
   .ci .cig img{ width:100%; height:100%; object-fit:cover; } .ci .cig img.failed{ display:none; }
-  .ci .cig .g{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:26px; opacity:.5; }
+  .ci .cig .g{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:26px; opacity:.6; }
   .ci .cii{ flex:1; min-width:0; } .ci .cii .n{ font-family:'Amiri',serif; font-weight:700; font-size:16px; } .ci .cii .p{ color:var(--gold); font-size:14px; }
   .qty{ display:flex; align-items:center; gap:12px; }
-  .qty button{ width:26px; height:26px; border:1px solid var(--line); background:none; cursor:pointer; color:var(--ink); font-size:15px; line-height:1; } .qty span{ min-width:18px; text-align:center; }
+  .qty button{ width:26px; height:26px; border:1px solid var(--line); background:none; cursor:pointer; color:var(--ink); font-size:15px; } .qty span{ min-width:18px; text-align:center; }
   .drawer-foot{ padding:24px 30px; border-top:1px solid var(--line); }
   .drawer-total{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:20px; }
-  .drawer-total .t{ font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--stone); } .drawer-total .a{ font-family:'Playfair Display',serif; font-size:24px; }
-  .checkout{ width:100%; padding:18px; background:var(--ink); color:var(--paper); border:none; cursor:pointer; font-size:12px; letter-spacing:3px; text-transform:uppercase; font-family:'Tajawal',sans-serif; transition:background .3s; } .checkout:hover{ background:var(--gold); }
+  .drawer-total .t{ font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--stone); } .drawer-total .a{ font-family:'Playfair Display',serif; font-size:24px; color:var(--gold); }
+  .checkout{ width:100%; padding:18px; background:var(--gold); color:var(--bg); border:none; cursor:pointer; font-size:12px; letter-spacing:3px; text-transform:uppercase; font-family:'Tajawal',sans-serif; transition:filter .3s; } .checkout:hover{ filter:brightness(1.1); }
 
-  .toast{ position:fixed; bottom:30px; right:30px; z-index:250; background:var(--ink); color:var(--paper); padding:16px 26px; font-size:13px; letter-spacing:1px; transform:translateY(120px); opacity:0; transition:.45s var(--ease); }
+  .toast{ position:fixed; bottom:30px; right:30px; z-index:250; background:#0d0d0c; border:1px solid var(--line); color:var(--ink); padding:16px 26px; font-size:13px; transform:translateY(120px); opacity:0; transition:.45s var(--ease); }
   .toast.show{ transform:translateY(0); opacity:1; }
 
-  .mobile{ position:fixed; inset:0; z-index:150; background:var(--paper); padding:120px 8vw; transform:translateY(-100%); transition:transform .6s var(--ease); }
+  .mobile{ position:fixed; inset:0; z-index:150; background:rgba(7,7,6,0.96); backdrop-filter:blur(10px); padding:120px 8vw; transform:translateY(-100%); transition:transform .6s var(--ease); }
   .mobile.open{ transform:translateY(0); }
   .mobile a{ display:block; font-family:'Amiri',serif; font-size:30px; color:var(--ink); text-decoration:none; padding:16px 0; border-bottom:1px solid var(--line); }
 
@@ -248,28 +227,28 @@
 
   @media (max-width:1000px){
     nav{ grid-template-columns:auto 1fr auto; } nav .links{ display:none; } .wordmark{ justify-self:start; text-align:right; } .menu-btn{ display:flex; }
-    .cats{ grid-template-columns:1fr; } .products{ grid-template-columns:repeat(2,1fr); gap:36px 20px; }
-    .edit{ grid-template-columns:1fr; } .edit .img{ min-height:55vh; }
+    .cats{ grid-template-columns:1fr; } .products{ grid-template-columns:repeat(2,1fr); gap:36px 18px; }
     .stories{ grid-template-columns:1fr; gap:50px; } .foot-top{ grid-template-columns:1fr 1fr; }
+    .impact-grid{ grid-template-columns:1fr 1fr; } .impact-cell:nth-child(3){ border-left:none; } .impact-cell{ padding:28px; } .impact-cell:nth-child(n+3){ border-top:1px solid var(--line); }
     .story-wrap{ grid-template-columns:1fr; gap:36px; } .story-aside{ position:static; }
-    .impact-grid{ grid-template-columns:1fr 1fr; } .impact-cell:nth-child(3){ border-left:none; } .impact-cell{ padding:30px; } .impact-cell:nth-child(n+3){ border-top:1px solid var(--line); }
   }
   @media (max-width:560px){
-    section{ padding:70px 6vw; } .products{ grid-template-columns:1fr 1fr; gap:24px 16px; }
-    .impact-grid{ grid-template-columns:1fr 1fr; } .foot-top{ grid-template-columns:1fr; gap:34px; }
-    .hero-inner{ padding-bottom:12vh; } .product h3{ font-size:19px; }
+    section{ padding:70px 6vw; } .products{ grid-template-columns:1fr 1fr; gap:24px 14px; } .foot-top{ grid-template-columns:1fr; gap:34px; }
+    .hero h1{ font-size:clamp(40px,11vw,60px); } .product h3{ font-size:18px; }
   }
 </style>
 </head>
 <body>
 
+<canvas id="bg3d" aria-hidden="true"></canvas>
+<div class="veil"></div>
+
 <div class="progress"><span id="progress"></span></div>
 
-<nav id="nav" class="over">
+<div class="page">
+<nav id="nav">
   <div class="links">
-    <a href="#collection">المجموعة</a>
-    <a href="#categories">الأقسام</a>
-    <a href="#stories">الأسر</a>
+    <a href="#collection">المجموعة</a><a href="#categories">الأقسام</a><a href="#story">القصة</a>
   </div>
   <a href="#" class="wordmark"><div class="en">TOP TEN</div><div class="ar">توب تن للأسر المنتجة</div></a>
   <div class="nav-right">
@@ -279,64 +258,43 @@
 </nav>
 
 <div class="mobile" id="mobile">
-  <a href="#collection">المجموعة</a><a href="#categories">الأقسام</a><a href="#stories">الأسر</a>
+  <a href="#collection">المجموعة</a><a href="#categories">الأقسام</a><a href="#story">القصة</a>
 </div>
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-bg"></div>
-  <canvas id="three" class="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-inner">
-    <span class="eyebrow">مدينة العين · منذ ٢٠١٩</span>
-    <h1>حِرفةٌ تُورّث ومذاقٌ يُروى</h1>
-    <a href="#collection" class="ul light">اكتشف المجموعة ←</a>
+    <span class="eyebrow">مدينة العين · تجربة ثلاثية الأبعاد</span>
+    <h1>حِرفةٌ تُورّث<br>ومذاقٌ <em>يُروى</em></h1>
+    <p class="sub">بيتٌ يجمع أرقى ما تصنعه الأسر المنتجة — قهوةٌ تُحمَّص بعناية، وأكلٌ شعبيٌّ بنكهة الذاكرة.</p>
+    <div class="cta">
+      <a href="#collection" class="ul">اكتشف المجموعة ←</a>
+    </div>
   </div>
   <div class="scroll-cue">اسحب للأسفل</div>
 </header>
 
 <!-- INTRO -->
-<div class="intro">
+<div class="intro reveal">
   <span class="eyebrow">توب تن للأسر المنتجة</span>
   <h2>بيتٌ يجمع أرقى ما تصنعه الأسر المنتجة في مدينة العين — قهوةٌ تُحمَّص بعناية، وأكلٌ شعبيٌّ <em>بنكهة الذاكرة</em>.</h2>
 </div>
 
 <!-- CATEGORIES -->
-<section id="categories">
-  <div class="sec-head reveal">
-    <span class="eyebrow">المجموعات</span>
-    <h2>الأقسام</h2>
-    <div class="line"></div>
-  </div>
+<section id="categories" class="panel">
+  <div class="sec-head reveal"><span class="eyebrow">المجموعات</span><h2>الأقسام</h2><div class="line"></div></div>
   <div class="cats stg" id="cats"></div>
 </section>
 
 <!-- COLLECTION -->
 <section id="collection">
-  <div class="sec-head reveal">
-    <span class="eyebrow">مختارات الموسم</span>
-    <h2>المجموعة</h2>
-    <div class="line"></div>
-  </div>
+  <div class="sec-head reveal"><span class="eyebrow">مختارات الموسم</span><h2>المجموعة</h2><div class="line"></div></div>
   <div class="products stg" id="grid"></div>
   <div class="products-foot reveal"><a href="#" class="ul" onclick="return false;">عرض الكل ←</a></div>
 </section>
 
-<!-- EDITORIAL SPLIT -->
-<section class="edit reveal" style="padding:0;">
-  <div class="img">
-    <div class="fb">✦</div>
-    <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=1100&q=80&auto=format&fit=crop" alt="" onerror="this.classList.add('failed')">
-  </div>
-  <div class="txt">
-    <span class="eyebrow">حكايتنا</span>
-    <h2>لا نبيع طعاماً فحسب، بل نبيع <em>قصة أسرة</em> وهويةً إماراتية.</h2>
-    <p>بدأ توب تن في القوع بخمس أسرٍ منتجة عام ٢٠١٩، ليصبح اليوم منصةَ تمكينٍ اقتصادية تحتضن مئات الأسر، وتمنح حرفة البيت مكانتها التي تستحق.</p>
-    <a href="#stories" class="ul">تعرّف على الأسر ←</a>
-  </div>
-</section>
-
 <!-- IMPACT -->
-<section class="impact reveal">
+<section class="impact panel reveal">
   <div class="impact-grid stg">
     <div class="impact-cell"><div class="big" data-count="318">٠</div><div class="lbl">أسرة منتجة</div></div>
     <div class="impact-cell"><div class="big" data-count="80">٠</div><div class="lbl">مشروع محلي</div></div>
@@ -347,21 +305,42 @@
 
 <!-- STORIES -->
 <section id="stories">
-  <div class="sec-head reveal">
-    <span class="eyebrow">وجوهٌ خلف المذاق</span>
-    <h2>الأسر المنتجة</h2>
-    <div class="line"></div>
-  </div>
+  <div class="sec-head reveal"><span class="eyebrow">وجوهٌ خلف المذاق</span><h2>الأسر المنتجة</h2><div class="line"></div></div>
   <div class="stories stg">
-    <div class="story">
-      <div class="qm">”</div>
-      <div class="q">بدأتُ بالساندويتشات وأنا صغيرة، ثم اتجهتُ لصناعة الشوكولاتة والحلويات — وما كان هذا ليحدث لولا البيئة الداعمة في توب تن.</div>
-      <div class="n">نهضة حميد</div><div class="r">شوكولاتة وحلويات</div>
+    <div class="story"><div class="qm">”</div><div class="q">بدأتُ بالساندويتشات وأنا صغيرة، ثم اتجهتُ لصناعة الشوكولاتة والحلويات — وما كان هذا ليحدث لولا البيئة الداعمة في توب تن.</div><div class="n">نهضة حميد</div><div class="r">شوكولاتة وحلويات</div></div>
+    <div class="story"><div class="qm">”</div><div class="q">دخلتُ سوق توب تن عام ٢٠١٩ ببرجرٍ وسندويتشات، فتحوّلتُ من امرأةٍ خجولةٍ مترددة إلى رائدة أعمالٍ أكثر ثقةً في مجتمعي.</div><div class="n">مريم سالم الدرعي</div><div class="r">برجر وسندويتشات</div></div>
+  </div>
+</section>
+
+<!-- STORY ABOUT -->
+<section id="story" class="panel reveal">
+  <div class="story-wrap">
+    <div class="story-aside">
+      <span class="eyebrow">عن المحل</span>
+      <h2>قصة توب تن</h2>
+      <div class="facts">
+        <div class="fact"><span class="k">الموقع</span><span class="v">القوع · مدينة العين</span></div>
+        <div class="fact"><span class="k">التأسيس</span><span class="v">أبريل ٢٠١٩</span></div>
+        <div class="fact"><span class="k">التخصص</span><span class="v">أطعمة · مشروبات · حلويات</span></div>
+        <div class="fact"><span class="k">الأسر المنتجة</span><span class="v">من ٥ إلى ٣١٨</span></div>
+        <div class="fact"><span class="k">المشاريع</span><span class="v">من ٢ إلى ٨٠</span></div>
+      </div>
     </div>
-    <div class="story">
-      <div class="qm">”</div>
-      <div class="q">دخلتُ سوق توب تن عام ٢٠١٩ ببرجرٍ وسندويتشات، فتحوّلتُ من امرأةٍ خجولةٍ مترددة إلى رائدة أعمالٍ أكثر ثقةً في مجتمعي.</div>
-      <div class="n">مريم سالم الدرعي</div><div class="r">برجر وسندويتشات</div>
+    <div class="story-body">
+      <p>توب تن للأسر المنتجة هو محلٌّ ومنصة تمكينٍ اقتصادية محلية في منطقة القوع بمدينة العين، افتُتح في أبريل ٢٠١٩ بهدف توفير منفذ بيعٍ منظّمٍ للأسر المنتجة المتخصصة في إعداد الأطعمة المنزلية، والأكل الشعبي الإماراتي، والحلويات، والقهوة، والمشروبات.</p>
+      <p>جاءت الفكرة من وجود أسرٍ كثيرة في القوع تمتلك مهاراتٍ متميّزة، لكنها كانت تواجه صعوبة الوصول إلى العملاء، وضعف التسويق، وغياب منفذ بيعٍ ثابت. فجاء توب تن ليجمع هذه المنتجات في مكانٍ واحد، ويمنحها فرصةً للوصول إلى العملاء بشكلٍ يوميٍّ منظّم.</p>
+      <h3>منظومة دعمٍ متكاملة</h3>
+      <ul>
+        <li>دعم الهوية واستكمال التراخيص</li>
+        <li>تحسين التغليف والطباعة والعرض</li>
+        <li>توفير المواد الأولية بأفضل جودة</li>
+        <li>النقل اللوجستي من المنزل إلى المحل</li>
+        <li>أرففٌ للجاف وثلاجاتٌ للبارد والساخن</li>
+        <li>تسوية المبيعات شهرياً مع تغذيةٍ راجعة</li>
+      </ul>
+      <div class="pull">«لا نبيع الطعام فقط، بل نبيع قصة الأسرة المنتجة، والهوية الإماراتية، والقدرة على تحويل المهارة إلى استقلال».</div>
+      <h3>الأثر</h3>
+      <p>ارتفع عدد الأسر المنتجة من ٥ أسرٍ إلى ٣١٨ أسرة، والمشاريع المحلية من ٢ إلى ٨٠ مشروعاً — لتتحوّل المهارة المنزلية إلى مصدر دخلٍ مستدام وبنيةٍ للتمكين الاقتصادي المحلي.</p>
     </div>
   </div>
 </section>
@@ -374,57 +353,17 @@
   <form class="news-form" id="newsForm" onsubmit="return false;"><input type="email" placeholder="بريدك الإلكتروني" required aria-label="البريد الإلكتروني"><button type="submit">اشترك ←</button></form>
 </section>
 
-<!-- STORY -->
-<section class="story-sec reveal">
-  <div class="story-wrap">
-    <div class="story-aside">
-      <span class="eyebrow">عن المحل</span>
-      <h2>قصة توب تن</h2>
-      <div class="facts">
-        <div class="fact"><span class="k">الموقع</span><span class="v">القوع · مدينة العين · أبوظبي</span></div>
-        <div class="fact"><span class="k">التأسيس</span><span class="v">أبريل ٢٠١٩</span></div>
-        <div class="fact"><span class="k">التخصص</span><span class="v">أطعمة · مشروبات · حلويات</span></div>
-        <div class="fact"><span class="k">الأسر المنتجة</span><span class="v">من ٥ إلى ٣١٨ أسرة</span></div>
-        <div class="fact"><span class="k">المشاريع المحلية</span><span class="v">من ٢ إلى ٨٠ مشروعاً</span></div>
-      </div>
-    </div>
-    <div class="story-body">
-      <p>توب تن للأسر المنتجة هو محلٌّ ومنصة تمكينٍ اقتصادية محلية في منطقة القوع بمدينة العين، افتُتح في أبريل ٢٠١٩ بهدف توفير منفذ بيعٍ منظّمٍ للأسر المنتجة المتخصصة في إعداد الأطعمة المنزلية، والأكل الشعبي الإماراتي، والحلويات، والقهوة، والمشروبات.</p>
-
-      <p>جاءت الفكرة من وجود أسرٍ كثيرة في القوع تمتلك مهاراتٍ متميّزة في إعداد المأكولات والحلويات والمشروبات، لكنها كانت تواجه صعوبة الوصول إلى العملاء، وضعف التسويق، وغياب منفذ بيعٍ ثابت. فجاء توب تن ليكون منصةً محلية تجمع هذه المنتجات في مكانٍ واحد، وتمنحها فرصةً للوصول إلى العملاء بشكلٍ يوميٍّ ومنظّم، مع المحافظة على الطابع المحلي والهوية الإماراتية.</p>
-
-      <h3>ماذا يقدّم توب تن؟</h3>
-      <p>لا يكتفي توب تن ببيع المنتجات، بل يقدّم منظومة دعمٍ متكاملة ترافق الأسرة المنتجة خطوةً بخطوة:</p>
-      <ul>
-        <li>دعم الهوية واستكمال التراخيص اللازمة</li>
-        <li>تحسين التغليف والطباعة وطريقة العرض</li>
-        <li>توفير المواد الأولية بأفضل جودة</li>
-        <li>النقل اللوجستي من المنزل إلى المحل</li>
-        <li>عرض المنتجات في أرففٍ للجاف وثلاجاتٍ للبارد والساخن</li>
-        <li>تسوية المبيعات شهرياً مع تغذيةٍ راجعة لتحسين الجودة</li>
-      </ul>
-
-      <div class="pull">«لا نبيع الطعام فقط، بل نبيع قصة الأسرة المنتجة، والهوية الإماراتية، والقدرة على تحويل المهارة البسيطة إلى مصدر دخلٍ واستقلال».</div>
-
-      <h3>الأثر</h3>
-      <p>أحدث المشروع تحوّلاً واضحاً في القوع: ارتفع عدد الأسر المنتجة من ٥ أسرٍ إلى ٣١٨ أسرة، وعدد المشاريع المحلية المُدارة بأيدي أبناء المنطقة من ٢ إلى ٨٠ مشروعاً. ولم يكتفِ النموذج بتسويق المنتجات، بل أسّس بنيةً تحتية للتمكين الاقتصادي المحلي، وفتح الباب أمام جيلٍ جديد من رائدات الأعمال والأسر المنتجة.</p>
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <div class="foot-top">
-    <div class="foot-brand">
-      <div class="en">TOP TEN</div><div class="ar">توب تن للأسر المنتجة</div>
-      <p>منصة تمكينٍ اقتصادية في القوع بمدينة العين، متخصصة في الأطعمة والمشروبات والحلويات من صنع الأسر المنتجة.</p>
-    </div>
+    <div class="foot-brand"><div class="en">TOP TEN</div><div class="ar">توب تن للأسر المنتجة</div><p>منصة تمكينٍ اقتصادية في القوع بمدينة العين، متخصصة في الأطعمة والمشروبات والحلويات من صنع الأسر المنتجة.</p></div>
     <div class="foot-col"><h4>السوق</h4><a href="#collection">المجموعة</a><a href="#categories">الأقسام</a><a href="#stories">الأسر</a></div>
-    <div class="foot-col"><h4>المشروع</h4><a href="#">حكايتنا</a><a href="#">انضم كأسرة</a><a href="#">أثرنا</a></div>
+    <div class="foot-col"><h4>المشروع</h4><a href="#story">القصة</a><a href="#">انضم كأسرة</a><a href="#">أثرنا</a></div>
     <div class="foot-col"><h4>تواصل</h4><a href="#">مدينة العين · أبوظبي</a><a href="https://instagram.com/top.ten10">@top.ten10</a><a href="#">٩ ص — ١٠ م</a></div>
   </div>
   <div class="foot-bottom"><p>© ٢٠٢٦ TOP TEN — جميع الحقوق محفوظة</p><div class="foot-social"><a href="https://instagram.com/top.ten10">Instagram</a><a href="#">WhatsApp</a></div></div>
 </footer>
+</div><!-- /page -->
 
 <!-- CART -->
 <div class="overlay" id="overlay"></div>
@@ -450,7 +389,6 @@
     { id:7, name:'كنافة', family:'أسرة البلوشي', img:'1519676867240-f03562e64548', glyph:'🍰', price:30, rating:5 },
     { id:8, name:'عصير موسمي', family:'أسرة الظاهري', img:'1600271886742-f049cd451bba', glyph:'🥤', price:12, rating:4 },
   ];
-
   const CATS = [
     { nm:'قهوة وشاي', img:'1495474472287-4d71bcdd2085', glyph:'☕' },
     { nm:'حلويات', img:'1488477181946-6428a0291777', glyph:'🍰' },
@@ -462,7 +400,7 @@
       <div class="frame">
         <div class="fb"><span class="g">${p.glyph}</span><span class="w">TOP TEN</span></div>
         <img src="${IMG(p.img)}" alt="${p.name}" loading="lazy" onerror="this.classList.add('failed')">
-        ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
+        ${p.tag ? `<span class="tag">${p.tag}</span>`:''}
         <button class="fav" aria-label="حفظ" onclick="this.classList.toggle('on')">♥</button>
         <div class="quick"><button onclick="add(${p.id})">أضف إلى السلّة</button></div>
         <div class="tilt-shine"></div>
@@ -476,25 +414,24 @@
     <div class="cat">
       <div class="fb">${c.glyph}</div>
       <img src="${IMG(c.img,800)}" alt="${c.nm}" loading="lazy" onerror="this.classList.add('failed')">
-      <div class="meta"><div class="nm">${c.nm}</div><span class="ul light">اكتشف ←</span></div>
+      <div class="meta"><div class="nm">${c.nm}</div><span class="ul">اكتشف ←</span></div>
       <div class="tilt-shine"></div>
     </div>`).join('');
 
-  let cart = {};
+  let cart={};
   const cartCount=document.getElementById('cartCount'), drawerItems=document.getElementById('drawerItems'), drawerTotal=document.getElementById('drawerTotal');
   function add(id){ cart[id]=(cart[id]||0)+1; render(); toast(PRODUCTS.find(p=>p.id===id).name+' · أُضيف للسلّة'); }
   function chg(id,d){ cart[id]=(cart[id]||0)+d; if(cart[id]<=0) delete cart[id]; render(); }
   function render(){
     const ids=Object.keys(cart), total=ids.reduce((s,id)=>s+cart[id],0);
-    cartCount.textContent = total? toAr(total):'';
+    cartCount.textContent= total? toAr(total):'';
     if(!ids.length){ drawerItems.innerHTML=`<div class="empty"><span class="g">☕</span>سلّتك فارغة</div>`; drawerTotal.textContent='٠ د.إ'; return; }
     let sum=0;
-    drawerItems.innerHTML = ids.map(id=>{ const p=PRODUCTS.find(x=>x.id==id), st=p.price*cart[id]; sum+=st;
+    drawerItems.innerHTML=ids.map(id=>{ const p=PRODUCTS.find(x=>x.id==id), st=p.price*cart[id]; sum+=st;
       return `<div class="ci"><div class="cig"><span class="g">${p.glyph}</span><img src="${IMG(p.img,160)}" alt="" onerror="this.classList.add('failed')"></div><div class="cii"><div class="n">${p.name}</div><div class="p">${toAr(st)} د.إ</div></div><div class="qty"><button onclick="chg(${id},1)">＋</button><span>${toAr(cart[id])}</span><button onclick="chg(${id},-1)">－</button></div></div>`; }).join('');
-    drawerTotal.textContent = toAr(sum)+' د.إ';
+    drawerTotal.textContent=toAr(sum)+' د.إ';
   }
   render();
-
   let tt; function toast(m){ const t=document.getElementById('toast'); document.getElementById('toastMsg').textContent=m; t.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove('show'),2200); }
   const drawer=document.getElementById('drawer'), overlay=document.getElementById('overlay');
   document.getElementById('cartBtn').onclick=()=>{ drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden'; };
@@ -503,123 +440,120 @@
   document.getElementById('checkout').onclick=()=>{ if(!Object.keys(cart).length){toast('أضف منتجات أولاً'); return;} toast('تم استلام طلبك — شكراً لدعمك أسرةً منتجة'); cart={}; render(); closeCart(); };
   document.getElementById('newsForm').onsubmit=()=>toast('تم اشتراكك بنجاح');
 
-  // nav: solid + over-hero detection
-  const nav=document.getElementById('nav'), pg=document.getElementById('progress'), hero=document.querySelector('.hero');
-  addEventListener('scroll',()=>{ const y=scrollY, max=document.documentElement.scrollHeight-innerHeight; pg.style.width=(y/max*100)+'%';
-    const overHero = y < hero.offsetHeight - 80;
-    nav.classList.toggle('over', overHero); nav.classList.toggle('solid', !overHero && y>10);
-  });
-
+  const nav=document.getElementById('nav'), pg=document.getElementById('progress');
+  addEventListener('scroll',()=>{ const y=scrollY, max=document.documentElement.scrollHeight-innerHeight; pg.style.width=(y/max*100)+'%'; nav.classList.toggle('solid', y>40); });
   const mb=document.getElementById('menuBtn'), mob=document.getElementById('mobile');
   mb.onclick=()=>mob.classList.toggle('open'); mob.querySelectorAll('a').forEach(a=>a.onclick=()=>mob.classList.remove('open'));
 
   const obs=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }),{threshold:0.12});
   document.querySelectorAll('.reveal,.stg').forEach(el=>obs.observe(el));
-
-  const links=document.querySelectorAll('.links a'), secs=['collection','categories','stories'].map(id=>document.getElementById(id));
+  const links=document.querySelectorAll('.links a'), secs=['collection','categories','story'].map(id=>document.getElementById(id));
   const so=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) links.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id)); }),{rootMargin:'-45% 0px -50% 0px'});
   secs.forEach(s=>s&&so.observe(s));
-
   const co=new IntersectionObserver((es,o)=>es.forEach(e=>{ if(!e.isIntersecting) return; const el=e.target, tg=parseInt(el.dataset.count,10), sf=el.dataset.suffix||'', dur=1600, st=performance.now();
     (function tick(now){ const t=Math.min((now-st)/dur,1), e2=1-Math.pow(1-t,3); el.textContent=toAr(Math.floor(e2*tg))+(t===1?sf:''); if(t<1) requestAnimationFrame(tick); })(st); o.unobserve(el);
   }),{threshold:0.5});
   document.querySelectorAll('[data-count]').forEach(c=>co.observe(c));
 
-  // ===== 3D TILT CARDS =====
-  const canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-  const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  // ===== TILT =====
+  const canHover = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
   if(canHover && !reduce){
-    const MAX = 15;
     document.querySelectorAll('.product, .cat').forEach(card=>{
-      const shine = card.querySelector('.tilt-shine');
-      card.addEventListener('mousemove', e=>{
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left)/r.width - 0.5;
-        const py = (e.clientY - r.top)/r.height - 0.5;
-        card.classList.add('tilting');
-        card.style.transform = `perspective(900px) rotateX(${(-py*MAX).toFixed(2)}deg) rotateY(${(px*MAX).toFixed(2)}deg) translateZ(14px)`;
-        if(shine){ shine.style.setProperty('--mx', (px+0.5)*100+'%'); shine.style.setProperty('--my', (py+0.5)*100+'%'); }
-      });
+      const shine=card.querySelector('.tilt-shine');
+      card.addEventListener('mousemove', e=>{ const r=card.getBoundingClientRect(); const px=(e.clientX-r.left)/r.width-0.5, py=(e.clientY-r.top)/r.height-0.5;
+        card.classList.add('tilting'); card.style.transform=`perspective(900px) rotateX(${(-py*15).toFixed(2)}deg) rotateY(${(px*15).toFixed(2)}deg) translateZ(14px)`;
+        if(shine){ shine.style.setProperty('--mx',(px+0.5)*100+'%'); shine.style.setProperty('--my',(py+0.5)*100+'%'); } });
       card.addEventListener('mouseleave', ()=>{ card.classList.remove('tilting'); card.style.transform=''; });
     });
   }
 </script>
 
-<script type="module">
-  // ===== 3D HERO: procedural coffee cup (Three.js) =====
-  const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const canvas = document.getElementById('three');
-  if(canvas){
-    try{
-      const THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
-      const hero = canvas.parentElement;
-      const W = ()=>hero.clientWidth, H = ()=>hero.clientHeight;
+<script>
+  // ===== IMMERSIVE 3D BACKGROUND (Three.js UMD) =====
+  (function(){
+    if(!window.THREE){ return; }
+    const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const canvas = document.getElementById('bg3d');
+    let renderer;
+    try{ renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true }); }
+    catch(e){ canvas.style.display='none'; document.body.style.background='#0b0b0a'; return; }
+    const isMobile = matchMedia('(max-width:760px)').matches;
+    renderer.setPixelRatio(Math.min(isMobile?1.5:2, window.devicePixelRatio));
+    renderer.setSize(innerWidth, innerHeight);
 
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
-      renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
-      renderer.setSize(W(), H());
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x070706, 0.055);
+    const camera = new THREE.PerspectiveCamera(42, innerWidth/innerHeight, 0.1, 100);
+    camera.position.set(0, 0, 9);
 
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(34, W()/H(), 0.1, 100);
-      camera.position.set(0, 0.55, 4.2);
-      camera.lookAt(0, 0.5, 0);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    const key = new THREE.DirectionalLight(0xfff4e2, 2.0); key.position.set(4, 6, 5); scene.add(key);
+    const rim = new THREE.DirectionalLight(0xbfd0ff, 1.2); rim.position.set(-5, 2, -4); scene.add(rim);
 
-      // lights — studio
-      scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-      const key = new THREE.DirectionalLight(0xffffff, 2.2); key.position.set(3, 5, 4); scene.add(key);
-      const rim = new THREE.DirectionalLight(0xffffff, 1.6); rim.position.set(-4, 2, -3); scene.add(rim);
-      const fill = new THREE.PointLight(0xffffff, 0.6); fill.position.set(-2, 1, 3); scene.add(fill);
+    const porcelain = new THREE.MeshStandardMaterial({ color:0xeeece6, roughness:0.35, metalness:0.05, side:THREE.DoubleSide });
+    const dark = new THREE.MeshStandardMaterial({ color:0x171310, roughness:0.3, metalness:0.1 });
+    const goldM = new THREE.MeshStandardMaterial({ color:0xcbb27e, roughness:0.3, metalness:0.6 });
 
-      const group = new THREE.Group(); scene.add(group);
+    // cup profile
+    const prof=[];
+    [[0,0],[0.42,0],[0.45,0.05],[0.30,0.10],[0.34,0.16],[0.55,0.78],[0.62,1.18],[0.595,1.18],[0.53,0.80],[0.33,0.20],[0,0.185]]
+      .forEach(a=>prof.push(new THREE.Vector2(a[0],a[1])));
+    const cupGeo = new THREE.LatheGeometry(prof, 64); cupGeo.computeVertexNormals();
+    const coffeeGeo = new THREE.CircleGeometry(0.55, 48);
+    const handleGeo = new THREE.TorusGeometry(0.30, 0.05, 16, 60, Math.PI*1.25);
+    const beanGeo = new THREE.SphereGeometry(0.35, 24, 16);
 
-      // cup profile (lathe) — elegant porcelain silhouette
-      const p = [];
-      p.push(new THREE.Vector2(0.00, 0.00));
-      p.push(new THREE.Vector2(0.42, 0.00));
-      p.push(new THREE.Vector2(0.45, 0.05));
-      p.push(new THREE.Vector2(0.30, 0.10));
-      p.push(new THREE.Vector2(0.34, 0.16));
-      p.push(new THREE.Vector2(0.55, 0.78));
-      p.push(new THREE.Vector2(0.62, 1.18));
-      p.push(new THREE.Vector2(0.595,1.18));
-      p.push(new THREE.Vector2(0.53, 0.80));
-      p.push(new THREE.Vector2(0.33, 0.20));
-      p.push(new THREE.Vector2(0.00, 0.185));
-      const cupGeo = new THREE.LatheGeometry(p, 96);
-      cupGeo.computeVertexNormals();
-      const porcelain = new THREE.MeshStandardMaterial({ color:0xf4f3ef, roughness:0.32, metalness:0.05, side:THREE.DoubleSide });
-      const cup = new THREE.Mesh(cupGeo, porcelain); group.add(cup);
-
-      // coffee surface
-      const coffee = new THREE.Mesh(new THREE.CircleGeometry(0.55, 64), new THREE.MeshStandardMaterial({ color:0x1c130c, roughness:0.25, metalness:0.1 }));
-      coffee.rotation.x = -Math.PI/2; coffee.position.y = 1.06; group.add(coffee);
-
-      // handle
-      const handle = new THREE.Mesh(new THREE.TorusGeometry(0.30, 0.055, 24, 80, Math.PI*1.25), porcelain);
-      handle.position.set(0.6, 0.7, 0); handle.rotation.z = -Math.PI*0.18; group.add(handle);
-
-      // saucer
-      const sp = [ new THREE.Vector2(0,0), new THREE.Vector2(0.95,0), new THREE.Vector2(1.0,0.05), new THREE.Vector2(0.5,0.09), new THREE.Vector2(0.0,0.07) ];
-      const saucer = new THREE.Mesh(new THREE.LatheGeometry(sp, 96), porcelain);
-      saucer.position.y = -0.12; group.add(saucer);
-
-      group.position.y = -0.15;
-
-      // interaction
-      let tx=0, ty=0, cx=0, cy=0;
-      window.addEventListener('mousemove', e=>{ tx=(e.clientX/window.innerWidth-0.5); ty=(e.clientY/window.innerHeight-0.5); });
-
-      let raf;
-      // gentle continuous spin + mouse parallax
-      function loop(){ raf=requestAnimationFrame(loop); cx+=(tx-cx)*0.05; cy+=(ty-cy)*0.05; group.rotation.y+=0.006; group.rotation.x=cy*0.3+0.05; group.position.x=cx*0.5; renderer.render(scene,camera); }
-      if(reduce){ group.rotation.y=-0.5; renderer.render(scene,camera); } else { loop(); }
-
-      addEventListener('resize', ()=>{ camera.aspect=W()/H(); camera.updateProjectionMatrix(); renderer.setSize(W(),H()); });
-    }catch(err){
-      // WebGL/Three unavailable — keep elegant gradient hero
-      canvas.style.display='none';
+    function makeCup(mat){
+      const g=new THREE.Group();
+      const cup=new THREE.Mesh(cupGeo, mat); g.add(cup);
+      const cf=new THREE.Mesh(coffeeGeo, dark); cf.rotation.x=-Math.PI/2; cf.position.y=1.06; g.add(cf);
+      const h=new THREE.Mesh(handleGeo, mat); h.position.set(0.6,0.7,0); h.rotation.z=-Math.PI*0.18; g.add(h);
+      g.scale.setScalar(0.9); g.position.y=-0.5;
+      return g;
     }
-  }
+    function makeBean(){ const m=new THREE.Mesh(beanGeo, dark); m.scale.set(1,0.62,0.78); return m; }
+
+    const FIELD_H = 26;   // vertical span travelled
+    const items = [];
+    const N = isMobile ? 9 : 16;
+    for(let i=0;i<N;i++){
+      let obj;
+      const r=Math.random();
+      if(r<0.55) obj=makeCup(porcelain);
+      else if(r<0.72) obj=makeCup(goldM);
+      else obj=makeBean();
+      const wrap=new THREE.Group();
+      wrap.add(obj);
+      wrap.position.set( (Math.random()-0.5)*11, -(i/N)*FIELD_H + (Math.random()-0.5)*2, -2 - Math.random()*7 );
+      wrap.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*0.5);
+      const s=0.6+Math.random()*0.9; wrap.scale.setScalar(s);
+      wrap.userData={ rs:(Math.random()-0.5)*0.01+0.004, rx:(Math.random()-0.5)*0.006, fy:Math.random()*Math.PI*2, fa:0.2+Math.random()*0.4 };
+      scene.add(wrap); items.push(wrap);
+    }
+
+    let mx=0,my=0,tcx=0,tcy=0;
+    addEventListener('mousemove', e=>{ mx=e.clientX/innerWidth-0.5; my=e.clientY/innerHeight-0.5; });
+    let scrollProg=0;
+    addEventListener('scroll', ()=>{ const max=document.documentElement.scrollHeight-innerHeight; scrollProg=max>0?scrollY/max:0; });
+    addEventListener('resize', ()=>{ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
+
+    let camY=0, t=0;
+    function frame(){
+      requestAnimationFrame(frame);
+      t+=0.016;
+      const targetY = -scrollProg*FIELD_H;
+      camY += (targetY - camY)*0.06;
+      tcx += (mx - tcx)*0.05; tcy += (my - tcy)*0.05;
+      camera.position.y = camY + tcy*1.2;
+      camera.position.x = tcx*2.2;
+      camera.lookAt(0, camY, 0);
+      items.forEach(w=>{ const o=w.children[0]; o.rotation.y+=w.userData.rs; o.rotation.x+=w.userData.rx; w.position.y += Math.sin(t+w.userData.fy)*0.002*w.userData.fa; });
+      renderer.render(scene, camera);
+    }
+    if(reduce){ renderer.render(scene,camera); } else { frame(); }
+  })();
 </script>
+
 </body>
 </html>
