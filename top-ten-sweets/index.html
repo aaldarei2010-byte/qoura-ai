@@ -182,16 +182,18 @@
   .sig-card .star{color:var(--accent-2);letter-spacing:3px;font-size:.9rem}
 
   /* Gallery */
-  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:.8rem}
-  .g{border-radius:4px;display:grid;place-items:center;font-size:3rem;overflow:hidden;position:relative;transition:transform .35s}
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:.8rem}
+  .g{position:relative;border-radius:4px;overflow:hidden;background:var(--tile,#e7d8bf);transition:transform .35s;margin:0}
   .g:hover{transform:translateY(-4px)}
-  .g::after{content:attr(data-label);position:absolute;inset:auto 0 0 0;background:linear-gradient(transparent,rgba(23,19,14,.85));
-    color:#fff;font-family:var(--sans);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;padding:1.6rem .8rem .7rem;opacity:0;transition:.3s}
-  html[lang="ar"] .g::after{font-family:'Tajawal';letter-spacing:0;text-transform:none}
-  .g:hover::after{opacity:1}
-  .g.big{grid-column:span 2;grid-row:span 2;font-size:5rem}
-  .g.c1{background:#e7d8bf}.g.c2{background:#e9c4b6}.g.c3{background:#dfdcb8}
-  .g.c4{background:#ecd0a8}.g.c5{background:#e3b894}
+  .g img{width:100%;height:100%;object-fit:cover;display:block}
+  .g .ph{display:none}
+  .g.missing img{display:none}
+  .g.missing .ph{display:grid;place-items:center;width:100%;height:100%;font-size:3rem}
+  .g.big .ph{font-size:5rem}
+  .g figcaption{position:absolute;inset:auto 0 0 0;background:linear-gradient(transparent,rgba(23,19,14,.82));
+    color:#fff;font-family:var(--sans);font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;padding:1.7rem .8rem .7rem}
+  html[lang="ar"] .g figcaption{font-family:'Tajawal';letter-spacing:0;text-transform:none}
+  .g.big{grid-column:span 2;grid-row:span 2}
 
   /* Testimonials */
   .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,5vw,3.5rem)}
@@ -495,13 +497,46 @@
       <p class="note" data-en="A glimpse of what's waiting. Swap these for photos of your own creations." data-ar="لمحة عمّا ينتظرك. استبدلها بصور من إبداعاتك.">A glimpse of what's waiting. Swap these for photos of your own creations.</p>
     </div>
     <div class="gallery-grid reveal">
-      <div class="g big c1" data-label="Fresh Kunafa Tray" data-label-en="Fresh Kunafa Tray" data-label-ar="صينية كنافة طازجة">🥮</div>
-      <div class="g c2" data-label="Assorted Mithai" data-label-en="Assorted Mithai" data-label-ar="تشكيلة حلويات">🍥</div>
-      <div class="g c3" data-label="Pistachio Baklava" data-label-en="Pistachio Baklava" data-label-ar="بقلاوة بالفستق">🍯</div>
-      <div class="g c4" data-label="Celebration Cakes" data-label-en="Celebration Cakes" data-label-ar="كيك المناسبات">🎂</div>
-      <div class="g c5" data-label="Warm Luqaimat" data-label-en="Warm Luqaimat" data-label-ar="لقيمات دافئة">🍩</div>
-      <div class="g c2" data-label="Karak & Sweets" data-label-en="Karak & Sweets" data-label-ar="كرك وحلويات">🫖</div>
-      <div class="g c1" data-label="Gift Boxes" data-label-en="Gift Boxes" data-label-ar="علب الهدايا">🎁</div>
+      <figure class="g big" style="--tile:#e7d8bf">
+        <img src="images/rahash-pistachio.jpg" alt="Pistachio Rahash" loading="lazy" onerror="this.closest('.g').classList.add('missing')">
+        <span class="ph">🥮</span>
+        <figcaption data-en="Pistachio Rahash" data-ar="رهش بالفستق">Pistachio Rahash</figcaption>
+      </figure>
+      <figure class="g" style="--tile:#dfdcb8">
+        <img src="images/zaatar-biscuit.jpg" alt="Zaatar Biscuits" loading="lazy" onerror="this.closest('.g').classList.add('missing')">
+        <span class="ph">🍪</span>
+        <figcaption data-en="Zaatar Biscuits" data-ar="بسكويت بالزعتر">Zaatar Biscuits</figcaption>
+      </figure>
+      <figure class="g" style="--tile:#ecd0a8">
+        <img src="images/ein-aljamal.jpg" alt="Walnut Cookies (Ein Al Jamal)" loading="lazy" onerror="this.closest('.g').classList.add('missing')">
+        <span class="ph">🌰</span>
+        <figcaption data-en="Walnut Cookies" data-ar="عين الجمل">Walnut Cookies</figcaption>
+      </figure>
+      <figure class="g" style="--tile:#cfe0b8">
+        <img src="images/rangina.jpg" alt="Rangina" loading="lazy" onerror="this.closest('.g').classList.add('missing')">
+        <span class="ph">🟩</span>
+        <figcaption data-en="Rangina" data-ar="رنجينة">Rangina</figcaption>
+      </figure>
+      <figure class="g" style="--tile:#e9c4b6">
+        <img src="images/assorted-kaak.jpg" alt="Assorted Premium Kaak" loading="lazy" onerror="this.closest('.g').classList.add('missing')">
+        <span class="ph">🍘</span>
+        <figcaption data-en="Assorted Kaak" data-ar="كعك مشكل فاخر">Assorted Kaak</figcaption>
+      </figure>
+      <figure class="g" style="--tile:#d8c3a8">
+        <img src="images/chocolate-mixes.jpg" alt="Chocolate Mixes" loading="lazy" onerror="this.closest('.g').classList.add('missing')">
+        <span class="ph">🍫</span>
+        <figcaption data-en="Chocolate Mixes" data-ar="شوكولاتة مشكلة">Chocolate Mixes</figcaption>
+      </figure>
+      <figure class="g" style="--tile:#e3b894">
+        <img src="images/butter-cookies.jpg" alt="Butter Cookies" loading="lazy" onerror="this.closest('.g').classList.add('missing')">
+        <span class="ph">🌼</span>
+        <figcaption data-en="Butter Cookies" data-ar="غريبة بالفستق">Butter Cookies</figcaption>
+      </figure>
+      <figure class="g" style="--tile:#cdb89a">
+        <img src="images/chocolate-tray.jpg" alt="Chocolate Gift Tray" loading="lazy" onerror="this.closest('.g').classList.add('missing')">
+        <span class="ph">🎁</span>
+        <figcaption data-en="Chocolate Trays" data-ar="صواني شوكولاتة">Chocolate Trays</figcaption>
+      </figure>
     </div>
   </div>
 </section>
