@@ -88,7 +88,11 @@
   .burger.open span:nth-child(2){opacity:0}
   .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-  .hero{padding-top:clamp(2rem,6vw,5rem);padding-bottom:clamp(2.5rem,6vw,5rem)}
+  .hero{padding-top:clamp(2rem,6vw,5rem);padding-bottom:clamp(2.5rem,6vw,5rem);position:relative;overflow:hidden}
+  .hero .wrap{position:relative;z-index:2}
+  .trail-layer{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+  .trail-item{position:absolute;will-change:transform,opacity}
+  .trail-item img{display:block;width:clamp(78px,9vw,116px);height:clamp(78px,9vw,116px);object-fit:cover;border-radius:14px;box-shadow:0 18px 34px -14px rgba(45,51,62,.4)}
   .hero-meta{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
     border-bottom:1px solid var(--line);padding-bottom:1.2rem;margin-bottom:clamp(1.8rem,5vw,3.5rem);
     font-family:var(--sans);text-transform:uppercase;letter-spacing:.2em;font-size:.74rem;color:var(--muted)}
@@ -296,6 +300,7 @@
 
 <!-- Hero -->
 <section class="hero" id="home">
+  <div class="trail-layer" id="trail" aria-hidden="true"></div>
   <div class="wrap">
     <img class="hero-logo" src="images/logo.png" alt="Top Ten Café" onerror="this.remove()">
     <div class="hero-meta">
@@ -703,6 +708,77 @@
     });
   }, { rootMargin:'-45% 0px -50% 0px' });
   ['about','menu','signature','gallery','visit'].forEach(id => { const el = document.getElementById(id); if (el) spy.observe(el); });
+
+  // ---- Image trail: food photos follow the cursor in the hero ----
+  (function(){
+    const layer = document.getElementById('trail');
+    if (!layer) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const localImages = [
+      'images/rahash-pistachio.jpg','images/zaatar-biscuit.jpg','images/ein-aljamal.jpg',
+      'images/rangina.jpg','images/assorted-kaak.jpg','images/chocolate-mixes.jpg',
+      'images/butter-cookies.jpg','images/chocolate-tray.jpg','images/bag.jpg'
+    ];
+    const tile = (emoji,bg) => 'data:image/svg+xml,' + encodeURIComponent(
+      "<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><rect width='200' height='200' rx='28' fill='"+bg+"'/><text x='100' y='128' font-size='120' text-anchor='middle'>"+emoji+"</text></svg>");
+    const tiles = [
+      tile('🍰','#e9c6c6'), tile('🧁','#f0e7d8'), tile('🍮','#e7d3a8'), tile('🥮','#e9c6c6'),
+      tile('☕','#dfe3ea'), tile('🍩','#f0e7d8'), tile('🫖','#e7d3a8'), tile('🍪','#e9d8c0'),
+      tile('🍫','#dfe3ea'), tile('🌰','#f0e7d8')
+    ];
+
+    const pool = [];
+    const test = (src) => new Promise(res => { const im = new Image(); im.onload = () => res(src); im.onerror = () => res(null); im.src = src; });
+
+    Promise.all(localImages.map(test)).then(results => {
+      const photos = results.filter(Boolean);
+      if (photos.length >= 4) pool.push.apply(pool, photos);
+      else pool.push.apply(pool, photos.concat(tiles));
+      start();
+    });
+
+    let idx = 0, lastTime = 0, lastX = null, lastY = null;
+    const interval = 90, minDist = 26;
+
+    function spawn(x, y){
+      if (!pool.length) return;
+      const src = pool[idx % pool.length]; idx++;
+      const rot = (Math.random() - 0.5) * 30;
+      const el = document.createElement('div');
+      el.className = 'trail-item';
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      const img = document.createElement('img');
+      img.src = src; img.alt = ''; img.draggable = false;
+      el.appendChild(img);
+      layer.appendChild(el);
+      const base = 'translate(-50%,-50%) rotate(' + rot + 'deg)';
+      const anim = el.animate([
+        { transform: base + ' scale(0)',    opacity: 0 },
+        { transform: base + ' scale(1.15)', opacity: 1, offset: 0.18 },
+        { transform: base + ' scale(1)',    opacity: 1, offset: 0.32 },
+        { transform: base + ' scale(0)',    opacity: 0 }
+      ], { duration: 760, easing: 'cubic-bezier(.22,.61,.36,1)' });
+      anim.onfinish = () => el.remove();
+    }
+
+    function onMove(clientX, clientY){
+      const rect = layer.getBoundingClientRect();
+      const x = clientX - rect.left, y = clientY - rect.top;
+      if (x < 0 || y < 0 || x > rect.width || y > rect.height) return;
+      const now = performance.now();
+      if (now - lastTime < interval) return;
+      if (lastX !== null && Math.hypot(x - lastX, y - lastY) < minDist) return;
+      lastTime = now; lastX = x; lastY = y;
+      spawn(x, y);
+    }
+
+    function start(){
+      window.addEventListener('mousemove', (e) => onMove(e.clientX, e.clientY));
+      window.addEventListener('touchmove', (e) => { const t = e.touches[0]; if (t) onMove(t.clientX, t.clientY); }, { passive: true });
+    }
+  })();
 </script>
 </body>
 </html>
