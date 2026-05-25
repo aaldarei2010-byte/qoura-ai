@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Top Ten Sweets — Al Qua'a, Al Ain</title>
-<meta name="description" content="Top Ten Sweets in Al Qua'a, Al Ain, UAE — freshly made Arabic & traditional sweets, mithai, cakes, and pastries. حلويات طازجة في القوع، العين." />
+<title>Top Ten — Productive Families · Al Qua'a, Abu Dhabi</title>
+<meta name="description" content="Top Ten is an economic empowerment platform in Al Qua'a, Abu Dhabi, showcasing the food, sweets, coffee and drinks of local productive families. توب تن لتمكين الأسر المنتجة." />
 <meta name="theme-color" content="#17130e" />
-<meta property="og:title" content="Top Ten Sweets — Sweet. Fresh. Daily." />
-<meta property="og:description" content="Freshly made Arabic sweets, mithai, cakes & pastries in Al Qua'a, Al Ain, UAE." />
+<meta property="og:title" content="Top Ten — Made by Families" />
+<meta property="og:description" content="An economic empowerment platform for productive families in Al Qua'a, Abu Dhabi." />
 <meta property="og:type" content="website" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#127856;</text></svg>" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#129534;</text></svg>" />
 
 <style>
   :root{
     --paper:#f3efe6; --paper-2:#eae2d2;
     --ink:#17130e; --ink-2:#3c352c; --muted:#8a7f70;
-    --accent:#cf3a2a; --accent-2:#c79a45;
+    --accent:#a8472f; --accent-2:#c79a45;
     --line:rgba(23,19,14,.16); --line-2:rgba(255,255,255,.22);
     --serif:'Fraunces',Georgia,serif;
     --sans:'Space Grotesk',system-ui,sans-serif;
@@ -33,7 +33,7 @@
   h1,h2,h3,.serif{font-family:var(--serif);font-weight:600;letter-spacing:-.02em}
   html[lang="ar"] body,
   html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] .serif,
-  html[lang="ar"] .nm,html[lang="ar"] .price,html[lang="ar"] .ticker span,html[lang="ar"] .foot-mark{
+  html[lang="ar"] .nm,html[lang="ar"] .ticker span,html[lang="ar"] .foot-mark{
     font-family:'Tajawal',sans-serif !important;letter-spacing:0;
   }
   a{color:inherit;text-decoration:none}
@@ -42,7 +42,6 @@
   section{position:relative}
   .pad{padding:clamp(4rem,11vw,9rem) 0}
 
-  /* Buttons / links */
   .btn{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--sans);font-weight:600;text-transform:uppercase;
     letter-spacing:.1em;font-size:.8rem;padding:.95rem 1.7rem;border:1.5px solid var(--ink);background:none;color:var(--ink);
     cursor:pointer;transition:background .25s, color .25s, border-color .25s, transform .25s}
@@ -50,8 +49,6 @@
   .btn:hover{transform:translateY(-2px)}
   .btn-fill{background:var(--ink);color:var(--paper)}
   .btn-fill:hover{background:var(--accent);border-color:var(--accent);color:#fff}
-  .btn-accent{background:var(--accent);border-color:var(--accent);color:#fff}
-  .btn-accent:hover{background:var(--ink);border-color:var(--ink)}
   .btn-light{border-color:#fff;color:#fff}
   .btn-light:hover{background:#fff;color:var(--ink)}
   .arrow{font-family:var(--sans);font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:.82rem;
@@ -59,13 +56,11 @@
   html[lang="ar"] .arrow{font-family:'Tajawal';letter-spacing:0;font-weight:700}
   .arrow:hover{color:var(--accent);border-color:var(--accent)}
 
-  /* Top meta strip */
   .strip{border-bottom:1px solid var(--line);font-size:.74rem;font-family:var(--sans);text-transform:uppercase;letter-spacing:.18em;color:var(--muted)}
   html[lang="ar"] .strip{font-family:'Tajawal';letter-spacing:.02em}
   .strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:.6rem;flex-wrap:wrap}
   .strip a:hover{color:var(--accent)}
 
-  /* Nav */
   header.nav{position:sticky;top:0;z-index:60;background:rgba(243,239,230,.82);backdrop-filter:blur(12px);transition:border-color .3s}
   header.nav.scrolled{border-bottom:1px solid var(--line)}
   .bar{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-block:1.05rem}
@@ -91,59 +86,53 @@
   .burger.open span:nth-child(2){opacity:0}
   .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-  /* Hero */
   .hero{padding-top:clamp(2rem,6vw,5rem);padding-bottom:clamp(2.5rem,6vw,5rem)}
   .hero-meta{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
     border-bottom:1px solid var(--line);padding-bottom:1.2rem;margin-bottom:clamp(1.8rem,5vw,3.5rem);
     font-family:var(--sans);text-transform:uppercase;letter-spacing:.2em;font-size:.74rem;color:var(--muted)}
   html[lang="ar"] .hero-meta{font-family:'Tajawal';letter-spacing:.02em}
-  .hero-title{font-family:var(--serif);font-weight:600;font-size:clamp(3.6rem,17vw,13rem);line-height:.84;letter-spacing:-.04em}
+  .hero-title{font-family:var(--serif);font-weight:600;font-size:clamp(3.4rem,15vw,12rem);line-height:.84;letter-spacing:-.04em}
   html[lang="ar"] .hero-title{font-weight:800;line-height:1.02;letter-spacing:0}
   .hero-title span{display:block}
   .hero-title .accent{color:var(--accent);font-style:italic}
   html[lang="ar"] .hero-title .accent{font-style:normal}
   .hero-row{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:end;margin-top:clamp(2rem,5vw,3.5rem)}
-  .hero-row .lead{font-size:clamp(1.05rem,1.5vw,1.3rem);color:var(--ink-2);max-width:46ch}
+  .hero-row .lead{font-size:clamp(1.05rem,1.5vw,1.3rem);color:var(--ink-2);max-width:50ch}
   .hero-actions{display:flex;gap:1.4rem;align-items:center;flex-wrap:wrap;justify-content:flex-end}
   .hero-stats{display:flex;gap:clamp(1.5rem,5vw,4rem);margin-top:clamp(2.5rem,6vw,4.5rem);border-top:1px solid var(--line);padding-top:1.6rem;flex-wrap:wrap}
   .hero-stats .st b{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,3vw,2.6rem);display:block;line-height:1}
   .hero-stats .st span{font-family:var(--sans);text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;color:var(--muted)}
   html[lang="ar"] .hero-stats .st span{font-family:'Tajawal';letter-spacing:0}
 
-  /* Ticker */
   .ticker{border-block:1px solid var(--line);overflow:hidden;background:var(--paper)}
-  .ticker .track{display:flex;gap:2.6rem;width:max-content;padding-block:1rem;animation:scroll 32s linear infinite}
+  .ticker .track{display:flex;gap:2.6rem;width:max-content;padding-block:1rem;animation:scroll 34s linear infinite}
   .ticker span{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,3.4vw,2.2rem);white-space:nowrap;display:inline-flex;align-items:center;gap:.7rem;color:var(--ink)}
   html[lang="ar"] .ticker span{font-style:normal}
   .ticker .dot{color:var(--accent)}
   @keyframes scroll{to{transform:translateX(-50%)}}
 
-  /* Section head */
   .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;
     border-top:1px solid var(--line);padding-top:1.5rem;margin-bottom:clamp(2.5rem,6vw,5rem)}
   .sec-head .idx{display:block;font-family:var(--sans);font-size:.74rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:.9rem}
   html[lang="ar"] .sec-head .idx{font-family:'Tajawal';letter-spacing:.04em}
-  .sec-head h2{font-size:clamp(2.2rem,6.4vw,4.8rem);line-height:.95;max-width:16ch}
+  .sec-head h2{font-size:clamp(2.2rem,6.4vw,4.8rem);line-height:.95;max-width:18ch}
   .sec-head .note{max-width:34ch;color:var(--ink-2);font-size:.95rem;padding-bottom:.4rem}
 
-  /* Features */
-  .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-  .feat{border-top:1px solid var(--line);padding:1.6rem 1.4rem 1.6rem 0;margin-inline-end:1.4rem}
+  .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 2.4rem}
+  .feat{border-top:1px solid var(--line);padding:1.6rem 0}
   .feat .em{font-size:1.8rem;display:block;margin-bottom:1rem}
   .feat h3{font-size:1.35rem;margin-bottom:.5rem}
   .feat p{font-size:.9rem;color:var(--ink-2)}
 
-  /* About */
   .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,6vw,5rem);align-items:start}
   .about-figure{aspect-ratio:4/5;background:radial-gradient(circle at 65% 25%,var(--paper-2),#e0d6c2);display:grid;place-items:center;border-radius:4px}
   .about-figure .big{font-size:clamp(5rem,16vw,9rem)}
-  .about-body p{font-size:clamp(1.05rem,1.5vw,1.35rem);color:var(--ink-2);margin-bottom:1.3rem;max-width:52ch}
-  .about-body .pull{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.25;color:var(--ink);margin-bottom:1.6rem;max-width:20ch}
+  .about-body p{font-size:clamp(1.05rem,1.5vw,1.35rem);color:var(--ink-2);margin-bottom:1.3rem;max-width:54ch}
+  .about-body .pull{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.25;color:var(--ink);margin-bottom:1.6rem;max-width:22ch}
   html[lang="ar"] .about-body .pull{font-style:normal}
   .about-body .callout{font-family:var(--sans);font-size:.95rem;color:var(--ink);border-inline-start:2px solid var(--accent);padding-inline-start:1rem}
   html[lang="ar"] .about-body .callout{font-family:'Tajawal'}
 
-  /* Menu */
   .tabs{display:flex;flex-wrap:wrap;gap:1.8rem;border-bottom:1px solid var(--line);margin-bottom:clamp(2rem,4vw,3rem)}
   .tab{background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:.2rem 0 1rem;cursor:pointer;
     font-family:var(--sans);text-transform:uppercase;letter-spacing:.14em;font-size:.82rem;font-weight:500;color:var(--muted);transition:.25s}
@@ -154,21 +143,13 @@
   .panel{display:none}
   .panel.active{display:block;animation:fade .45s ease}
   @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-  .item{padding:1.5rem 0;border-top:1px solid var(--line);cursor:default}
+  .item{padding:1.4rem 0;border-top:1px solid var(--line)}
   .item .row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
-  .item .nm{font-family:var(--serif);font-weight:500;font-size:clamp(1.2rem,1.9vw,1.6rem);transition:color .2s}
-  .item:hover .nm{color:var(--accent)}
-  .item .price{font-family:var(--serif);font-weight:500;font-size:1.2rem;white-space:nowrap}
-  .item .price::after{content:" AED";font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.1em;color:var(--muted)}
-  html[lang="ar"] .item .price::after{content:" د.إ";font-family:'Tajawal'}
-  .item .desc{color:var(--muted);font-size:.9rem;margin-top:.45rem;max-width:50ch}
-  .pill{font-family:var(--sans);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
-    border:1px solid var(--accent);padding:.12rem .45rem;margin-inline-start:.7rem;vertical-align:middle;font-weight:600}
-  html[lang="ar"] .pill{font-family:'Tajawal';letter-spacing:0}
+  .item .nm{font-family:var(--serif);font-weight:500;font-size:clamp(1.2rem,1.9vw,1.55rem)}
+  .item .desc{color:var(--muted);font-size:.9rem;margin-top:.4rem;max-width:52ch}
   .menu-note{margin-top:2.5rem;color:var(--muted);font-size:.85rem;font-family:var(--sans)}
   html[lang="ar"] .menu-note{font-family:'Tajawal'}
 
-  /* Inverted (signatures) */
   .invert{background:var(--ink);color:var(--paper)}
   .invert .sec-head{border-top-color:var(--line-2)}
   .invert .sec-head h2{color:var(--paper)}
@@ -176,12 +157,11 @@
   .invert .sec-head .note{color:rgba(243,239,230,.7)}
   .sig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,5vw,3.5rem)}
   .sig-card{border-top:1px solid var(--line-2);padding-top:1.5rem}
-  .sig-card .em{font-size:2.6rem;display:block;margin-bottom:1rem}
-  .sig-card h3{font-size:1.7rem;color:var(--paper);margin-bottom:.6rem}
-  .sig-card p{font-size:.95rem;color:rgba(243,239,230,.72);margin-bottom:1rem}
-  .sig-card .star{color:var(--accent-2);letter-spacing:3px;font-size:.9rem}
+  .sig-card .em{font-size:2.4rem;display:block;margin-bottom:1rem}
+  .sig-card .big-num{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,5vw,3.4rem);color:var(--accent-2);line-height:1;margin-bottom:.7rem}
+  .sig-card h3{font-size:1.5rem;color:var(--paper);margin-bottom:.6rem}
+  .sig-card p{font-size:.95rem;color:rgba(243,239,230,.72)}
 
-  /* Gallery */
   .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:.8rem}
   .g{position:relative;border-radius:4px;overflow:hidden;background:var(--tile,#e7d8bf);transition:transform .35s;margin:0}
   .g:hover{transform:translateY(-4px)}
@@ -195,18 +175,16 @@
   html[lang="ar"] .g figcaption{font-family:'Tajawal';letter-spacing:0;text-transform:none}
   .g.big{grid-column:span 2;grid-row:span 2}
 
-  /* Testimonials */
   .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,5vw,3.5rem)}
   .quote{border-top:1px solid var(--line);padding-top:1.5rem}
   .quote .mk{font-family:var(--serif);font-size:3rem;line-height:.5;color:var(--accent);display:block;margin-bottom:.6rem}
-  .quote p{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,1.7vw,1.4rem);line-height:1.4;color:var(--ink);margin-bottom:1.3rem}
+  .quote p{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,1.5vw,1.3rem);line-height:1.45;color:var(--ink);margin-bottom:1.3rem}
   html[lang="ar"] .quote p{font-style:normal}
   .quote .who b{font-size:.95rem;font-family:var(--sans);font-weight:600}
   html[lang="ar"] .quote .who b{font-family:'Tajawal';font-weight:700}
   .quote .who span{display:block;font-family:var(--sans);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:.2rem}
   html[lang="ar"] .quote .who span{font-family:'Tajawal';letter-spacing:0;text-transform:none}
 
-  /* Visit */
   .visit-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,3.5rem);align-items:stretch}
   .map-box{border:1px solid var(--line);border-radius:4px;overflow:hidden;min-height:420px}
   .map-box iframe{width:100%;height:100%;min-height:420px;border:0;display:block;filter:grayscale(.25) contrast(1.02)}
@@ -221,17 +199,15 @@
   .hours li span:last-child{color:var(--muted)}
   .visit-cta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.6rem}
 
-  /* Band */
   .band{background:var(--accent);color:#fff;text-align:center}
-  .band h2{font-size:clamp(2rem,5.5vw,4rem);color:#fff;line-height:1;margin-bottom:1rem;max-width:18ch;margin-inline:auto}
-  .band p{max-width:46ch;margin:0 auto 2rem;color:rgba(255,255,255,.9)}
+  .band h2{font-size:clamp(2rem,5.5vw,4rem);color:#fff;line-height:1.02;margin-bottom:1rem;max-width:20ch;margin-inline:auto}
+  .band p{max-width:50ch;margin:0 auto 2rem;color:rgba(255,255,255,.9)}
 
-  /* Footer */
   footer{background:var(--ink);color:var(--paper)}
   .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:2.5rem;padding-top:clamp(3rem,7vw,5rem);padding-bottom:3rem}
   .foot-grid .brand .name{color:var(--paper)}
   .foot-grid .brand .loc{color:rgba(243,239,230,.55)}
-  .foot-grid .blurb{font-size:.92rem;color:rgba(243,239,230,.7);margin-top:1.1rem;max-width:34ch}
+  .foot-grid .blurb{font-size:.92rem;color:rgba(243,239,230,.7);margin-top:1.1rem;max-width:38ch}
   .foot h4{font-family:var(--sans);text-transform:uppercase;letter-spacing:.16em;font-size:.74rem;color:var(--accent-2);margin-bottom:1.1rem}
   html[lang="ar"] .foot h4{font-family:'Tajawal';letter-spacing:0}
   .foot ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
@@ -245,20 +221,16 @@
   .copy{border-top:1px solid var(--line-2);text-align:center;padding-block:1.3rem;font-family:var(--sans);font-size:.78rem;letter-spacing:.04em;color:rgba(243,239,230,.6)}
   html[lang="ar"] .copy{font-family:'Tajawal'}
 
-  /* FABs */
   .fab{position:fixed;inset-inline-end:18px;z-index:70;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:0;font-size:1.35rem;box-shadow:0 12px 30px -12px rgba(23,19,14,.5);transition:transform .25s,opacity .25s}
   .fab:hover{transform:translateY(-4px)}
   .wa{bottom:84px;background:#25d366;color:#fff}
   .totop{bottom:20px;background:var(--ink);color:var(--paper);opacity:0;pointer-events:none}
   .totop.show{opacity:1;pointer-events:auto}
 
-  /* Reveal */
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
   .reveal.in{opacity:1;transform:none}
 
-  /* Responsive */
   @media(max-width:960px){
-    .feat-grid{grid-template-columns:repeat(2,1fr)}
     .about-grid,.visit-grid{grid-template-columns:1fr}
     .sig-grid,.testi-grid{grid-template-columns:1fr}
     .gallery-grid{grid-template-columns:repeat(2,1fr)}
@@ -276,7 +248,7 @@
     nav.links a::after{display:none}
     .burger{display:flex}
   }
-  @media(max-width:560px){.feat-grid,.gallery-grid{grid-template-columns:1fr}.menu-grid{grid-template-columns:1fr;gap:0}}
+  @media(max-width:560px){.gallery-grid{grid-template-columns:1fr}.menu-grid{grid-template-columns:1fr;gap:0}}
   @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
@@ -285,11 +257,11 @@
 <!-- Meta strip -->
 <div class="strip">
   <div class="wrap">
-    <div data-en="Freshly made every single day" data-ar="تُصنع طازجة كل يوم">Freshly made every single day</div>
+    <div data-en="An economic empowerment platform for productive families" data-ar="منصة تمكين اقتصادي للأسر المنتجة">An economic empowerment platform for productive families</div>
     <div>
       <a href="tel:+971500000000">+971 50 000 0000</a>
       &nbsp;&nbsp;·&nbsp;&nbsp;
-      <a href="#visit" data-en="Al Qua'a, Al Ain — UAE" data-ar="القوع، العين — الإمارات">Al Qua'a, Al Ain — UAE</a>
+      <a href="#visit" data-en="Al Qua'a, Abu Dhabi — UAE" data-ar="القوع، أبوظبي — الإمارات">Al Qua'a, Abu Dhabi — UAE</a>
     </div>
   </div>
 </div>
@@ -299,13 +271,13 @@
   <div class="wrap">
     <div class="bar">
       <a href="#home" class="brand">
-        <span class="name" data-en="Top Ten Sweets" data-ar="توب تِن للحلويات">Top Ten Sweets</span>
-        <span class="loc" data-en="Est. Al Ain" data-ar="العين">Est. Al Ain</span>
+        <span class="name" data-en="Top Ten" data-ar="توب تن">Top Ten</span>
+        <span class="loc" data-en="Productive Families · Al Qua'a" data-ar="للأسر المنتجة · القوع">Productive Families · Al Qua'a</span>
       </a>
       <nav class="links" id="navlinks">
         <a href="#about" data-en="Story" data-ar="قصتنا">Story</a>
-        <a href="#menu" data-en="Menu" data-ar="القائمة">Menu</a>
-        <a href="#signature" data-en="Signatures" data-ar="المميزة">Signatures</a>
+        <a href="#menu" data-en="Products" data-ar="المنتجات">Products</a>
+        <a href="#signature" data-en="Impact" data-ar="الأثر">Impact</a>
         <a href="#gallery" data-en="Gallery" data-ar="المعرض">Gallery</a>
         <a href="#visit" data-en="Visit" data-ar="زورونا">Visit</a>
       </nav>
@@ -321,25 +293,25 @@
 <section class="hero" id="home">
   <div class="wrap">
     <div class="hero-meta">
-      <span data-en="Arabic & Indian Sweets · Cakes · Karak" data-ar="حلويات عربية وهندية · كيك · كرك">Arabic &amp; Indian Sweets · Cakes · Karak</span>
-      <span data-en="Al Qua'a · Al Ain · UAE" data-ar="القوع · العين · الإمارات">Al Qua'a · Al Ain · UAE</span>
+      <span data-en="Emirati Food · Sweets · Coffee · Drinks" data-ar="أكل شعبي · حلويات · قهوة · مشروبات">Emirati Food · Sweets · Coffee · Drinks</span>
+      <span data-en="Al Qua'a · Abu Dhabi · UAE" data-ar="القوع · أبوظبي · الإمارات">Al Qua'a · Abu Dhabi · UAE</span>
     </div>
     <h1 class="hero-title">
-      <span data-en="Sweet." data-ar="حلوة.">Sweet.</span>
-      <span class="accent" data-en="Fresh." data-ar="طازجة.">Fresh.</span>
-      <span data-en="Daily." data-ar="كل يوم.">Daily.</span>
+      <span data-en="Made." data-ar="صُنع.">Made.</span>
+      <span data-en="By." data-ar="بأيدي.">By.</span>
+      <span class="accent" data-en="Families." data-ar="الأسر.">Families.</span>
     </h1>
     <div class="hero-row">
-      <p class="lead" data-en="Step inside and let the aroma of warm syrup, roasted pistachio, and golden ghee welcome you. Pull up a chair — you're going to want to stay." data-ar="ادخل ودع رائحة القطر الدافئ والفستق المحمّص والسمن الذهبي ترحّب بك. اسحب كرسياً واجلس — ستحب البقاء أكثر.">Step inside and let the aroma of warm syrup, roasted pistachio, and golden ghee welcome you. Pull up a chair — you're going to want to stay.</p>
+      <p class="lead" data-en="Top Ten is a shop and platform in Al Qua'a that brings the products of productive families together — Emirati home food, sweets, coffee and drinks — turning everyday kitchen skills into a sustainable income." data-ar="توب تن محلٌّ ومنصة في القوع تجمع منتجات الأسر المنتجة — أكل شعبي إماراتي، حلويات، قهوة، ومشروبات — وتحوّل مهارة المطبخ اليومية إلى دخل مستدام.">Top Ten is a shop and platform in Al Qua'a that brings the products of productive families together — Emirati home food, sweets, coffee and drinks — turning everyday kitchen skills into a sustainable income.</p>
       <div class="hero-actions">
-        <a href="#menu" class="btn btn-fill" data-en="Explore the Menu" data-ar="تصفّح القائمة">Explore the Menu</a>
-        <a href="#visit" class="arrow" data-en="Find Us →" data-ar="موقعنا →">Find Us →</a>
+        <a href="#menu" class="btn btn-fill" data-en="Explore Products" data-ar="تصفّح المنتجات">Explore Products</a>
+        <a href="#join" class="arrow" data-en="Join as a Family →" data-ar="انضمي كأسرة منتجة →">Join as a Family →</a>
       </div>
     </div>
     <div class="hero-stats">
-      <div class="st"><b>10+</b><span data-en="Years of sweetness" data-ar="سنوات من الحلاوة">Years of sweetness</span></div>
-      <div class="st"><b>50+</b><span data-en="Handmade treats" data-ar="حلوى يدوية">Handmade treats</span></div>
-      <div class="st"><b>100%</b><span data-en="Halal & fresh" data-ar="حلال وطازج">Halal &amp; fresh</span></div>
+      <div class="st"><b>318</b><span data-en="Productive families" data-ar="أسرة منتجة">Productive families</span></div>
+      <div class="st"><b>80</b><span data-en="Local projects" data-ar="مشروع محلي">Local projects</span></div>
+      <div class="st"><b>100%</b><span data-en="Local & Emirati" data-ar="محلي وإماراتي">Local &amp; Emirati</span></div>
     </div>
   </div>
 </section>
@@ -347,141 +319,139 @@
 <!-- Ticker -->
 <div class="ticker" aria-hidden="true">
   <div class="track">
-    <span data-en="Kunafa" data-ar="كنافة">Kunafa</span><span class="dot">✦</span>
-    <span data-en="Baklava" data-ar="بقلاوة">Baklava</span><span class="dot">✦</span>
-    <span data-en="Gulab Jamun" data-ar="جلاب جامون">Gulab Jamun</span><span class="dot">✦</span>
-    <span data-en="Luqaimat" data-ar="لقيمات">Luqaimat</span><span class="dot">✦</span>
-    <span data-en="Karak" data-ar="كرك">Karak</span><span class="dot">✦</span>
-    <span data-en="Jalebi" data-ar="جلبي">Jalebi</span><span class="dot">✦</span>
-    <span data-en="Kunafa" data-ar="كنافة">Kunafa</span><span class="dot">✦</span>
-    <span data-en="Baklava" data-ar="بقلاوة">Baklava</span><span class="dot">✦</span>
-    <span data-en="Gulab Jamun" data-ar="جلاب جامون">Gulab Jamun</span><span class="dot">✦</span>
-    <span data-en="Luqaimat" data-ar="لقيمات">Luqaimat</span><span class="dot">✦</span>
-    <span data-en="Karak" data-ar="كرك">Karak</span><span class="dot">✦</span>
-    <span data-en="Jalebi" data-ar="جلبي">Jalebi</span><span class="dot">✦</span>
+    <span data-en="Emirati Food" data-ar="أكل شعبي">Emirati Food</span><span class="dot">✦</span>
+    <span data-en="Sweets" data-ar="حلويات">Sweets</span><span class="dot">✦</span>
+    <span data-en="Coffee" data-ar="قهوة">Coffee</span><span class="dot">✦</span>
+    <span data-en="Drinks" data-ar="مشروبات">Drinks</span><span class="dot">✦</span>
+    <span data-en="Sandwiches" data-ar="ساندويتش">Sandwiches</span><span class="dot">✦</span>
+    <span data-en="Hospitality" data-ar="ضيافة">Hospitality</span><span class="dot">✦</span>
+    <span data-en="Emirati Food" data-ar="أكل شعبي">Emirati Food</span><span class="dot">✦</span>
+    <span data-en="Sweets" data-ar="حلويات">Sweets</span><span class="dot">✦</span>
+    <span data-en="Coffee" data-ar="قهوة">Coffee</span><span class="dot">✦</span>
+    <span data-en="Drinks" data-ar="مشروبات">Drinks</span><span class="dot">✦</span>
+    <span data-en="Sandwiches" data-ar="ساندويتش">Sandwiches</span><span class="dot">✦</span>
+    <span data-en="Hospitality" data-ar="ضيافة">Hospitality</span><span class="dot">✦</span>
   </div>
 </div>
 
-<!-- Features -->
+<!-- What we offer -->
 <section class="pad">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="idx" data-en="(01) — Why Us" data-ar="(٠١) — لماذا نحن">(01) — Why Us</span>
-        <h2 data-en="Worth the visit, every time." data-ar="تستحق الزيارة في كل مرة.">Worth the visit, every time.</h2>
+        <span class="idx" data-en="(01) — What We Offer" data-ar="(٠١) — وش نقدّم">(01) — What We Offer</span>
+        <h2 data-en="A full support system, not just a shelf." data-ar="منظومة دعم متكاملة، مو مجرد رفّ.">A full support system, not just a shelf.</h2>
       </div>
-      <p class="note" data-en="Small details, done right — the reason people keep coming back." data-ar="تفاصيل صغيرة تُنجز بإتقان — السبب الذي يجعل الناس يعودون.">Small details, done right — the reason people keep coming back.</p>
+      <p class="note" data-en="We help each family grow its food project, step by step." data-ar="نساعد كل أسرة تطوّر مشروعها الغذائي خطوة بخطوة.">We help each family grow its food project, step by step.</p>
     </div>
     <div class="feat-grid">
-      <div class="feat reveal"><span class="em">👐</span><h3 data-en="Handmade Daily" data-ar="تُصنع يدوياً يومياً">Handmade Daily</h3><p data-en="Every tray is prepared fresh each morning — never frozen, never yesterday's." data-ar="كل صينية تُحضّر طازجة كل صباح — لا مجمّدة ولا من الأمس.">Every tray is prepared fresh each morning — never frozen, never yesterday's.</p></div>
-      <div class="feat reveal"><span class="em">🌿</span><h3 data-en="Pure Ingredients" data-ar="مكونات نقية">Pure Ingredients</h3><p data-en="Real ghee, premium nuts, and recipes passed down through generations." data-ar="سمن أصلي ومكسرات فاخرة ووصفات تتوارثها الأجيال.">Real ghee, premium nuts, and recipes passed down through generations.</p></div>
-      <div class="feat reveal"><span class="em">☕</span><h3 data-en="Sit & Stay" data-ar="اجلس واسترِح">Sit &amp; Stay</h3><p data-en="A cozy corner, free karak refills, and a smile that makes you linger." data-ar="ركن دافئ، وتعبئة كرك مجانية، وابتسامة تجعلك تطيل البقاء.">A cozy corner, free karak refills, and a smile that makes you linger.</p></div>
-      <div class="feat reveal"><span class="em">🎁</span><h3 data-en="Gifts & Orders" data-ar="هدايا وطلبات">Gifts &amp; Orders</h3><p data-en="Beautiful boxes for weddings, Eid, and every reason to celebrate." data-ar="علب أنيقة للأعراس والعيد وكل مناسبة سعيدة.">Beautiful boxes for weddings, Eid, and every reason to celebrate.</p></div>
+      <div class="feat reveal"><span class="em">🏪</span><h3 data-en="Fixed Sales Outlet" data-ar="منفذ بيع ثابت">Fixed Sales Outlet</h3><p data-en="A trusted, organized shop instead of selling from home." data-ar="محل منظّم وموثوق بدل البيع من المنزل.">A trusted, organized shop instead of selling from home.</p></div>
+      <div class="feat reveal"><span class="em">🚚</span><h3 data-en="Logistics & Delivery" data-ar="دعم لوجستي ونقل">Logistics &amp; Delivery</h3><p data-en="We move products from the family's home to the shop." data-ar="ننقل المنتجات من بيت الأسرة إلى المحل.">We move products from the family's home to the shop.</p></div>
+      <div class="feat reveal"><span class="em">📦</span><h3 data-en="Packaging & Printing" data-ar="تغليف وطباعة">Packaging &amp; Printing</h3><p data-en="Better packaging and presentation for every product." data-ar="تغليف وعرض أفضل لكل منتج.">Better packaging and presentation for every product.</p></div>
+      <div class="feat reveal"><span class="em">🪪</span><h3 data-en="Branding & Licensing" data-ar="هوية وترخيص">Branding &amp; Licensing</h3><p data-en="Support with identity and the right approvals." data-ar="دعم في الهوية والتراخيص اللازمة.">Support with identity and the right approvals.</p></div>
+      <div class="feat reveal"><span class="em">🧊</span><h3 data-en="Shelves & Fridges" data-ar="أرفف وثلاجات">Shelves &amp; Fridges</h3><p data-en="Equipped display for dry, cold and hot products." data-ar="عرض مجهّز للمنتجات الجافة والباردة والساخنة.">Equipped display for dry, cold and hot products.</p></div>
+      <div class="feat reveal"><span class="em">📊</span><h3 data-en="Monthly Payouts & Feedback" data-ar="تسوية شهرية وتغذية راجعة">Monthly Payouts &amp; Feedback</h3><p data-en="Monthly sales settlement with quality feedback." data-ar="تسوية المبيعات شهرياً مع ملاحظات لتحسين الجودة.">Monthly sales settlement with quality feedback.</p></div>
     </div>
   </div>
 </section>
 
-<!-- About -->
+<!-- Story -->
 <section class="pad" id="about">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
         <span class="idx" data-en="(02) — Our Story" data-ar="(٠٢) — قصتنا">(02) — Our Story</span>
-        <h2 data-en="A warm welcome on every plate." data-ar="ترحيب دافئ في كل طبق.">A warm welcome on every plate.</h2>
+        <h2 data-en="Turning home skills into livelihoods." data-ar="نحوّل مهارات البيت إلى مصدر رزق.">Turning home skills into livelihoods.</h2>
       </div>
     </div>
     <div class="about-grid">
-      <div class="about-figure reveal"><span class="big">🥮</span></div>
+      <div class="about-figure reveal"><span class="big">🤝</span></div>
       <div class="about-body reveal">
-        <p class="pull" data-en="The best memories are made around something sweet." data-ar="أجمل الذكريات تُصنع حول شيء حلو.">The best memories are made around something sweet.</p>
-        <p data-en="From bubbling pots of golden syrup to trays of pistachio-dusted treats, every recipe is crafted by hand with the same care we'd give our own family." data-ar="من قدور القطر الذهبي إلى صواني الحلوى المرشوشة بالفستق، كل وصفة تُصنع يدوياً بنفس العناية التي نمنحها لعائلتنا.">From bubbling pots of golden syrup to trays of pistachio-dusted treats, every recipe is crafted by hand with the same care we'd give our own family.</p>
-        <p data-en="Whether you're grabbing a box of mithai for a celebration, sharing kunafa with friends, or pausing for a quiet cup of karak — our doors are open." data-ar="سواء كنت تأخذ علبة حلوى لمناسبة، أو تشارك الكنافة مع الأصدقاء، أو تتوقف لكوب كرك هادئ — أبوابنا مفتوحة لك.">Whether you're grabbing a box of mithai for a celebration, sharing kunafa with friends, or pausing for a quiet cup of karak — our doors are open.</p>
-        <p class="callout" data-en="Made with love every day. Visit us in Al Qua'a and taste the difference." data-ar="حلويات تُصنع بحب كل يوم. تفضّلوا بزيارتنا في القوع وذوقوا الفرق.">Made with love every day. Visit us in Al Qua'a and taste the difference.</p>
+        <p class="pull" data-en="We don't just sell food — we sell the story of the productive family." data-ar="لا نبيع الطعام فقط، بل نبيع قصة الأسرة المنتجة.">We don't just sell food — we sell the story of the productive family.</p>
+        <p data-en="Top Ten began because so many families in Al Qua'a had real skill in Emirati food, sweets and drinks — but no fixed outlet, little marketing, and no organized space to grow." data-ar="بدأ توب تن لأن أسراً كثيرة في القوع تمتلك مهارة حقيقية في الأكل الشعبي والحلويات والمشروبات — لكن بلا منفذ بيع ثابت، وتسويق ضعيف، وبدون بيئة منظمة تساعدها على النمو.">Top Ten began because so many families in Al Qua'a had real skill in Emirati food, sweets and drinks — but no fixed outlet, little marketing, and no organized space to grow.</p>
+        <p data-en="So we built a local platform that gathers their products in one place, reaches customers every day, and keeps the Emirati flavor and hospitality at its heart." data-ar="فأنشأنا منصة محلية تجمع منتجاتها في مكان واحد، وتصل للعملاء يومياً، مع الحفاظ على المذاق والضيافة الإماراتية.">So we built a local platform that gathers their products in one place, reaches customers every day, and keeps the Emirati flavor and hospitality at its heart.</p>
+        <p class="callout" data-en="Local. Emirati. Made by our own families in Al Qua'a." data-ar="محلي. إماراتي. من صنع أسرنا في القوع.">Local. Emirati. Made by our own families in Al Qua'a.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Menu -->
+<!-- Products -->
 <section class="pad" id="menu">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="idx" data-en="(03) — The Menu" data-ar="(٠٣) — القائمة">(03) — The Menu</span>
-        <h2 data-en="Something for everyone." data-ar="شيء يناسب الجميع.">Something for everyone.</h2>
+        <span class="idx" data-en="(03) — Products" data-ar="(٠٣) — المنتجات">(03) — Products</span>
+        <h2 data-en="What our families make." data-ar="وش تصنع أسرنا.">What our families make.</h2>
       </div>
-      <p class="note" data-en="Traditional Arabic delights, beloved mithai, cakes, and warm drinks." data-ar="حلويات عربية أصيلة، وحلوى هندية محبوبة، وكيك، ومشروبات دافئة.">Traditional Arabic delights, beloved mithai, cakes, and warm drinks.</p>
+      <p class="note" data-en="Emirati popular food, home meals, sweets, coffee and drinks — fresh and local." data-ar="أكل شعبي إماراتي، مأكولات منزلية، حلويات، قهوة، ومشروبات — طازجة ومحلية.">Emirati popular food, home meals, sweets, coffee and drinks — fresh and local.</p>
     </div>
 
     <div class="tabs reveal" id="tabs">
-      <button class="tab active" data-tab="arabic" data-en="Arabic Sweets" data-ar="حلويات عربية">Arabic Sweets</button>
-      <button class="tab" data-tab="mithai" data-en="Indian Mithai" data-ar="حلويات هندية">Indian Mithai</button>
-      <button class="tab" data-tab="cakes" data-en="Cakes & Pastries" data-ar="كيك ومعجنات">Cakes &amp; Pastries</button>
-      <button class="tab" data-tab="drinks" data-en="Drinks" data-ar="مشروبات">Drinks</button>
+      <button class="tab active" data-tab="food" data-en="Emirati Food" data-ar="أكل شعبي">Emirati Food</button>
+      <button class="tab" data-tab="sweets" data-en="Sweets" data-ar="حلويات">Sweets</button>
+      <button class="tab" data-tab="drinks" data-en="Coffee & Drinks" data-ar="قهوة ومشروبات">Coffee &amp; Drinks</button>
+      <button class="tab" data-tab="savoury" data-en="Sandwiches & Seasonal" data-ar="ساندويتش وموسمي">Sandwiches &amp; Seasonal</button>
     </div>
 
-    <div class="panel active" id="arabic">
+    <div class="panel active" id="food">
       <div class="menu-grid">
-        <div class="item reveal"><div class="row"><span class="nm"><span data-en="Kunafa" data-ar="كنافة">Kunafa</span> <span class="pill" data-en="Bestseller" data-ar="الأكثر طلباً">Bestseller</span></span><span class="price">18</span></div><div class="desc" data-en="Crispy golden pastry over molten cheese, soaked in rose syrup." data-ar="عجينة ذهبية مقرمشة فوق جبن ذائب، مغمورة بقطر الورد.">Crispy golden pastry over molten cheese, soaked in rose syrup.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Baklava (per kg)" data-ar="بقلاوة (بالكيلو)">Baklava (per kg)</span><span class="price">45</span></div><div class="desc" data-en="Layered filo with pistachio & walnut, drenched in honey." data-ar="طبقات رقيقة بالفستق والجوز، مغموسة بالعسل.">Layered filo with pistachio &amp; walnut, drenched in honey.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Luqaimat" data-ar="لقيمات">Luqaimat</span><span class="price">10</span></div><div class="desc" data-en="Crunchy golden dumplings drizzled with date syrup." data-ar="كرات ذهبية مقرمشة مرشوشة بدبس التمر.">Crunchy golden dumplings drizzled with date syrup.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Basbousa" data-ar="بسبوسة">Basbousa</span><span class="price">12</span></div><div class="desc" data-en="Semolina cake soaked in syrup, topped with almond." data-ar="كيك السميد المغمور بالقطر، مزيّن باللوز.">Semolina cake soaked in syrup, topped with almond.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Emirati Halwa (per kg)" data-ar="حلوى إماراتية (بالكيلو)">Emirati Halwa (per kg)</span><span class="price">35</span></div><div class="desc" data-en="The classic — rosewater, saffron, and toasted nuts." data-ar="الكلاسيكية — ماء الورد والزعفران والمكسرات المحمّصة.">The classic — rosewater, saffron, and toasted nuts.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Maamoul (box of 12)" data-ar="معمول (علبة ١٢)">Maamoul (box of 12)</span><span class="price">22</span></div><div class="desc" data-en="Buttery date & pistachio filled shortbread." data-ar="كعك مقرمش محشو بالتمر والفستق.">Buttery date &amp; pistachio filled shortbread.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Harees" data-ar="هريس">Harees</span></div><div class="desc" data-en="Slow-cooked wheat & meat — a true Emirati classic." data-ar="قمح ولحم على نار هادئة — طبق إماراتي أصيل.">Slow-cooked wheat &amp; meat — a true Emirati classic.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Machboos" data-ar="مجبوس">Machboos</span></div><div class="desc" data-en="Fragrant spiced rice with meat or chicken." data-ar="أرز متبّل عطري باللحم أو الدجاج.">Fragrant spiced rice with meat or chicken.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Thareed" data-ar="ثريد">Thareed</span></div><div class="desc" data-en="Layered regag bread in a rich broth." data-ar="رقاق مطبوخ مع مرق غني.">Layered regag bread in a rich broth.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Balaleet" data-ar="بلاليط">Balaleet</span></div><div class="desc" data-en="Sweet vermicelli with saffron & egg." data-ar="شعيرية حلوة بالزعفران والبيض.">Sweet vermicelli with saffron &amp; egg.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Khabeesa" data-ar="خبيصة">Khabeesa</span></div><div class="desc" data-en="A traditional toasted-flour sweet." data-ar="حلوى الطحين المحمّص التقليدية.">A traditional toasted-flour sweet.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Luqaimat" data-ar="لقيمات">Luqaimat</span></div><div class="desc" data-en="Crunchy golden dumplings in date syrup." data-ar="كرات ذهبية مقرمشة بدبس التمر.">Crunchy golden dumplings in date syrup.</div></div>
       </div>
     </div>
 
-    <div class="panel" id="mithai">
+    <div class="panel" id="sweets">
       <div class="menu-grid">
-        <div class="item reveal"><div class="row"><span class="nm"><span data-en="Gulab Jamun" data-ar="جلاب جامون">Gulab Jamun</span> <span class="pill" data-en="Bestseller" data-ar="الأكثر طلباً">Bestseller</span></span><span class="price">8</span></div><div class="desc" data-en="Warm milk-dough balls in fragrant cardamom syrup." data-ar="كرات حليب دافئة في قطر الهيل العطر.">Warm milk-dough balls in fragrant cardamom syrup.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Jalebi (per kg)" data-ar="جلبي (بالكيلو)">Jalebi (per kg)</span><span class="price">25</span></div><div class="desc" data-en="Crispy spirals soaked in saffron syrup, served warm." data-ar="حلزونات مقرمشة بقطر الزعفران، تُقدّم دافئة.">Crispy spirals soaked in saffron syrup, served warm.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Barfi (per kg)" data-ar="برفي (بالكيلو)">Barfi (per kg)</span><span class="price">32</span></div><div class="desc" data-en="Soft milk fudge with cashew, pistachio & silver leaf." data-ar="حلوى الحليب الطرية بالكاجو والفستق وورق الفضة.">Soft milk fudge with cashew, pistachio &amp; silver leaf.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Rasgulla" data-ar="راس جولا">Rasgulla</span><span class="price">7</span></div><div class="desc" data-en="Spongy cheese dumplings in light sugar syrup." data-ar="كرات جبن إسفنجية في قطر سكر خفيف.">Spongy cheese dumplings in light sugar syrup.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Laddu (box of 10)" data-ar="لدو (علبة ١٠)">Laddu (box of 10)</span><span class="price">18</span></div><div class="desc" data-en="Golden gram-flour spheres rich with ghee." data-ar="كرات ذهبية من دقيق الحمص غنية بالسمن.">Golden gram-flour spheres rich with ghee.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Soan Papdi (per kg)" data-ar="سوان بابدي (بالكيلو)">Soan Papdi (per kg)</span><span class="price">22</span></div><div class="desc" data-en="Flaky, melt-in-the-mouth cardamom delight." data-ar="حلوى الهيل الهشّة التي تذوب في الفم.">Flaky, melt-in-the-mouth cardamom delight.</div></div>
-      </div>
-    </div>
-
-    <div class="panel" id="cakes">
-      <div class="menu-grid">
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Celebration Cake (1 kg)" data-ar="كيك المناسبات (١ كجم)">Celebration Cake (1 kg)</span><span class="price">60</span></div><div class="desc" data-en="Custom-decorated for birthdays & occasions. Order ahead." data-ar="مزيّن حسب الطلب لأعياد الميلاد والمناسبات. اطلب مسبقاً.">Custom-decorated for birthdays &amp; occasions. Order ahead.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Cupcakes (box of 6)" data-ar="كب كيك (علبة ٦)">Cupcakes (box of 6)</span><span class="price">24</span></div><div class="desc" data-en="Vanilla, chocolate & red velvet with buttercream swirls." data-ar="فانيلا وشوكولاتة وريد فيلفت مع كريمة الزبدة.">Vanilla, chocolate &amp; red velvet with buttercream swirls.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Butter Croissant" data-ar="كرواسون بالزبدة">Butter Croissant</span><span class="price">5</span></div><div class="desc" data-en="Flaky, golden, baked fresh each morning." data-ar="هشّ وذهبي، يُخبز طازجاً كل صباح.">Flaky, golden, baked fresh each morning.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Glazed Donuts (6)" data-ar="دونات مغطّاة (٦)">Glazed Donuts (6)</span><span class="price">15</span></div><div class="desc" data-en="Soft, pillowy, and dipped in a shiny glaze." data-ar="طرية وهشّة ومغطّاة بطبقة لامعة.">Soft, pillowy, and dipped in a shiny glaze.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Chocolate Brownie" data-ar="براوني الشوكولاتة">Chocolate Brownie</span><span class="price">8</span></div><div class="desc" data-en="Fudgy, rich, and loaded with chocolate chunks." data-ar="غنية وطرية ومليئة بقطع الشوكولاتة.">Fudgy, rich, and loaded with chocolate chunks.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Cheesecake Slice" data-ar="قطعة تشيز كيك">Cheesecake Slice</span><span class="price">12</span></div><div class="desc" data-en="Creamy baked cheesecake with seasonal fruit." data-ar="تشيز كيك كريمي مخبوز مع فواكه الموسم.">Creamy baked cheesecake with seasonal fruit.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Homemade Cakes" data-ar="كيك منزلي">Homemade Cakes</span></div><div class="desc" data-en="Cakes for birthdays and every occasion." data-ar="كيك لأعياد الميلاد وكل مناسبة.">Cakes for birthdays and every occasion.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Maamoul" data-ar="معمول">Maamoul</span></div><div class="desc" data-en="Date & pistachio filled shortbread." data-ar="كعك محشو بالتمر والفستق.">Date &amp; pistachio filled shortbread.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Pistachio Rahash" data-ar="رهش بالفستق">Pistachio Rahash</span></div><div class="desc" data-en="Sesame halva studded with pistachio." data-ar="رهش السمسم المرصّع بالفستق.">Sesame halva studded with pistachio.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Assorted Chocolate" data-ar="شوكولاتة مشكلة">Assorted Chocolate</span></div><div class="desc" data-en="Handmade chocolate & gift trays." data-ar="شوكولاتة يدوية وصواني هدايا.">Handmade chocolate &amp; gift trays.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Biscuits" data-ar="بسكويت">Biscuits</span></div><div class="desc" data-en="Zaatar, walnut (Ein Al Jamal) & butter cookies." data-ar="بسكويت بالزعتر، عين الجمل، وغريبة.">Zaatar, walnut (Ein Al Jamal) &amp; butter cookies.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Emirati Halwa" data-ar="حلوى إماراتية">Emirati Halwa</span></div><div class="desc" data-en="The classic — saffron, rosewater & nuts." data-ar="الكلاسيكية — زعفران وماء ورد ومكسرات.">The classic — saffron, rosewater &amp; nuts.</div></div>
       </div>
     </div>
 
     <div class="panel" id="drinks">
       <div class="menu-grid">
-        <div class="item reveal"><div class="row"><span class="nm"><span data-en="Karak Chai" data-ar="شاي كرك">Karak Chai</span> <span class="pill" data-en="Favourite" data-ar="المفضّل">Favourite</span></span><span class="price">1</span></div><div class="desc" data-en="Strong, sweet, spiced milk tea — the perfect companion." data-ar="شاي حليب قوي وحلو ومتبّل — الرفيق المثالي.">Strong, sweet, spiced milk tea — the perfect companion.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Arabic Coffee (Gahwa)" data-ar="قهوة عربية">Arabic Coffee (Gahwa)</span><span class="price">5</span></div><div class="desc" data-en="Cardamom-infused, served with dates." data-ar="بنكهة الهيل، تُقدّم مع التمر.">Cardamom-infused, served with dates.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Fresh Mango Juice" data-ar="عصير مانجو طازج">Fresh Mango Juice</span><span class="price">8</span></div><div class="desc" data-en="Thick, cold, and 100% real fruit." data-ar="كثيف وبارد و١٠٠٪ فواكه طبيعية.">Thick, cold, and 100% real fruit.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Mango Lassi" data-ar="لاسي المانجو">Mango Lassi</span><span class="price">9</span></div><div class="desc" data-en="Creamy yogurt blend with a hint of cardamom." data-ar="مزيج زبادي كريمي بلمسة من الهيل.">Creamy yogurt blend with a hint of cardamom.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Saffron Milk" data-ar="حليب بالزعفران">Saffron Milk</span><span class="price">7</span></div><div class="desc" data-en="Warm milk with saffron, pistachio & honey." data-ar="حليب دافئ بالزعفران والفستق والعسل.">Warm milk with saffron, pistachio &amp; honey.</div></div>
-        <div class="item reveal"><div class="row"><span class="nm" data-en="Fresh Lemon Mint" data-ar="ليمون بالنعناع">Fresh Lemon Mint</span><span class="price">7</span></div><div class="desc" data-en="Cool, zesty, and refreshing." data-ar="بارد ومنعش وحامض قليلاً.">Cool, zesty, and refreshing.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Arabic Coffee" data-ar="قهوة عربية">Arabic Coffee</span></div><div class="desc" data-en="Cardamom gahwa, served with dates." data-ar="قهوة بالهيل، تُقدّم مع التمر.">Cardamom gahwa, served with dates.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Karak Chai" data-ar="شاي كرك">Karak Chai</span></div><div class="desc" data-en="Strong, sweet, spiced milk tea." data-ar="شاي حليب قوي وحلو ومتبّل.">Strong, sweet, spiced milk tea.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Fresh Juices" data-ar="عصائر طازجة">Fresh Juices</span></div><div class="desc" data-en="Seasonal fresh fruit juices." data-ar="عصائر فواكه موسمية طازجة.">Seasonal fresh fruit juices.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Hot & Cold Drinks" data-ar="مشروبات ساخنة وباردة">Hot &amp; Cold Drinks</span></div><div class="desc" data-en="A range to suit every mood." data-ar="تشكيلة تناسب كل ذوق.">A range to suit every mood.</div></div>
       </div>
     </div>
 
-    <p class="menu-note" data-en="All prices in UAE Dirham (AED). Special trays available for Eid, Ramadan & weddings — just ask." data-ar="جميع الأسعار بالدرهم الإماراتي. صواني خاصة متوفرة للعيد ورمضان والأعراس — اسألنا فقط.">All prices in UAE Dirham (AED). Special trays available for Eid, Ramadan &amp; weddings — just ask.</p>
+    <div class="panel" id="savoury">
+      <div class="menu-grid">
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Burgers" data-ar="برجر">Burgers</span></div><div class="desc" data-en="Homemade burgers from family recipes." data-ar="برجر منزلي بوصفات الأسر.">Homemade burgers from family recipes.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Sandwiches" data-ar="ساندويتش">Sandwiches</span></div><div class="desc" data-en="Fresh-made savoury sandwiches." data-ar="ساندويتشات طازجة محضّرة يومياً.">Fresh-made savoury sandwiches.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Seasonal Dishes" data-ar="أكلات موسمية">Seasonal Dishes</span></div><div class="desc" data-en="Ramadan & Eid specialties." data-ar="أطباق رمضان والعيد.">Ramadan &amp; Eid specialties.</div></div>
+        <div class="item reveal"><div class="row"><span class="nm" data-en="Hospitality Trays" data-ar="ضيافة المناسبات">Hospitality Trays</span></div><div class="desc" data-en="Trays & spreads for your events." data-ar="صواني وضيافة لمناسباتك.">Trays &amp; spreads for your events.</div></div>
+      </div>
+    </div>
+
+    <p class="menu-note" data-en="Products vary by family and season. Ask in store for what's fresh today." data-ar="المنتجات تختلف حسب الأسرة والموسم. اسألنا عن الطازج اليوم.">Products vary by family and season. Ask in store for what's fresh today.</p>
   </div>
 </section>
 
-<!-- Signatures (inverted) -->
+<!-- Impact (inverted) -->
 <section class="invert pad" id="signature">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="idx" data-en="(04) — Signatures" data-ar="(٠٤) — المميزة">(04) — Signatures</span>
-        <h2 data-en="The ones worth the drive." data-ar="تلك التي تستحق العناء.">The ones worth the drive.</h2>
+        <span class="idx" data-en="(04) — Our Impact" data-ar="(٠٤) — الأثر">(04) — Our Impact</span>
+        <h2 data-en="Real change in Al Qua'a." data-ar="أثر حقيقي في القوع.">Real change in Al Qua'a.</h2>
       </div>
-      <p class="note" data-en="Try them once, and you'll understand why people keep coming back." data-ar="جرّبها مرة وستفهم لماذا يعود الناس دائماً.">Try them once, and you'll understand why people keep coming back.</p>
+      <p class="note" data-en="From a handful of families to a local movement." data-ar="من عدد قليل من الأسر إلى حراك محلي.">From a handful of families to a local movement.</p>
     </div>
     <div class="sig-grid">
-      <div class="sig-card reveal"><span class="em">🧀</span><h3 data-en="Hot Kunafa" data-ar="كنافة ساخنة">Hot Kunafa</h3><p data-en="Served warm and stretchy, straight from the tray to your table. Pure comfort." data-ar="تُقدّم ساخنة ومطّاطية، من الصينية إلى طاولتك مباشرة. راحة خالصة.">Served warm and stretchy, straight from the tray to your table. Pure comfort.</p><div class="star">★★★★★</div></div>
-      <div class="sig-card reveal"><span class="em">🍯</span><h3 data-en="Pistachio Baklava" data-ar="بقلاوة بالفستق">Pistachio Baklava</h3><p data-en="Forty delicate layers, a generous handful of pistachio, and just enough honey." data-ar="أربعون طبقة رقيقة، وحفنة سخية من الفستق، وعسل بالقدر المناسب.">Forty delicate layers, a generous handful of pistachio, and just enough honey.</p><div class="star">★★★★★</div></div>
-      <div class="sig-card reveal"><span class="em">🟠</span><h3 data-en="Warm Gulab Jamun" data-ar="جلاب جامون دافئ">Warm Gulab Jamun</h3><p data-en="Soft, syrup-soaked, and impossible to eat just one. A house favourite." data-ar="طرية ومغمورة بالقطر، يستحيل أن تكتفي بواحدة. المفضّلة لدينا.">Soft, syrup-soaked, and impossible to eat just one. A house favourite.</p><div class="star">★★★★★</div></div>
+      <div class="sig-card reveal"><span class="em">📈</span><div class="big-num">5 → 318</div><h3 data-en="Productive families" data-ar="أسرة منتجة">Productive families</h3><p data-en="Taking part in the project and reaching customers daily." data-ar="تشارك في المشروع وتصل للعملاء يومياً.">Taking part in the project and reaching customers daily.</p></div>
+      <div class="sig-card reveal"><span class="em">🛍️</span><div class="big-num">2 → 80</div><h3 data-en="Local projects" data-ar="مشروع محلي">Local projects</h3><p data-en="Run by the sons and daughters of Al Qua'a." data-ar="يديرها أبناء وبنات القوع.">Run by the sons and daughters of Al Qua'a.</p></div>
+      <div class="sig-card reveal"><span class="em">💪</span><div class="big-num" data-en="Confidence" data-ar="ثقة">Confidence</div><h3 data-en="Independence" data-ar="استقلال">Independence</h3><p data-en="Women turning kitchen skills into real income and self-reliance." data-ar="نساء يحوّلن مهارة المطبخ إلى دخل حقيقي واستقلال.">Women turning kitchen skills into real income and self-reliance.</p></div>
     </div>
   </div>
 </section>
@@ -492,9 +462,9 @@
     <div class="sec-head reveal">
       <div>
         <span class="idx" data-en="(05) — Gallery" data-ar="(٠٥) — المعرض">(05) — Gallery</span>
-        <h2 data-en="From our counter." data-ar="من معروضاتنا.">From our counter.</h2>
+        <h2 data-en="From our families' kitchens." data-ar="من مطابخ أسرنا.">From our families' kitchens.</h2>
       </div>
-      <p class="note" data-en="A glimpse of what's waiting. Swap these for photos of your own creations." data-ar="لمحة عمّا ينتظرك. استبدلها بصور من إبداعاتك.">A glimpse of what's waiting. Swap these for photos of your own creations.</p>
+      <p class="note" data-en="A glimpse of what's on our shelves. Upload your own product photos here." data-ar="لمحة عمّا في أرففنا. ارفع صور منتجاتك هنا.">A glimpse of what's on our shelves. Upload your own product photos here.</p>
     </div>
     <div class="gallery-grid reveal">
       <figure class="g big" style="--tile:#e7d8bf">
@@ -541,30 +511,30 @@
   </div>
 </section>
 
-<!-- Testimonials -->
+<!-- Success stories -->
 <section class="pad">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="idx" data-en="(06) — Kind Words" data-ar="(٠٦) — كلمات طيبة">(06) — Kind Words</span>
-        <h2 data-en="People love it here." data-ar="الناس يحبّون المكان.">People love it here.</h2>
+        <span class="idx" data-en="(06) — Success Stories" data-ar="(٠٦) — قصص نجاح">(06) — Success Stories</span>
+        <h2 data-en="Stories that inspire." data-ar="قصص تُلهم.">Stories that inspire.</h2>
       </div>
     </div>
     <div class="testi-grid">
       <div class="quote reveal">
         <span class="mk">“</span>
-        <p data-en="The kunafa is the best I've had in the region. Warm, fresh, and the staff treat you like family. We come every weekend." data-ar="الكنافة الأفضل التي تذوقتها في المنطقة. دافئة وطازجة، والموظفون يعاملونك كالعائلة. نأتي كل نهاية أسبوع.">The kunafa is the best I've had in the region. Warm, fresh, and the staff treat you like family. We come every weekend.</p>
-        <div class="who"><b data-en="Aisha M." data-ar="عائشة م.">Aisha M.</b><span data-en="Al Qua'a, Al Ain" data-ar="القوع، العين">Al Qua'a, Al Ain</span></div>
+        <p data-en="I started with sandwiches while still in school, balancing study and work — and Top Ten gave me the space to dream of my own chocolate and sweets project." data-ar="بدأت بالساندويتشات وأنا صغيرة، أوازن بين الدراسة والعمل — وتوب تن أعطاني المساحة لأحلم بمشروعي الخاص في الشوكولاتة والحلويات.">I started with sandwiches while still in school, balancing study and work — and Top Ten gave me the space to dream of my own chocolate and sweets project.</p>
+        <div class="who"><b data-en="Nahda Hamid" data-ar="نهضة حميد">Nahda Hamid</b><span data-en="Productive family" data-ar="أسرة منتجة">Productive family</span></div>
       </div>
       <div class="quote reveal">
         <span class="mk">“</span>
-        <p data-en="Ordered a full sweet tray for our Eid gathering. Beautiful presentation and everyone asked where it was from. Highly recommend!" data-ar="طلبت صينية حلويات كاملة لتجمّع العيد. تقديم رائع وسأل الجميع من أين هي. أنصح بها بشدة!">Ordered a full sweet tray for our Eid gathering. Beautiful presentation and everyone asked where it was from. Highly recommend!</p>
-        <div class="who"><b data-en="Rashid K." data-ar="راشد ك.">Rashid K.</b><span data-en="Al Ain" data-ar="العين">Al Ain</span></div>
+        <p data-en="I joined Top Ten in 2019 making burgers and sandwiches. I went from shy and hesitant to a confident entrepreneur in my community." data-ar="دخلت توب تن عام ٢٠١٩ أُعدّ البرجر والساندويتش. تحوّلت من امرأة خجولة مترددة إلى رائدة أعمال واثقة في مجتمعها.">I joined Top Ten in 2019 making burgers and sandwiches. I went from shy and hesitant to a confident entrepreneur in my community.</p>
+        <div class="who"><b data-en="Maryam Salem Al Darei" data-ar="مريم سالم الدرعي">Maryam Salem Al Darei</b><span data-en="Member since 2019" data-ar="عضوة منذ ٢٠١٩">Member since 2019</span></div>
       </div>
       <div class="quote reveal">
         <span class="mk">“</span>
-        <p data-en="Cozy place to sit with a karak and some gulab jamun. Friendly, clean, and so welcoming. My go-to sweet spot." data-ar="مكان دافئ للجلوس مع كرك وبعض الجلاب جامون. ودود ونظيف ومرحّب. وجهتي المفضّلة للحلويات.">Cozy place to sit with a karak and some gulab jamun. Friendly, clean, and so welcoming. My go-to sweet spot.</p>
-        <div class="who"><b data-en="Sara P." data-ar="سارة ب.">Sara P.</b><span data-en="Regular customer" data-ar="زبونة دائمة">Regular customer</span></div>
+        <p data-en="Top Ten doesn't just sell food — it sells the story of the productive family and the power to turn a simple skill into independence." data-ar="توب تن لا يبيع الطعام فقط — بل يبيع قصة الأسرة المنتجة والقدرة على تحويل مهارة بسيطة إلى استقلال.">Top Ten doesn't just sell food — it sells the story of the productive family and the power to turn a simple skill into independence.</p>
+        <div class="who"><b data-en="Top Ten" data-ar="توب تن">Top Ten</b><span data-en="Our mission" data-ar="رسالتنا">Our mission</span></div>
       </div>
     </div>
   </div>
@@ -576,19 +546,19 @@
     <div class="sec-head reveal">
       <div>
         <span class="idx" data-en="(07) — Visit Us" data-ar="(٠٧) — زورونا">(07) — Visit Us</span>
-        <h2 data-en="Come say hello." data-ar="تعال وسلّم علينا.">Come say hello.</h2>
+        <h2 data-en="Come visit us." data-ar="زورونا.">Come visit us.</h2>
       </div>
-      <p class="note" data-en="Right by Al Qua'a Park in Al Ain. Drop by — the kettle's always on." data-ar="بجانب حديقة القوع في العين. مرّ علينا — الإبريق دائماً جاهز.">Right by Al Qua'a Park in Al Ain. Drop by — the kettle's always on.</p>
+      <p class="note" data-en="Find us in Al Qua'a, Abu Dhabi — shelves and fridges full of local family products." data-ar="تلقونا في القوع، أبوظبي — أرفف وثلاجات مليانة بمنتجات الأسر المحلية.">Find us in Al Qua'a, Abu Dhabi — shelves and fridges full of local family products.</p>
     </div>
     <div class="visit-grid">
       <div class="map-box reveal">
-        <iframe title="Top Ten Sweets location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        <iframe title="Top Ten location" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
           src="https://www.google.com/maps?q=Top+Ten+Sweets@23.4161825,55.426021&z=17&output=embed"></iframe>
       </div>
       <div class="info-list reveal">
         <div class="info-row">
           <div class="lbl" data-en="Find Us" data-ar="موقعنا">Find Us</div>
-          <div class="val" data-en="Near Al Qua'a Park, Al Ain, Abu Dhabi, UAE" data-ar="بالقرب من حديقة القوع، العين، أبوظبي، الإمارات">Near Al Qua'a Park, Al Ain, Abu Dhabi, UAE</div>
+          <div class="val" data-en="Al Qua'a, Abu Dhabi, United Arab Emirates" data-ar="القوع، أبوظبي، الإمارات العربية المتحدة">Al Qua'a, Abu Dhabi, United Arab Emirates</div>
         </div>
         <div class="info-row">
           <div class="lbl" data-en="Call / WhatsApp" data-ar="اتصال / واتساب">Call / WhatsApp</div>
@@ -610,12 +580,12 @@
   </div>
 </section>
 
-<!-- Band -->
-<section class="band pad">
+<!-- Join band -->
+<section class="band pad" id="join">
   <div class="wrap">
-    <h2 data-en="Come for the sweets. Stay for the warmth." data-ar="تعال للحلويات. وابقَ للدفء.">Come for the sweets. Stay for the warmth.</h2>
-    <p data-en="Bring your family, your friends, or just yourself. There's always a fresh tray waiting." data-ar="أحضر عائلتك أو أصدقاءك أو نفسك فقط. هناك دائماً صينية طازجة بانتظارك.">Bring your family, your friends, or just yourself. There's always a fresh tray waiting.</p>
-    <a class="btn btn-light" href="#visit" data-en="Plan Your Visit" data-ar="خطّط لزيارتك">Plan Your Visit</a>
+    <h2 data-en="Are you a productive family? Join us." data-ar="عندك أسرة منتجة؟ انضمي إلينا.">Are you a productive family? Join us.</h2>
+    <p data-en="Turn your kitchen skills into a small business — with a real outlet, full support, and a monthly income." data-ar="حوّلي مهارتك في المطبخ إلى مشروع صغير — بمنفذ بيع حقيقي، ودعم كامل، ودخل شهري.">Turn your kitchen skills into a small business — with a real outlet, full support, and a monthly income.</p>
+    <a class="btn btn-light" href="tel:+971500000000" data-en="Contact Us" data-ar="تواصلي معنا">Contact Us</a>
   </div>
 </section>
 
@@ -625,10 +595,10 @@
     <div class="foot-grid">
       <div>
         <a href="#home" class="brand">
-          <span class="name" data-en="Top Ten Sweets" data-ar="توب تِن للحلويات">Top Ten Sweets</span>
-          <span class="loc" data-en="Al Ain, UAE" data-ar="العين، الإمارات">Al Ain, UAE</span>
+          <span class="name" data-en="Top Ten" data-ar="توب تن">Top Ten</span>
+          <span class="loc" data-en="Productive Families · Al Qua'a" data-ar="للأسر المنتجة · القوع">Productive Families · Al Qua'a</span>
         </a>
-        <p class="blurb" data-en="Freshly made Arabic & Indian sweets, cakes & warm drinks. A sweet little corner where everyone's welcome." data-ar="حلويات عربية وهندية وكيك ومشروبات دافئة تُصنع طازجة. ركن حلو يرحّب بالجميع.">Freshly made Arabic &amp; Indian sweets, cakes &amp; warm drinks. A sweet little corner where everyone's welcome.</p>
+        <p class="blurb" data-en="An economic empowerment platform in Al Qua'a, showcasing the food, sweets, coffee and drinks of local productive families — turning home skills into sustainable income." data-ar="منصة تمكين اقتصادي في القوع، تعرض أطعمة وحلويات وقهوة ومشروبات الأسر المنتجة المحلية — وتحوّل مهارات البيت إلى دخل مستدام.">An economic empowerment platform in Al Qua'a, showcasing the food, sweets, coffee and drinks of local productive families — turning home skills into sustainable income.</p>
         <div class="socials">
           <a href="#" aria-label="Instagram">📷</a>
           <a href="https://wa.me/971500000000" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
@@ -640,24 +610,24 @@
         <h4 data-en="Explore" data-ar="استكشف">Explore</h4>
         <ul>
           <li><a href="#about" data-en="Our Story" data-ar="قصتنا">Our Story</a></li>
-          <li><a href="#menu" data-en="Menu" data-ar="القائمة">Menu</a></li>
-          <li><a href="#signature" data-en="Signatures" data-ar="أطباقنا المميزة">Signatures</a></li>
-          <li><a href="#gallery" data-en="Gallery" data-ar="معرض الصور">Gallery</a></li>
+          <li><a href="#menu" data-en="Products" data-ar="المنتجات">Products</a></li>
+          <li><a href="#signature" data-en="Impact" data-ar="الأثر">Impact</a></li>
+          <li><a href="#gallery" data-en="Gallery" data-ar="المعرض">Gallery</a></li>
         </ul>
       </div>
       <div class="foot">
-        <h4 data-en="Visit" data-ar="زورونا">Visit</h4>
+        <h4 data-en="Visit & Join" data-ar="زورونا وانضمي">Visit &amp; Join</h4>
         <ul>
           <li><a href="#visit" data-en="Find Us" data-ar="موقعنا">Find Us</a></li>
+          <li><a href="#join" data-en="Join as a Family" data-ar="انضمي كأسرة منتجة">Join as a Family</a></li>
           <li><a href="tel:+971500000000">+971 50 000 0000</a></li>
           <li><span data-en="Sat–Thu: 8 AM – 11 PM" data-ar="السبت–الخميس: ٨ص – ١١م">Sat–Thu: 8 AM – 11 PM</span></li>
-          <li><span data-en="Fri: 2 PM – 11 PM" data-ar="الجمعة: ٢م – ١١م">Fri: 2 PM – 11 PM</span></li>
         </ul>
       </div>
     </div>
-    <div class="foot-mark" data-en="Top Ten Sweets" data-ar="توب تِن للحلويات">Top Ten Sweets</div>
+    <div class="foot-mark" data-en="Top Ten" data-ar="توب تن">Top Ten</div>
   </div>
-  <div class="copy">© <span id="year"></span> <span data-en="Top Ten Sweets · Al Qua'a, Al Ain — UAE" data-ar="توب تِن للحلويات · القوع، العين — الإمارات">Top Ten Sweets · Al Qua'a, Al Ain — UAE</span></div>
+  <div class="copy">© <span id="year"></span> <span data-en="Top Ten — Productive Families · Al Qua'a, Abu Dhabi" data-ar="توب تن للأسر المنتجة · القوع، أبوظبي">Top Ten — Productive Families · Al Qua'a, Abu Dhabi</span></div>
 </footer>
 
 <a class="fab wa" href="https://wa.me/971500000000" target="_blank" rel="noopener" aria-label="WhatsApp us" title="WhatsApp us">💬</a>
@@ -666,7 +636,6 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Language
   const LANG_KEY = 'tts-lang';
   function setLang(lang){
     const ar = lang === 'ar';
@@ -676,9 +645,6 @@
       const val = ar ? el.getAttribute('data-ar') : el.getAttribute('data-en');
       if (val != null) el.textContent = val;
     });
-    document.querySelectorAll('[data-label-en]').forEach(el => {
-      el.setAttribute('data-label', ar ? el.getAttribute('data-label-ar') : el.getAttribute('data-label-en'));
-    });
     document.querySelectorAll('.lt-label').forEach(el => el.textContent = ar ? 'English' : 'العربية');
     try { localStorage.setItem(LANG_KEY, lang); } catch(e){}
   }
@@ -686,13 +652,11 @@
   document.querySelectorAll('.lang-toggle').forEach(b =>
     b.addEventListener('click', () => setLang(document.documentElement.lang === 'ar' ? 'en' : 'ar')));
 
-  // Mobile nav
   const burger = document.getElementById('burger');
   const navlinks = document.getElementById('navlinks');
   burger.addEventListener('click', () => { burger.classList.toggle('open'); navlinks.classList.toggle('open'); });
   navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { burger.classList.remove('open'); navlinks.classList.remove('open'); }));
 
-  // Nav state + back to top
   const nav = document.getElementById('nav');
   const totop = document.getElementById('totop');
   window.addEventListener('scroll', () => {
@@ -702,7 +666,6 @@
   });
   totop.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
 
-  // Menu tabs
   const tabs = document.querySelectorAll('.tab');
   tabs.forEach(tab => tab.addEventListener('click', () => {
     tabs.forEach(t => t.classList.remove('active'));
@@ -713,13 +676,11 @@
     panel.querySelectorAll('.reveal').forEach(r => r.classList.add('in'));
   }));
 
-  // Reveal
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold:0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Active nav link
   const linkMap = {};
   document.querySelectorAll('nav.links a').forEach(a => { linkMap[a.getAttribute('href').slice(1)] = a; });
   const spy = new IntersectionObserver((entries) => {
