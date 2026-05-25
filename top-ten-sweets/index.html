@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Top Ten — Productive Families · Al Qua'a, Abu Dhabi</title>
-<meta name="description" content="Top Ten is an economic empowerment platform in Al Qua'a, Abu Dhabi, showcasing the food, sweets, coffee and drinks of local productive families. توب تن لتمكين الأسر المنتجة." />
-<meta name="theme-color" content="#17130e" />
+<title>Top Ten Café — Productive Families · Al Qua'a, Abu Dhabi</title>
+<meta name="description" content="Top Ten Café is an economic empowerment platform in Al Qua'a, Abu Dhabi, showcasing the food, sweets, coffee and drinks of local productive families. توب تن كافيه لتمكين الأسر المنتجة." />
+<meta name="theme-color" content="#2d333e" />
 <meta property="og:title" content="Top Ten — Made by Families" />
 <meta property="og:description" content="An economic empowerment platform for productive families in Al Qua'a, Abu Dhabi." />
 <meta property="og:type" content="website" />
@@ -18,10 +18,10 @@
 
 <style>
   :root{
-    --paper:#f3efe6; --paper-2:#eae2d2;
-    --ink:#17130e; --ink-2:#3c352c; --muted:#8a7f70;
-    --accent:#a8472f; --accent-2:#c79a45;
-    --line:rgba(23,19,14,.16); --line-2:rgba(255,255,255,.22);
+    --paper:#f9f4ec; --paper-2:#f0e7d8;
+    --ink:#2d333e; --ink-2:#4a4f59; --muted:#8a8275;
+    --accent:#b3914f; --accent-2:#d8b877; --blush:#e9c6c6;
+    --line:rgba(45,51,62,.16); --line-2:rgba(255,255,255,.22);
     --serif:'Fraunces',Georgia,serif;
     --sans:'Space Grotesk',system-ui,sans-serif;
     --maxw:1320px;
@@ -64,7 +64,9 @@
   header.nav{position:sticky;top:0;z-index:60;background:rgba(243,239,230,.82);backdrop-filter:blur(12px);transition:border-color .3s}
   header.nav.scrolled{border-bottom:1px solid var(--line)}
   .bar{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-block:1.05rem}
-  .brand{display:flex;align-items:baseline;gap:.55rem}
+  .brand{display:flex;align-items:center;gap:.55rem}
+  .brand-logo{height:48px;width:auto;display:block}
+  .hero-logo{height:clamp(70px,12vw,124px);width:auto;margin-bottom:clamp(1.4rem,4vw,2.4rem)}
   .brand .name{font-family:var(--serif);font-weight:600;font-size:1.25rem;color:var(--ink);letter-spacing:-.02em}
   .brand .loc{font-family:var(--sans);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
   html[lang="ar"] .brand .name{font-family:'Tajawal';font-weight:800}
@@ -199,9 +201,9 @@
   .hours li span:last-child{color:var(--muted)}
   .visit-cta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.6rem}
 
-  .band{background:var(--accent);color:#fff;text-align:center}
-  .band h2{font-size:clamp(2rem,5.5vw,4rem);color:#fff;line-height:1.02;margin-bottom:1rem;max-width:20ch;margin-inline:auto}
-  .band p{max-width:50ch;margin:0 auto 2rem;color:rgba(255,255,255,.9)}
+  .band{background:var(--blush);color:var(--ink);text-align:center}
+  .band h2{font-size:clamp(2rem,5.5vw,4rem);color:var(--ink);line-height:1.02;margin-bottom:1rem;max-width:20ch;margin-inline:auto}
+  .band p{max-width:50ch;margin:0 auto 2rem;color:var(--ink-2)}
 
   footer{background:var(--ink);color:var(--paper)}
   .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:2.5rem;padding-top:clamp(3rem,7vw,5rem);padding-bottom:3rem}
@@ -271,8 +273,11 @@
   <div class="wrap">
     <div class="bar">
       <a href="#home" class="brand">
-        <span class="name" data-en="Top Ten" data-ar="توب تن">Top Ten</span>
-        <span class="loc" data-en="Productive Families · Al Qua'a" data-ar="للأسر المنتجة · القوع">Productive Families · Al Qua'a</span>
+        <img class="brand-logo" src="images/logo.png" alt="Top Ten Café" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="brand-text" style="display:none;flex-direction:column">
+          <span class="name" data-en="Top Ten Café" data-ar="توب تن كافيه">Top Ten Café</span>
+          <span class="loc" data-en="Productive Families · Al Qua'a" data-ar="للأسر المنتجة · القوع">Productive Families · Al Qua'a</span>
+        </span>
       </a>
       <nav class="links" id="navlinks">
         <a href="#about" data-en="Story" data-ar="قصتنا">Story</a>
@@ -292,6 +297,7 @@
 <!-- Hero -->
 <section class="hero" id="home">
   <div class="wrap">
+    <img class="hero-logo" src="images/logo.png" alt="Top Ten Café" onerror="this.remove()">
     <div class="hero-meta">
       <span data-en="Emirati Food · Sweets · Coffee · Drinks" data-ar="أكل شعبي · حلويات · قهوة · مشروبات">Emirati Food · Sweets · Coffee · Drinks</span>
       <span data-en="Al Qua'a · Abu Dhabi · UAE" data-ar="القوع · أبوظبي · الإمارات">Al Qua'a · Abu Dhabi · UAE</span>
@@ -507,6 +513,11 @@
         <span class="ph">🎁</span>
         <figcaption data-en="Chocolate Trays" data-ar="صواني شوكولاتة">Chocolate Trays</figcaption>
       </figure>
+      <figure class="g" style="--tile:#e9c6c6">
+        <img src="images/bag.jpg" alt="Top Ten Café branded bag" loading="lazy" onerror="this.closest('.g').classList.add('missing')">
+        <span class="ph">🛍️</span>
+        <figcaption data-en="Branded Packaging" data-ar="تغليف بالهوية">Branded Packaging</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -585,7 +596,7 @@
   <div class="wrap">
     <h2 data-en="Are you a productive family? Join us." data-ar="عندك أسرة منتجة؟ انضمي إلينا.">Are you a productive family? Join us.</h2>
     <p data-en="Turn your kitchen skills into a small business — with a real outlet, full support, and a monthly income." data-ar="حوّلي مهارتك في المطبخ إلى مشروع صغير — بمنفذ بيع حقيقي، ودعم كامل، ودخل شهري.">Turn your kitchen skills into a small business — with a real outlet, full support, and a monthly income.</p>
-    <a class="btn btn-light" href="tel:+971500000000" data-en="Contact Us" data-ar="تواصلي معنا">Contact Us</a>
+    <a class="btn btn-fill" href="tel:+971500000000" data-en="Contact Us" data-ar="تواصلي معنا">Contact Us</a>
   </div>
 </section>
 
@@ -595,7 +606,7 @@
     <div class="foot-grid">
       <div>
         <a href="#home" class="brand">
-          <span class="name" data-en="Top Ten" data-ar="توب تن">Top Ten</span>
+          <span class="name" data-en="Top Ten Café" data-ar="توب تن كافيه">Top Ten Café</span>
           <span class="loc" data-en="Productive Families · Al Qua'a" data-ar="للأسر المنتجة · القوع">Productive Families · Al Qua'a</span>
         </a>
         <p class="blurb" data-en="An economic empowerment platform in Al Qua'a, showcasing the food, sweets, coffee and drinks of local productive families — turning home skills into sustainable income." data-ar="منصة تمكين اقتصادي في القوع، تعرض أطعمة وحلويات وقهوة ومشروبات الأسر المنتجة المحلية — وتحوّل مهارات البيت إلى دخل مستدام.">An economic empowerment platform in Al Qua'a, showcasing the food, sweets, coffee and drinks of local productive families — turning home skills into sustainable income.</p>
@@ -627,7 +638,7 @@
     </div>
     <div class="foot-mark" data-en="Top Ten" data-ar="توب تن">Top Ten</div>
   </div>
-  <div class="copy">© <span id="year"></span> <span data-en="Top Ten — Productive Families · Al Qua'a, Abu Dhabi" data-ar="توب تن للأسر المنتجة · القوع، أبوظبي">Top Ten — Productive Families · Al Qua'a, Abu Dhabi</span></div>
+  <div class="copy">© <span id="year"></span> <span data-en="Top Ten Café — Productive Families · Al Qua'a, Abu Dhabi" data-ar="توب تن كافيه للأسر المنتجة · القوع، أبوظبي">Top Ten Café — Productive Families · Al Qua'a, Abu Dhabi</span></div>
 </footer>
 
 <a class="fab wa" href="https://wa.me/971500000000" target="_blank" rel="noopener" aria-label="WhatsApp us" title="WhatsApp us">💬</a>
