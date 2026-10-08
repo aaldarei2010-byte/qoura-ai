@@ -139,7 +139,7 @@ textarea{width:100%;min-height:90px;font:inherit;border:1.5px solid var(--line);
 /* ================= TRAINER SETTINGS (edit only this block) ================= */
 const FORM_MODE="external";   // "external" = Microsoft Forms links below | "internal" = questions inside this page
 const API_URL="";             // internal mode + server (Vercel + Baserow): e.g. "/api/event". Empty = answers stay on the device only
-const FORMS={ pre:"https://forms.cloud.microsoft/r/1khBNxVmhr", post:"https://forms.cloud.microsoft/r/6ipwM37Wtg" };   // Microsoft Forms: pre and post surveys only
+const FORMS={ pre:"https://forms.cloud.microsoft/r/1khBNxVmhr", post:"https://forms.cloud.microsoft/r/j0f2EzP0f4" };   // Microsoft Forms: pre and post surveys only
 const DATES={1:"2026-10-06",2:"2026-10-07",3:"2026-10-08"};
 const ALLOW_PAST_DAYS=false;
 const DAY_MATERIALS={
@@ -284,7 +284,7 @@ function render(){const t=T[lang];document.documentElement.lang=lang;document.do
   ${[1,2,3].filter(x=>x!==d&&dayDone(u,x)).map(x=>`<details><summary class="note">${t.dm} · ${t.days[x]}</summary><button class="btn alt" type="button" data-pack="${x}">⬇ ${t.packAll(x)}</button><div class="mats">${DAY_MATERIALS[x].map(m=>ready(m.url)?`<a href="${esc(m.url)}" target="_blank" rel="noopener"><span>${esc(m[lang])}</span><span>${t.dl} ↗</span></a>`:`<a aria-disabled="true"><span>${esc(m[lang])}</span><span>${t.soon}</span></a>`).join("")}</div></details>`).join("")}</div></div></div>
   ${mapHTML(u,t,cur)}${listHTML(u,t,cur)}
   <div class="legend"><span><i style="background:#2F5D4E"></i>${t.lg[0]}</span><span><i style="background:var(--c)"></i>${t.lg[1]}</span><span><i style="border:2px solid var(--rope)"></i>${t.lg[2]}</span></div>
-  ${postOpen()?`<div class="card narrow" style="margin-top:14px">${p<100?`<p class="note">${t.missing(ST.filter(s=>!u.done[s.id]).length)}</p>`:""}<button class="btn" type="button" id="topost">${t.postgo}</button></div>`:`<p class="note" style="text-align:center">${t.postSoon}</p>`}`;}
+  <div class="card narrow" style="margin-top:14px"><a class="btn" id="postlink" href="${esc(FORMS.post)}" target="_blank" rel="noopener">${t.postgo} ↗</a><button class="btn alt" type="button" id="postok" ${u.postOpened?"":"disabled style=\"opacity:.45;cursor:not-allowed\""}>${t.postdone}</button></div>`;}
  else if(st===3){h+=who(t)+nav()+survey("post",t,u);}
  else{h+=who(t)+nav()+`<div class="card narrow"><div class="big">🎉</div><h2 style="text-align:center">${t.ty}</h2><p class="sub" style="text-align:center">${t.tys}</p>${[1,2,3].map(d=>`<button class="btn alt" type="button" data-pack="${d}">⬇ ${t.packAll(d)}</button>`).join("")}<div class="mats">${[...[1,2,3].flatMap(d=>DAY_MATERIALS[d]),...MATERIALS].map(m=>ready(m.url)?`<a href="${esc(m.url)}" target="_blank" rel="noopener"><span>${esc(m[lang])}</span><span>${t.dl} ↗</span></a>`:`<a aria-disabled="true"><span>${esc(m[lang])}</span><span>${t.soon}</span></a>`).join("")}</div></div>`;}
  $("app").innerHTML=h;bind(t,u,st);}
@@ -309,7 +309,7 @@ function bind(t,u,st){const q=i=>$(i);
 
  if(q("att"))q("att").onclick=()=>{const d=[1,2,3].find(isToday);u.att[d]=new Intl.DateTimeFormat(lang==="ar"?"ar-AE":"en-GB",{timeZone:"Asia/Dubai",hour:"2-digit",minute:"2-digit"}).format(new Date());save();send("attendance",{day:d});if(FORM_MODE==="external"&&ready(FORMS.attendance))window.open(FORMS.attendance,"_blank","noopener");render();};
  if(q("ck"))q("ck").onclick=()=>{const d=[1,2,3].find(isToday);u.checkin[d]=pct(u);save();send("checkin",{day:d,pct:pct(u)});if(FORM_MODE==="external"&&ready(FORMS.daily))window.open(FORMS.daily,"_blank","noopener");render();};
- if(q("topost"))q("topost").onclick=()=>{S.view=3;save();render();scrollTo(0,0);};
+ if(q("topost"))q("topost").onclick=()=>{S.view=3;save();render();scrollTo(0,0);};if(q("postlink"))q("postlink").addEventListener("click",()=>{u.postOpened=true;save();const b=q("postok");if(b){b.disabled=false;b.removeAttribute("style");}});if(q("postok"))q("postok").onclick=()=>{u.post=true;u.postOpened=true;S.view=4;save();send("post",{mode:"external"});render();scrollTo(0,0);};
  if(q("sim"))q("sim").onchange=e=>{S.sim=e.target.value?+e.target.value:null;S.sel=null;save();render();};
  if(q("tmoff"))q("tmoff").onclick=()=>{S.tm=false;S.sim=null;save();render();};
  if(q("tmu"))q("tmu").onchange=e=>{S.code=e.target.value||null;S.view=null;S.sel=null;if(S.code)me();save();render();};
