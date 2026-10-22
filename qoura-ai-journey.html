@@ -156,6 +156,7 @@ const API_URL="";             // optional server endpoint, e.g. "/api/event". Em
 const FORMS={ pre:"https://forms.cloud.microsoft/r/cAaTUsAJ21", post:"https://forms.cloud.microsoft/r/4H0XhSe3XK" };   // Microsoft Forms: pre and post surveys (the participant writes their name inside the form)
 // Optional date lock. Empty lists = no date lock: every day is open and the participant moves station by station.
 // To lock each day to its training dates, list the dates of Cohort 2 and Cohort 3, e.g. {1:["2026-10-26","2026-11-09"],2:["2026-10-27","2026-11-10"],3:["2026-10-28","2026-11-11"]}
+const PRE_SURVEY=false;     // false = participants go straight into the journey (no pre-training survey step)
 const DATES={1:["2026-10-20"],2:["2026-10-21"],3:["2026-10-22"]};   // Cohort 2 (UAE time). Add Cohort 3 dates to each list when confirmed.
 const ALLOW_PAST_DAYS=true;   // with a date lock: true = a day stays open after its date has passed
 const DAY_MATERIALS={
@@ -238,7 +239,8 @@ const postOpen=()=>!LOCK()||(DATES[3]||[]).some(x=>x<=today());
 const ready=u=>!!u&&!/PLACEHOLDER|PASTE_/.test(u);
 const doneN=u=>ST.filter(s=>u.done[s.id]).length;
 const pct=u=>Math.round(doneN(u)/NST*100);
-const stage=u=>!u.pre?1:u.post?4:2;
+const MINST=PRE_SURVEY?1:2;
+const stage=u=>(PRE_SURVEY&&!u.pre)?1:u.post?4:2;
 const dayDone=(u,d)=>ST.filter(s=>s.day===d).every(s=>u.done[s.id]);
 async function send(type,payload){if(!API_URL)return;try{await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({device:S.dev||(S.dev=Math.random().toString(36).slice(2,10),save(),S.dev),type,payload,at:new Date().toISOString()})});}catch(e){}}
 const dotHTML=(s,cls)=>{const lg=ICON[s.ic]?null:logoOf(s.tools.en[0]||"");const l2=lg==="Excel"&&s.tools.en[1]?logoOf(s.tools.en[1]):null;return `<span class="dot ${cls||""}">${l2?`<span class="l2"><img src="${LOGO[l2]}" alt=""></span>`:""}${lg?`<img src="${LOGO[lg]}" alt="">`:`<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[s.ic]||ICON.map}</svg>`}<span class="n">${+s.id===NST?"✓":s.id}</span></span>`;};
@@ -312,9 +314,9 @@ function renderTrainer(t){$("kick").textContent=t.kick+" · "+t.tv;
 function render(){const t=T[lang];document.documentElement.lang=lang;document.documentElement.dir=t.dir;
  ["kick","h1","hp","foot"].forEach(k=>$(k).textContent=t[k]);$("lang").textContent=t.lang;
  if(MODE==="trainer"){renderTrainer(t);return;}
- const u=me(),max=stage(u);let st=S.view!=null?Math.min(S.view,max):max;if(st<1)st=1;let h="";
+ const u=me(),max=stage(u);let st=S.view!=null?Math.min(S.view,max):max;if(st<MINST)st=MINST;let h="";
  if(S.tm)h+=`<div class="tmode"><div class="r"><b>${t.tm}</b><button class="mini" type="button" id="tmoff">${t.close}</button></div>${LOCK()?`<select id="sim"><option value="">${t.tmReal} (${realToday()})</option>${[1,2,3].map(d=>`<option value="${d}" ${S.sim==d?"selected":""}>${t.tmD(d)}</option>`).join("")}</select>`:""}<select id="tms">${t.scen.map((x,i)=>`<option value="${i}">${x}</option>`).join("")}</select><button class="mini" type="button" id="tmr">${t.tmReset}</button><button class="mini" type="button" id="tma">${t.tmAll}</button></div>`;
- const nav=()=>`<div class="navrow">${st>1?`<button class="mini" type="button" id="back">${t.back}</button>`:"<span></span>"}${st<max?`<button class="mini" type="button" id="fwd">${t.fwd}</button>`:""}</div>`;
+ const nav=()=>`<div class="navrow">${st>MINST?`<button class="mini" type="button" id="back">${t.back}</button>`:"<span></span>"}${st<max?`<button class="mini" type="button" id="fwd">${t.fwd}</button>`:""}</div>`;
  if(st===1){h+=(max>1?nav():"")+survey("pre",t,u);}
  else if(st===2){const n=doneN(u),p=pct(u),cur=curId(u),cs=ST.find(s=>s.id===cur),nx=ST[ST.indexOf(cs)+1],d=LOCK()?todayDay():cs.day;
   const matsDay=x=>`<button class="btn alt" type="button" data-pack="${x}">⬇ ${t.packAll(x)}</button>${linksHTML(DAY_MATERIALS[x],t)}`;
