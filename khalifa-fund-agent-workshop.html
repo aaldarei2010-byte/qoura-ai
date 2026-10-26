@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ورشة وكيل خدمة العملاء</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@500;600;700&family=Noto+Kufi+Arabic:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<script>document.documentElement.setAttribute("data-style","b")</script>
+<style>
+/* Layout: one-day snake map (3 stops per row) → concept table → agent architecture → outcomes. Two switchable styles: A blueprint grid, B chat flow. */
+:root{
+  --bg:#EDF1F5;--panel:#E2E8EF;--card:#FFFFFF;--ink:#0F1E2E;--muted:#55677A;--line:#C9D4DF;
+  --g:#0F2A44;--g-ink:#F3F6F9;--g-sub:#EDB451;--g-line:rgba(243,246,249,.32);--g-track:rgba(243,246,249,.16);
+  --c:#A86A12;--c-ink:#FFFFFF;--brand:#0F2A44;--labbg:#FAF0DC;--bubble:transparent;
+  --rope:#7D93A9;--rope2:#5C7690;--done:#1F7A5A;--ok:#1F7A5A;--grid:rgba(15,42,68,.075);
+  --glow:rgba(168,106,18,.22);--shadow:rgba(15,30,46,.10);--scrim:rgba(8,16,26,.55);
+  --pat:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);--pat-size:28px 28px;
+  --r:8px;--r-lg:10px;--dot-r:22%;--rope-w:6;--rope-dash:16 10;
+  --f-display:"Readex Pro","IBM Plex Sans Arabic",Tahoma,sans-serif;
+  --f-body:"IBM Plex Sans Arabic","IBM Plex Sans",Tahoma,system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B1724;--panel:#10202F;--card:#142738;--ink:#E6EDF3;--muted:#9AACBD;--line:#25394D;
+  --g:#133252;--g-ink:#EEF3F7;--g-sub:#F0BE62;--g-line:rgba(238,243,247,.28);--g-track:rgba(238,243,247,.14);
+  --c:#E8B14F;--c-ink:#1A1205;--brand:#F0BE62;--labbg:#2A2414;
+  --rope:#4F6B87;--rope2:#3A536C;--done:#3BA37C;--ok:#4CC08F;--grid:rgba(160,190,220,.06);
+  --glow:rgba(232,177,79,.25);--shadow:rgba(0,0,0,.35);--scrim:rgba(0,0,0,.6);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B1724;--panel:#10202F;--card:#142738;--ink:#E6EDF3;--muted:#9AACBD;--line:#25394D;
+  --g:#133252;--g-ink:#EEF3F7;--g-sub:#F0BE62;--g-line:rgba(238,243,247,.28);--g-track:rgba(238,243,247,.14);
+  --c:#E8B14F;--c-ink:#1A1205;--brand:#F0BE62;--labbg:#2A2414;
+  --rope:#4F6B87;--rope2:#3A536C;--done:#3BA37C;--ok:#4CC08F;--grid:rgba(160,190,220,.06);
+  --glow:rgba(232,177,79,.25);--shadow:rgba(0,0,0,.35);--scrim:rgba(0,0,0,.6);color-scheme:dark}
+/* Style B: chat flow */
+:root[data-style="b"]{
+  --bg:#F1F6FB;--panel:#E3EEF8;--card:#FFFFFF;--ink:#10243A;--muted:#57697D;--line:#D2E0EC;
+  --g:#1C77B8;--g-ink:#FFFFFF;--g-sub:#FFDDB5;--g-line:rgba(255,255,255,.4);--g-track:rgba(255,255,255,.2);
+  --c:#D44E27;--c-ink:#FFFFFF;--brand:#1C77B8;--labbg:#FFEFE8;--bubble:#FFFFFF;
+  --rope:#8CCAF0;--rope2:#3E9BD8;--done:#2BA36B;--ok:#228A58;--grid:rgba(28,119,184,.16);
+  --glow:rgba(212,78,39,.2);--shadow:rgba(16,36,58,.10);
+  --pat:radial-gradient(var(--grid) 1.3px,transparent 1.6px);--pat-size:18px 18px;
+  --r:18px;--r-lg:24px;--dot-r:50%;--rope-w:20;--rope-dash:none;
+  --f-display:"Noto Kufi Arabic","IBM Plex Sans Arabic",Tahoma,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root[data-style="b"]:not([data-theme="light"]){
+  --bg:#0C1622;--panel:#11202F;--card:#15283A;--ink:#E8F0F7;--muted:#9FB3C6;--line:#263C52;
+  --g:#17649C;--g-ink:#FFFFFF;--g-sub:#FFD0A0;--c:#FF7A52;--c-ink:#1B0B04;--brand:#6DB8EC;--labbg:#2B1A14;--bubble:#15283A;
+  --rope:#2B6A98;--rope2:#4C9AD3;--done:#2F8F63;--ok:#4CC08F;--grid:rgba(110,170,230,.12);--glow:rgba(255,122,82,.25);--shadow:rgba(0,0,0,.35);color-scheme:dark}}
+:root[data-style="b"][data-theme="dark"]{
+  --bg:#0C1622;--panel:#11202F;--card:#15283A;--ink:#E8F0F7;--muted:#9FB3C6;--line:#263C52;
+  --g:#17649C;--g-ink:#FFFFFF;--g-sub:#FFD0A0;--c:#FF7A52;--c-ink:#1B0B04;--brand:#6DB8EC;--labbg:#2B1A14;--bubble:#15283A;
+  --rope:#2B6A98;--rope2:#4C9AD3;--done:#2F8F63;--ok:#4CC08F;--grid:rgba(110,170,230,.12);--glow:rgba(255,122,82,.25);--shadow:rgba(0,0,0,.35);color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+img{max-width:100%}
+body{background-color:var(--bg);background-image:var(--pat);background-size:var(--pat-size);color:var(--ink);font-family:var(--f-body);line-height:1.55}
+html[lang=en] body{font-family:"IBM Plex Sans","IBM Plex Sans Arabic",system-ui,sans-serif}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:22px}
+.top{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.mark{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:6px 12px;display:grid;place-items:center}
+.mark img{height:50px;display:block}
+.ht{flex:1;min-width:240px}
+.eyebrow{margin:0;color:var(--c);font-weight:600;font-size:.9rem}
+h1{margin:2px 0 0;font-family:var(--f-display);font-weight:700;font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.2;text-wrap:balance}
+html[lang=en] h1,html[lang=en] .sec h2{font-family:"IBM Plex Sans",sans-serif}
+.lede{margin:6px 0 0;color:var(--muted)}
+.ctrls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tbtn{height:42px;min-width:42px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);cursor:pointer;display:grid;place-items:center;font-weight:700}
+.tbtn svg{width:20px;height:20px}
+.seg{display:flex;border:1.5px solid var(--line);border-radius:999px;background:var(--card);padding:3px}
+.seg button{border:0;background:transparent;border-radius:999px;padding:6px 12px;cursor:pointer;font-weight:600;font-size:.85rem;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--g);color:var(--g-ink)}
+/* story */
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(40px,1.1fr) minmax(0,1fr);align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px 18px}
+.end{display:flex;align-items:center;gap:12px;min-width:0}
+.end .n{flex:0 0 auto;display:grid;place-items:center;width:44px;height:44px;border-radius:var(--dot-r);background:var(--c);color:var(--c-ink);font-weight:700;font-family:var(--f-mono);font-size:.8rem}
+.end.fin .n{background:var(--ok);color:#fff}
+.end small{display:block;font-size:.8rem;color:var(--muted);font-weight:600}
+.end b{display:block;font-size:1.02rem;line-height:1.4;text-wrap:balance}
+.mid{display:flex;flex-direction:column;gap:6px}
+.mini{height:8px;border-radius:4px;background:repeating-linear-gradient(90deg,var(--rope) 0 14px,transparent 14px 22px)}
+:root[data-style="b"] .mini{height:12px;border-radius:6px;background:linear-gradient(90deg,var(--rope),var(--rope2))}
+.mid .lg{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+.mid .lg img{width:24px;height:24px;object-fit:contain;background:#fff;border-radius:6px;padding:2px;border:1px solid var(--line)}
+@media (max-width:640px){.story{grid-template-columns:1fr;gap:10px}}
+/* presenter bar */
+.here{position:relative;overflow:hidden;background:var(--g);color:var(--g-ink);border-radius:var(--r-lg);padding:12px 16px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hcol{flex:1 1 220px;min-width:0}
+.hcol small{display:block;color:var(--g-sub);font-size:.78rem;font-weight:600}
+.hcol b{display:block;font-size:1.05rem;line-height:1.35}
+.hcol .lt{display:inline-block;background:var(--c);color:var(--c-ink);border-radius:6px;padding:0 6px;font-size:.78rem;margin-inline-end:6px;vertical-align:2px}
+.hsep{width:1px;align-self:stretch;background:var(--g-line)}
+.hbtns{display:flex;gap:8px;align-items:center}
+.hb{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--g-line);background:transparent;color:var(--g-ink);cursor:pointer;display:grid;place-items:center;font-size:1.15rem}
+.hd{height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--g-line);background:transparent;color:var(--g-ink);cursor:pointer;font-weight:600}
+.hb:hover:not([disabled]),.hd:hover{background:var(--c);border-color:var(--c);color:var(--c-ink)}
+.hb[disabled]{opacity:.35;cursor:not-allowed}
+.kbd{flex-basis:100%;margin:0;font-size:.75rem;color:var(--g-sub)}
+.prog{position:absolute;inset-inline:0;bottom:0;height:4px;background:var(--g-track)}
+.prog i{display:block;height:100%;width:0;background:var(--g-sub);transition:width .5s ease}
+@media (max-width:640px){.hsep{display:none}}
+@media (hover:none),(max-width:999px){.kbd{display:none}}
+/* map */
+.map{position:relative;width:100%;container-type:inline-size}
+.map svg.rope{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.panel{fill:var(--panel);stroke:var(--line);stroke-width:1.5;opacity:.92}
+.rope-base{fill:none;stroke:var(--rope);stroke-width:var(--rope-w);stroke-dasharray:var(--rope-dash);stroke-linecap:round;stroke-linejoin:round}
+:root[data-style="b"] .rope-base{stroke:url(#gRope)}
+.rope-done{fill:none;stroke:var(--done);stroke-width:var(--rope-w);stroke-linecap:round;stroke-linejoin:round;visibility:hidden;transition:stroke-dasharray .7s ease}
+.mk{fill:var(--c)}.mk-tri{fill:var(--c-ink)}
+.dayl{position:absolute;inset-inline-start:3%;display:flex;align-items:center;gap:1cqw;transform:translateY(-50%)}
+.dayl b{background:var(--g);color:var(--g-ink);border-radius:999px;padding:.35cqw 1.4cqw;font-size:1.35cqw;font-weight:700}
+.dayl span{color:var(--c);font-weight:700;font-size:1.4cqw}
+.st{position:absolute;width:0;height:0}
+.st .lbl{position:absolute;left:0;bottom:4.2cqw;transform:translateX(-50%);width:25cqw;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.3cqw;pointer-events:none;background:var(--bubble);border-radius:1.6cqw;padding:.5cqw .8cqw}
+:root[data-style="b"] .st .lbl{box-shadow:0 .2cqw .8cqw var(--shadow)}
+.st .lbl b{font-size:1.5cqw;line-height:1.3;font-weight:700;text-wrap:balance}
+.st .lbl .o{font-size:1.08cqw;line-height:1.4;color:var(--muted);text-wrap:balance}
+.tm{font-family:var(--f-mono);font-weight:600;color:var(--muted);direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+.st .tm{font-size:.95cqw}
+.tag{display:none;background:var(--c);color:var(--c-ink);font-weight:700;border-radius:999px}
+.st .tag{font-size:1cqw;padding:.15cqw .9cqw}
+.st.cur .tag.here-t{display:inline-block}
+.ltag{display:inline-block;background:var(--labbg);color:var(--c);border:1px dashed var(--c);font-weight:700;border-radius:999px;white-space:nowrap}
+.st .ltag{font-size:.95cqw;padding:.1cqw .8cqw}
+.st.cur .ltag{display:none}
+.dot{position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:6cqw;height:6cqw;border-radius:var(--dot-r);background:var(--card);border:.28cqw solid var(--rope2);display:grid;place-items:center;padding:0;cursor:pointer;box-shadow:0 .3cqw .9cqw var(--shadow);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,opacity .2s ease}
+.dot svg{width:2.7cqw;height:2.7cqw;color:var(--ink)}
+.dot img.lg{width:3.2cqw;height:3.2cqw;object-fit:contain}
+.dot.lab{border-style:dashed;border-color:var(--c);background:var(--labbg);width:6.6cqw;height:6.6cqw}
+.dot.brk{width:4.4cqw;height:4.4cqw;border-style:dotted}
+.dot.brk svg{width:2cqw;height:2cqw;color:var(--muted)}
+.dot .n{position:absolute;top:-.5cqw;inset-inline-end:-.5cqw;min-width:2.1cqw;height:2.1cqw;padding:0 .3cqw;border-radius:999px;background:var(--c);color:var(--c-ink);font-size:1.05cqw;font-weight:700;display:grid;place-items:center;border:.2cqw solid var(--card)}
+.dot .l2{position:absolute;bottom:-.4cqw;inset-inline-start:-.4cqw;width:2.4cqw;height:2.4cqw;border-radius:50%;background:#fff;border:.15cqw solid var(--line);display:grid;place-items:center}
+.dot .l2 img{width:1.5cqw;height:1.5cqw;object-fit:contain}
+.st .dot:hover{transform:translate(-50%,-50%) scale(1.07)}
+.st.cur .dot{border-color:var(--c);border-style:solid;box-shadow:0 0 0 1cqw var(--glow)}
+.st.done .dot{border-color:var(--ok)}
+.st.done .dot .n{background:var(--ok);color:#fff}
+.st.dim .lbl b{color:var(--muted)}
+.st.dim .dot{opacity:.75}
+.st.labst .lbl b{color:var(--c)}
+.chips{position:absolute;left:0;top:4cqw;transform:translateX(-50%);width:26cqw;display:flex;flex-wrap:wrap;justify-content:center;gap:.45cqw;pointer-events:none}
+.chip{display:inline-flex;align-items:center;gap:.4em;background:var(--card);border:1px solid var(--line);border-radius:999px;font-weight:600;white-space:nowrap;line-height:1.3}
+.chip img{width:1.3em;height:1.3em;object-fit:contain}
+.chips .chip{padding:.25cqw .8cqw;font-size:.95cqw}
+.chip.rule{background:var(--g);color:var(--g-ink);border-color:var(--g)}
+.st.cur .chip{border-color:var(--c)}
+/* list (phones) */
+.list{display:none}
+@media (max-width:999px){.map{display:none}.list{display:block}}
+.lday{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0 8px}
+.lday:first-child{margin-top:0}
+.lday b{background:var(--g);color:var(--g-ink);border-radius:999px;padding:3px 14px;font-size:.92rem}
+.lday span{color:var(--c);font-weight:700;font-size:.95rem}
+.lgroup{display:flex;flex-direction:column}
+.li{position:relative;display:flex;gap:14px;align-items:flex-start;width:100%;text-align:start;background:none;border:0;padding:6px 0 18px;cursor:pointer}
+.li::before{content:"";position:absolute;inset-inline-start:25px;top:0;bottom:0;width:6px;border-radius:3px;background:repeating-linear-gradient(180deg,var(--rope) 0 12px,transparent 12px 20px)}
+:root[data-style="b"] .li::before{width:9px;inset-inline-start:24px;background:linear-gradient(180deg,var(--rope),var(--rope2))}
+.lgroup .li:first-child::before{top:30px}
+.lgroup .li:last-child::before{bottom:auto;height:34px}
+.li.done::before{background:var(--done)}
+.li .dot{position:relative;left:auto;top:auto;transform:none;flex:0 0 56px;width:56px;height:56px;border-width:3px;z-index:1}
+.li .dot svg{width:26px;height:26px}.li .dot img.lg{width:30px;height:30px}
+.li .dot.brk{flex-basis:56px;width:56px;height:56px}.li .dot.brk svg{width:22px;height:22px}
+.li .dot .n{top:-6px;inset-inline-end:-6px;min-width:22px;height:22px;font-size:.72rem;border-width:2px;padding:0 4px}
+.li .dot .l2{width:22px;height:22px;bottom:-4px;inset-inline-start:-4px}.li .dot .l2 img{width:14px;height:14px}
+.li.cur .dot{border-color:var(--c);box-shadow:0 0 0 6px var(--glow)}
+.li.done .dot{border-color:var(--ok)}
+.li .tx{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding-top:2px}
+.li .tm{font-size:.75rem}
+.li .tx b{font-size:1.05rem;line-height:1.35}
+.li.labli .tx b{color:var(--c)}
+.li .tx .o{color:var(--muted);font-size:.88rem;line-height:1.45}
+.li .tag{font-size:.72rem;padding:1px 10px}
+.li.cur .tag.here-t{display:inline-block}
+.li .ltag{font-size:.72rem;padding:0 9px}
+.li .cl{display:flex;flex-wrap:wrap;gap:5px;margin-top:3px}
+.li .cl .chip{font-size:.74rem;padding:1px 9px}
+/* sections */
+.sec h2{font-family:var(--f-display);font-weight:700;font-size:1.4rem;margin:0 0 6px;text-wrap:balance}
+.sec .sub{margin:0 0 14px;color:var(--muted);max-width:70ch}
+.tblw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg)}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th,td{text-align:start;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:.93rem}
+th{font-size:.78rem;color:var(--muted);font-weight:700;letter-spacing:.02em;background:var(--panel)}
+tr:last-child td{border-bottom:0}
+td.cn b{display:block;direction:ltr;unicode-bidi:isolate;text-align:start;font-family:var(--f-mono);font-size:.88rem}
+td.cn small{color:var(--muted);font-size:.78rem}
+.grp{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin-top:4px}
+.grp.k3{color:var(--c);border-color:var(--c);background:var(--labbg)}
+.stn{display:flex;gap:4px;flex-wrap:wrap}
+.stn button{border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:0 7px;cursor:pointer;font-family:var(--f-mono);font-size:.8rem;font-weight:600}
+.stn button:hover{border-color:var(--c);color:var(--c)}
+.callout{margin-top:12px;background:var(--labbg);border:1px dashed var(--c);border-radius:var(--r);padding:12px 14px;font-size:.92rem}
+.callout b{color:var(--c)}
+/* architecture */
+.arch{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.node{border:1.5px solid var(--line);background:var(--bg);border-radius:var(--r);padding:10px 14px;text-align:center;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px}
+.node .k{font-family:var(--f-mono);font-size:.8rem;font-weight:600;color:var(--c);display:inline-flex;gap:6px;align-items:center}
+.node .k img{width:18px;height:18px}
+.node b{font-size:.98rem}
+.node span{font-size:.82rem;color:var(--muted)}
+.node.hero{background:var(--g);color:var(--g-ink);border-color:var(--g);padding:14px 22px}
+.node.hero .k{color:var(--g-sub)}.node.hero span{color:var(--g-sub)}
+.node.ok{border-color:var(--ok)}.node.ok .k{color:var(--ok)}
+.node.esc{border-style:dashed;border-color:var(--c);background:var(--labbg)}
+.arw{color:var(--muted);font-size:1.2rem;line-height:1}
+.row4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:100%;max-width:880px}
+.row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%;max-width:600px}
+.arch .cap{margin:10px 0 0;font-size:.8rem;color:var(--muted);text-align:center}
+@media (max-width:700px){.row4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* growth */
+.grow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;counter-reset:g}
+.gs{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.gs small{font-family:var(--f-mono);color:var(--c);font-weight:600;font-size:.76rem}
+.gs b{font-size:.98rem;line-height:1.4}
+.gs span{font-size:.82rem;color:var(--muted)}
+@media (max-width:899px){.grow{grid-template-columns:1fr}}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+@media (max-width:899px){.two{grid-template-columns:1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px}
+.box h3{margin:0 0 8px;font-size:1.02rem}
+.box ul{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:6px}
+.box li{font-size:.93rem}
+.box li span{color:var(--muted)}
+.outs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.out{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.out small{color:var(--c);font-weight:700;font-size:.78rem}
+.out b{font-size:1rem;line-height:1.4}
+@media (max-width:899px){.outs{grid-template-columns:1fr}.out{flex-direction:row;align-items:baseline;justify-content:space-between;gap:12px}.out small{order:2;white-space:nowrap}}
+.facts{display:flex;flex-wrap:wrap;gap:10px}
+.fact{flex:1 1 110px;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px;text-align:center}
+.fact b{display:block;font-family:var(--f-display);font-size:1.9rem;line-height:1.2;color:var(--brand)}
+.fact span{color:var(--muted);font-size:.85rem}
+.foot{text-align:center;color:var(--muted);font-size:.8rem;margin:0}
+/* drawer */
+.dr{position:fixed;inset:0;background:var(--scrim);display:flex;justify-content:flex-start;z-index:20}
+.dp{background:var(--card);color:var(--ink);width:min(500px,100%);height:100%;overflow:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px}
+@media (max-width:760px){.dr{align-items:flex-end}.dp{height:88%;width:100%;border-radius:20px 20px 0 0}}
+.dh{display:flex;align-items:center;gap:12px}
+.dh .dot{position:relative;left:auto;top:auto;transform:none;flex:0 0 56px;width:56px;height:56px;border-width:3px;cursor:default;border-color:var(--c)}
+.dh .dot svg{width:26px;height:26px}.dh .dot img.lg{width:30px;height:30px}
+.dh .dot .n{top:-6px;inset-inline-end:-6px;min-width:22px;height:22px;font-size:.72rem;border-width:2px;padding:0 4px}
+.dh .dot .l2{width:22px;height:22px;bottom:-4px;inset-inline-start:-4px}.dh .dot .l2 img{width:14px;height:14px}
+.dh .tt{min-width:0}
+.dh small{color:var(--muted);font-weight:600;font-size:.82rem}
+.dh h2{margin:2px 0 0;font-size:1.25rem;line-height:1.3;text-wrap:balance}
+.x{margin-inline-start:auto;flex:0 0 auto;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);cursor:pointer;font-size:1.3rem;line-height:1}
+.dout{background:var(--panel);border-radius:var(--r);padding:12px 14px}
+.dout.lab{background:var(--labbg);border:1px dashed var(--c)}
+.dout small{display:block;color:var(--c);font-weight:700;font-size:.8rem}
+.dout p{margin:2px 0 0;font-weight:600}
+.dp h3{margin:0;font-size:.95rem}
+.dp ol{margin:0;padding-inline-start:22px;display:flex;flex-direction:column;gap:6px}
+.tchips{display:flex;flex-wrap:wrap;gap:6px}
+.tchips .chip{font-size:.85rem;padding:3px 12px}
+details.pr{border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--bg)}
+details.pr+details.pr{margin-top:6px}
+details.pr summary{cursor:pointer;font-size:.9rem}details.pr summary b{color:var(--c);margin-inline-end:4px;font-family:var(--f-mono)}
+.pmeta{font-size:.76rem;color:var(--muted);margin:6px 0 4px}
+.ptext{font-size:.88rem;line-height:1.65;white-space:pre-wrap;background:var(--card);border-radius:8px;padding:8px 10px}
+.cp{margin-top:6px;border:0;border-radius:8px;padding:5px 12px;background:var(--g);color:var(--g-ink);font-weight:600;cursor:pointer;font-size:.8rem}
+.drule{margin:0;background:var(--g);color:var(--g-ink);border-radius:12px;padding:10px 14px;font-weight:700}
+.dfoot{display:flex;gap:8px;margin-top:auto;padding-top:10px;border-top:1px solid var(--line)}
+.dfoot button{flex:1;border-radius:12px;padding:11px 12px;font-weight:700;cursor:pointer;border:1.5px solid var(--line);background:var(--card)}
+.dfoot button.pri{background:var(--g);color:var(--g-ink);border-color:var(--g)}
+.dfoot button[disabled]{opacity:.4;cursor:not-allowed}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="ht"><p class="eyebrow" id="eyebrow"></p><h1 id="h1"></h1><p class="lede" id="lede"></p></div>
+    <div class="ctrls">
+            <button class="tbtn" id="langBtn" type="button"></button>
+      <button class="tbtn" id="themeBtn" type="button" aria-label="Theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
+    </div>
+  </header>
+  <section class="story" id="story"></section>
+  <section class="here">
+    <div class="hcol" aria-live="polite"><small id="hereL"></small><b id="hereNow"></b></div>
+    <div class="hsep" aria-hidden="true"></div>
+    <div class="hcol"><small id="nextL"></small><b id="hereNext"></b></div>
+    <div class="hbtns"><button class="hd" id="detBtn" type="button" hidden></button><button class="hb" id="prevBtn" type="button" disabled></button><button class="hb" id="nextBtn" type="button"></button></div>
+    <p class="kbd" id="kbd"></p>
+    <div class="prog" aria-hidden="true"><i id="progBar"></i></div>
+  </section>
+  <section><div class="map" id="map"></div><div class="list" id="list"></div></section>
+  <section class="sec" id="conceptSec"></section>
+  <section class="sec" id="archSec"></section>
+  <section class="sec" id="growSec"></section>
+  <section class="sec" id="outsSec"></section>
+  <section class="sec" id="prepSec"></section>
+  <section class="sec" id="factsSec"></section>
+  <p class="foot" id="foot"></p>
+</div>
+<div class="dr" id="dr" hidden><div class="dp" role="dialog" aria-modal="true" id="dp"></div></div>
+<script>
+const LOGO={"ChatGPT": "data:image/svg+xml;base64,PHN2ZyBmaWxsPSJjdXJyZW50Q29sb3IiIGZpbGwtcnVsZT0iZXZlbm9kZCIgaGVpZ2h0PSIxZW0iIHN0eWxlPSJmbGV4Om5vbmU7bGluZS1oZWlnaHQ6MSIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMWVtIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZT5PcGVuQUk8L3RpdGxlPjxwYXRoIGQ9Ik05LjIwNSA4LjY1OHYtMi4yNmMwLS4xOS4wNzItLjMzMy4yMzgtLjQyOGw0LjU0My0yLjYxNmMuNjE5LS4zNTcgMS4zNTYtLjUyMyAyLjExNy0uNTIzIDIuODU0IDAgNC42NjIgMi4yMTIgNC42NjIgNC41NjYgMCAuMTY3IDAgLjM1Ny0uMDI0LjU0N2wtNC43MS0yLjc1OWEuNzk3Ljc5NyAwIDAwLS44NTYgMGwtNS45NyAzLjQ3M3ptMTAuNjA5IDguOFYxMi4wNmMwLS4zMzMtLjE0My0uNTctLjQyOS0uNzM3bC01Ljk3LTMuNDczIDEuOTUtMS4xMThhLjQzMy40MzMgMCAwMS40NzYgMGw0LjU0MyAyLjYxN2MxLjMwOS43NiAyLjE4OSAyLjM3OCAyLjE4OSAzLjk0OCAwIDEuODA4LTEuMDcgMy40NzMtMi43NiA0LjE2M3pNNy44MDIgMTIuNzAzbC0xLjk1LTEuMTQyYy0uMTY3LS4wOTUtLjIzOS0uMjM4LS4yMzktLjQyOFY1Ljg5OWMwLTIuNTQ1IDEuOTUtNC40NzIgNC41OTEtNC40NzIgMSAwIDEuOTI3LjMzMyAyLjcxMi45MjhMOC4yMyA1LjA2N2MtLjI4NS4xNjYtLjQyOC40MDQtLjQyOC43Mzd2Ni44OTh6TTEyIDE1LjEyOGwtMi43OTUtMS41N3YtMy4zM0wxMiA4LjY1OGwyLjc5NSAxLjU3djMuMzNMMTIgMTUuMTI4em0xLjc5NiA3LjIzYy0xIDAtMS45MjctLjMzMi0yLjcxMi0uOTI3bDQuNjg2LTIuNzEyYy4yODUtLjE2Ni40MjgtLjQwNC40MjgtLjczN3YtNi44OThsMS45NzQgMS4xNDJjLjE2Ny4wOTUuMjM4LjIzOC4yMzguNDI4djUuMjMzYzAgMi41NDUtMS45NzQgNC40NzItNC42MTQgNC40NzJ6bS01LjYzNy01LjMwM2wtNC41NDQtMi42MTdjLTEuMzA4LS43NjEtMi4xODgtMi4zNzgtMi4xODgtMy45NDhBNC40ODIgNC40ODIgMCAwMTQuMjEgNi4zMjd2NS40MjNjMCAuMzMzLjE0My41NzEuNDI4LjczOGw1Ljk0NyAzLjQ0OS0xLjk1IDEuMTE4YS40MzIuNDMyIDAgMDEtLjQ3NiAwem0tLjI2MiAzLjljLTIuNjg4IDAtNC42NjItMi4wMjEtNC42NjItNC41MTkgMC0uMTkuMDI0LS4zOC4wNDctLjU3bDQuNjg2IDIuNzFjLjI4Ni4xNjcuNTcxLjE2Ny44NTYgMGw1Ljk3LTMuNDQ4djIuMjZjMCAuMTktLjA3LjMzMy0uMjM3LjQyOGwtNC41NDMgMi42MTZjLS42MTkuMzU3LTEuMzU2LjUyMy0yLjExNy41MjN6bTUuODk5IDIuODNhNS45NDcgNS45NDcgMCAwMDUuODI3LTQuNzU2QzIyLjI4NyAxOC4zMzkgMjQgMTUuODQgMjQgMTMuMjk2YzAtMS42NjUtLjcxMy0zLjI4Mi0xLjk5OC00LjQ0OC4xMTktLjUuMTktLjk5OS4xOS0xLjQ5OCAwLTMuNDAxLTIuNzU5LTUuOTQ3LTUuOTQ2LTUuOTQ3LS42NDIgMC0xLjI2LjA5NS0xLjg4LjMxQTUuOTYyIDUuOTYyIDAgMDAxMC4yMDUgMGE1Ljk0NyA1Ljk0NyAwIDAwLTUuODI3IDQuNzU3QzEuNzEzIDUuNDQ3IDAgNy45NDUgMCAxMC40OWMwIDEuNjY2LjcxMyAzLjI4MyAxLjk5OCA0LjQ0OC0uMTE5LjUtLjE5IDEtLjE5IDEuNDk5IDAgMy40MDEgMi43NTkgNS45NDYgNS45NDYgNS45NDYuNjQyIDAgMS4yNi0uMDk1IDEuODgtLjMwOWE1Ljk2IDUuOTYgMCAwMDQuMTYyIDEuNzEzeiI+PC9wYXRoPjwvc3ZnPg==", "Claude": "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgc3R5bGU9ImZsZXg6bm9uZTtsaW5lLWhlaWdodDoxIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIxZW0iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkNsYXVkZTwvdGl0bGU+PHBhdGggZD0iTTQuNzA5IDE1Ljk1NWw0LjcyLTIuNjQ3LjA4LS4yMy0uMDgtLjEyOEg5LjJsLS43OS0uMDQ4LTIuNjk4LS4wNzMtMi4zMzktLjA5Ny0yLjI2Ni0uMTIyLS41NzEtLjEyMUwwIDExLjc4NGwuMDU1LS4zNTIuNDgtLjMyMS42ODYuMDYgMS41Mi4xMDMgMi4yNzguMTU4IDEuNjUyLjA5NyAyLjQ0OS4yNTVoLjM4OWwuMDU1LS4xNTctLjEzNC0uMDk4LS4xMDMtLjA5Ny0yLjM1OC0xLjU5Ni0yLjU1Mi0xLjY4OC0xLjMzNi0uOTcyLS43MjQtLjQ5MS0uMzY0LS40NjItLjE1OC0xLjAwOC42NTYtLjcyMi44ODEuMDYuMjI1LjA2MS44OTMuNjg2IDEuOTA4IDEuNDc2IDIuNDkxIDEuODMzLjM2NS4zMDQuMTQ1LS4xMDMuMDE5LS4wNzMtLjE2NC0uMjc0LTEuMzU1LTIuNDQ2LTEuNDQ2LTIuNDktLjY0NC0xLjAzMi0uMTctLjYxOWEyLjk3IDIuOTcgMCAwMS0uMTA0LS43MjlMNi4yODMuMTM0IDYuNjk2IDBsLjk5Ni4xMzQuNDIuMzY0LjYyIDEuNDE0IDEuMDAyIDIuMjI5IDEuNTU1IDMuMDMuNDU2Ljg5OC4yNDMuODMyLjA5MS4yNTVoLjE1OFY5LjAxbC4xMjgtMS43MDYuMjM3LTIuMDk1LjIzLTIuNjk1LjA4LS43Ni4zNzYtLjkxLjc0Ny0uNDkyLjU4NC4yOC40OC42ODUtLjA2Ny40NDQtLjI4NiAxLjg1MS0uNTU5IDIuOTAzLS4zNjQgMS45NDJoLjIxMmwuMjQzLS4yNDIuOTg1LTEuMzA2IDEuNjUyLTIuMDY0LjczLS44Mi44NS0uOTA0LjU0Ny0uNDMxaDEuMDMzbC43NiAxLjEyOS0uMzQgMS4xNjYtMS4wNjQgMS4zNDctLjg4MSAxLjE0Mi0xLjI2NCAxLjctLjc5IDEuMzYuMDczLjExLjE4OC0uMDIgMi44NTYtLjYwNiAxLjU0My0uMjggMS44NDEtLjMxNS44MzMuMzg4LjA5MS4zOTUtLjMyOC44MDctMS45NjkuNDg2LTIuMzA5LjQ2Mi0zLjQzOS44MTMtLjA0Mi4wMy4wNDkuMDYxIDEuNTQ5LjE0Ni42NjIuMDM2aDEuNjIybDMuMDIuMjI1Ljc5LjUyMi40NzQuNjM4LS4wNzkuNDg1LTEuMjE1LjYyLTEuNjQtLjM4OS0zLjgyOS0uOTEtMS4zMTItLjMyOWgtLjE4MnYuMTFsMS4wOTMgMS4wNjggMi4wMDYgMS44MSAyLjUwOSAyLjMzLjEyNy41NzgtLjMyMi40NTUtLjM0LS4wNDktMi4yMDUtMS42NTctLjg1MS0uNzQ3LTEuOTI2LTEuNjJoLS4xMjh2LjE3bC40NDQuNjQ5IDIuMzQ1IDMuNTIxLjEyMiAxLjA4LS4xNy4zNTMtLjYwOC4yMTMtLjY2OC0uMTIyLTEuMzc0LTEuOTI1LTEuNDE1LTIuMTY3LTEuMTQzLTEuOTQzLS4xNC4wOC0uNjc0IDcuMjU0LS4zMTYuMzctLjcyOS4yOC0uNjA3LS40NjEtLjMyMi0uNzQ3LjMyMi0xLjQ3Ni4zODktMS45MjQuMzE1LTEuNTMuMjg2LTEuOS4xNy0uNjMyLS4wMTItLjA0Mi0uMTQuMDE4LTEuNDM0IDEuOTY3LTIuMTggMi45NDUtMS43MjYgMS44NDUtLjQxNC4xNjQtLjcxNy0uMzcuMDY3LS42NjIuNDAxLS41ODkgMi4zODgtMy4wMzYgMS40NC0xLjg4Mi45My0xLjA4Ni0uMDA2LS4xNThoLS4wNTVMNC4xMzIgMTguNTZsLTEuMTMuMTQ2LS40ODctLjQ1Ni4wNjEtLjc0Ni4yMzEtLjI0MyAxLjkwOC0xLjMxMi0uMDA2LjAwNnoiIGZpbGw9IiNEOTc3NTciIGZpbGwtcnVsZT0ibm9uemVybyI+PC9wYXRoPjwvc3ZnPg==", "Gemini": "data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgc3R5bGU9ImZsZXg6bm9uZTtsaW5lLWhlaWdodDoxIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIxZW0iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkdlbWluaTwvdGl0bGU+PHBhdGggZD0iTTIwLjYxNiAxMC44MzVhMTQuMTQ3IDE0LjE0NyAwIDAxLTQuNDUtMy4wMDEgMTQuMTExIDE0LjExMSAwIDAxLTMuNjc4LTYuNDUyLjUwMy41MDMgMCAwMC0uOTc1IDAgMTQuMTM0IDE0LjEzNCAwIDAxLTMuNjc5IDYuNDUyIDE0LjE1NSAxNC4xNTUgMCAwMS00LjQ1IDMuMDAxYy0uNjUuMjgtMS4zMTguNTA1LTIuMDAyLjY3OGEuNTAyLjUwMiAwIDAwMCAuOTc1Yy42ODQuMTcyIDEuMzUuMzk3IDIuMDAyLjY3N2ExNC4xNDcgMTQuMTQ3IDAgMDE0LjQ1IDMuMDAxIDE0LjExMiAxNC4xMTIgMCAwMTMuNjc5IDYuNDUzLjUwMi41MDIgMCAwMC45NzUgMGMuMTcyLS42ODUuMzk3LTEuMzUxLjY3Ny0yLjAwM2ExNC4xNDUgMTQuMTQ1IDAgMDEzLjAwMS00LjQ1IDE0LjExMyAxNC4xMTMgMCAwMTYuNDUzLTMuNjc4LjUwMy41MDMgMCAwMDAtLjk3NSAxMy4yNDUgMTMuMjQ1IDAgMDEtMi4wMDMtLjY3OHoiIGZpbGw9IiMzMTg2RkYiPjwvcGF0aD48cGF0aCBkPSJNMjAuNjE2IDEwLjgzNWExNC4xNDcgMTQuMTQ3IDAgMDEtNC40NS0zLjAwMSAxNC4xMTEgMTQuMTExIDAgMDEtMy42NzgtNi40NTIuNTAzLjUwMyAwIDAwLS45NzUgMCAxNC4xMzQgMTQuMTM0IDAgMDEtMy42NzkgNi40NTIgMTQuMTU1IDE0LjE1NSAwIDAxLTQuNDUgMy4wMDFjLS42NS4yOC0xLjMxOC41MDUtMi4wMDIuNjc4YS41MDIuNTAyIDAgMDAwIC45NzVjLjY4NC4xNzIgMS4zNS4zOTcgMi4wMDIuNjc3YTE0LjE0NyAxNC4xNDcgMCAwMTQuNDUgMy4wMDEgMTQuMTEyIDE0LjExMiAwIDAxMy42NzkgNi40NTMuNTAyLjUwMiAwIDAwLjk3NSAwYy4xNzItLjY4NS4zOTctMS4zNTEuNjc3LTIuMDAzYTE0LjE0NSAxNC4xNDUgMCAwMTMuMDAxLTQuNDUgMTQuMTEzIDE0LjExMyAwIDAxNi40NTMtMy42NzguNTAzLjUwMyAwIDAwMC0uOTc1IDEzLjI0NSAxMy4yNDUgMCAwMS0yLjAwMy0uNjc4eiIgZmlsbD0idXJsKCNsb2JlLWljb25zLWdlbWluaS0wLV9SXzBfKSI+PC9wYXRoPjxwYXRoIGQ9Ik0yMC42MTYgMTAuODM1YTE0LjE0NyAxNC4xNDcgMCAwMS00LjQ1LTMuMDAxIDE0LjExMSAxNC4xMTEgMCAwMS0zLjY3OC02LjQ1Mi41MDMuNTAzIDAgMDAtLjk3NSAwIDE0LjEzNCAxNC4xMzQgMCAwMS0zLjY3OSA2LjQ1MiAxNC4xNTUgMTQuMTU1IDAgMDEtNC40NSAzLjAwMWMtLjY1LjI4LTEuMzE4LjUwNS0yLjAwMi42NzhhLjUwMi41MDIgMCAwMDAgLjk3NWMuNjg0LjE3MiAxLjM1LjM5NyAyLjAwMi42NzdhMTQuMTQ3IDE0LjE0NyAwIDAxNC40NSAzLjAwMSAxNC4xMTIgMTQuMTEyIDAgMDEzLjY3OSA2LjQ1My41MDIuNTAyIDAgMDAuOTc1IDBjLjE3Mi0uNjg1LjM5Ny0xLjM1MS42NzctMi4wMDNhMTQuMTQ1IDE0LjE0NSAwIDAxMy4wMDEtNC40NSAxNC4xMTMgMTQuMTEzIDAgMDE2LjQ1My0zLjY3OC41MDMuNTAzIDAgMDAwLS45NzUgMTMuMjQ1IDEzLjI0NSAwIDAxLTIuMDAzLS42Nzh6IiBmaWxsPSJ1cmwoI2xvYmUtaWNvbnMtZ2VtaW5pLTEtX1JfMF8pIj48L3BhdGg+PHBhdGggZD0iTTIwLjYxNiAxMC44MzVhMTQuMTQ3IDE0LjE0NyAwIDAxLTQuNDUtMy4wMDEgMTQuMTExIDE0LjExMSAwIDAxLTMuNjc4LTYuNDUyLjUwMy41MDMgMCAwMC0uOTc1IDAgMTQuMTM0IDE0LjEzNCAwIDAxLTMuNjc5IDYuNDUyIDE0LjE1NSAxNC4xNTUgMCAwMS00LjQ1IDMuMDAxYy0uNjUuMjgtMS4zMTguNTA1LTIuMDAyLjY3OGEuNTAyLjUwMiAwIDAwMCAuOTc1Yy42ODQuMTcyIDEuMzUuMzk3IDIuMDAyLjY3N2ExNC4xNDcgMTQuMTQ3IDAgMDE0LjQ1IDMuMDAxIDE0LjExMiAxNC4xMTIgMCAwMTMuNjc5IDYuNDUzLjUwMi41MDIgMCAwMC45NzUgMGMuMTcyLS42ODUuMzk3LTEuMzUxLjY3Ny0yLjAwM2ExNC4xNDUgMTQuMTQ1IDAgMDEzLjAwMS00LjQ1IDE0LjExMyAxNC4xMTMgMCAwMTYuNDUzLTMuNjc4LjUwMy41MDMgMCAwMDAtLjk3NSAxMy4yNDUgMTMuMjQ1IDAgMDEtMi4wMDMtLjY3OHoiIGZpbGw9InVybCgjbG9iZS1pY29ucy1nZW1pbmktMi1fUl8wXykiPjwvcGF0aD48ZGVmcz48bGluZWFyR3JhZGllbnQgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGlkPSJsb2JlLWljb25zLWdlbWluaS0wLV9SXzBfIiB4MT0iNyIgeDI9IjExIiB5MT0iMTUuNSIgeTI9IjEyIj48c3RvcCBzdG9wLWNvbG9yPSIjMDhCOTYyIj48L3N0b3A+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDhCOTYyIiBzdG9wLW9wYWNpdHk9IjAiPjwvc3RvcD48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgaWQ9ImxvYmUtaWNvbnMtZ2VtaW5pLTEtX1JfMF8iIHgxPSI4IiB4Mj0iMTEuNSIgeTE9IjUuNSIgeTI9IjExIj48c3RvcCBzdG9wLWNvbG9yPSIjRjk0NTQzIj48L3N0b3A+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRjk0NTQzIiBzdG9wLW9wYWNpdHk9IjAiPjwvc3RvcD48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgaWQ9ImxvYmUtaWNvbnMtZ2VtaW5pLTItX1JfMF8iIHgxPSIzLjUiIHgyPSIxNy41IiB5MT0iMTMuNSIgeTI9IjEyIj48c3RvcCBzdG9wLWNvbG9yPSIjRkFCQzEyIj48L3N0b3A+PHN0b3Agb2Zmc2V0PSIuNDYiIHN0b3AtY29sb3I9IiNGQUJDMTIiIHN0b3Atb3BhY2l0eT0iMCI+PC9zdG9wPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjwvc3ZnPg==", "n8n": "data:image/png;base64,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", "MCP": "data:image/svg+xml;base64,PHN2ZyBmaWxsPSJjdXJyZW50Q29sb3IiIGZpbGwtcnVsZT0iZXZlbm9kZCIgaGVpZ2h0PSIxZW0iIHN0eWxlPSJmbGV4Om5vbmU7bGluZS1oZWlnaHQ6MSIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMWVtIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZT5Nb2RlbENvbnRleHRQcm90b2NvbDwvdGl0bGU+PHBhdGggZD0iTTE1LjY4OCAyLjM0M2EyLjU4OCAyLjU4OCAwIDAwLTMuNjEgMGwtOS42MjYgOS40NGEuODYzLjg2MyAwIDAxLTEuMjAzIDAgLjgyMy44MjMgMCAwMTAtMS4xOGw5LjYyNi05LjQ0YTQuMzEzIDQuMzEzIDAgMDE2LjAxNiAwIDQuMTE2IDQuMTE2IDAgMDExLjIwNCAzLjU0IDQuMyA0LjMgMCAwMTMuNjA5IDEuMThsLjA1LjA1YTQuMTE1IDQuMTE1IDAgMDEwIDUuOWwtOC43MDYgOC41MzdhLjI3NC4yNzQgMCAwMDAgLjM5M2wxLjc4OCAxLjc1NGEuODIzLjgyMyAwIDAxMCAxLjE4Ljg2My44NjMgMCAwMS0xLjIwMyAwbC0xLjc4OC0xLjc1M2ExLjkyIDEuOTIgMCAwMTAtMi43NTRsOC43MDYtOC41MzhhMi40NyAyLjQ3IDAgMDAwLTMuNTRsLS4wNS0uMDQ5YTIuNTg4IDIuNTg4IDAgMDAtMy42MDctLjAwM2wtNy4xNzIgNy4wMzQtLjAwMi4wMDItLjA5OC4wOTdhLjg2My44NjMgMCAwMS0xLjIwNCAwIC44MjMuODIzIDAgMDEwLTEuMThsNy4yNzMtNy4xMzNhMi40NyAyLjQ3IDAgMDAtLjAwMy0zLjUzN3oiPjwvcGF0aD48cGF0aCBkPSJNMTQuNDg1IDQuNzAzYS44MjMuODIzIDAgMDAwLTEuMTguODYzLjg2MyAwIDAwLTEuMjA0IDBsLTcuMTE5IDYuOTgyYTQuMTE1IDQuMTE1IDAgMDAwIDUuOSA0LjMxNCA0LjMxNCAwIDAwNi4wMTYgMGw3LjEyLTYuOTgyYS44MjMuODIzIDAgMDAwLTEuMTguODYzLjg2MyAwIDAwLTEuMjA0IDBsLTcuMTE5IDYuOTgyYTIuNTg4IDIuNTg4IDAgMDEtMy42MSAwIDIuNDcgMi40NyAwIDAxMC0zLjU0bDcuMTItNi45ODJ6Ij48L3BhdGg+PC9zdmc+", "Telegram": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiMyQUFCRUUiLz48cGF0aCBkPSJNNS40IDExLjlsMTEuNy00LjZjLjYtLjIgMS4xLjEuOSAxbC0yIDkuNGMtLjEuNi0uNi44LTEuMS41bC0zLjEtMi4zLTEuNSAxLjRjLS4yLjItLjMuMy0uNi4zbC4yLTMuMSA1LjctNS4xYy4yLS4yIDAtLjMtLjQtLjFsLTcgNC40LTMtLjljLS43LS4yLS43LS42LjItLjl6IiBmaWxsPSIjZmZmIi8+PC9zdmc+", "Sheets": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTUgMWgxMGw1IDV2MTUuNUExLjUgMS41IDAgMCAxIDE4LjUgMjNoLTEzQTEuNSAxLjUgMCAwIDEgNCAyMS41di0xOUExLjUgMS41IDAgMCAxIDUgMXoiIGZpbGw9IiMwRjlENTgiLz48cGF0aCBkPSJNMTUgMXY1aDV6IiBmaWxsPSIjODdDRUFDIi8+PHBhdGggZD0iTTcgMTBoMTB2OUg3em0xLjMgMS4zdjJoMy4xdi0yem00LjQgMHYyaDN2LTJ6bS00LjQgMy4zdjIuMWgzLjF2LTIuMXptNC40IDB2Mi4xaDN2LTIuMXoiIGZpbGw9IiNmZmYiLz48L3N2Zz4="};
+const S=[
+{id:"1",no:"1",ph:1,t:"00:00–00:15",h:15,kind:"st",ic:"spark",lead:null,tools:["ChatGPT","Claude","Gemini"],
+ nm:{ar:"الذكاء الاصطناعي التوليدي",en:"Generative AI in 15 minutes"},
+ out:{ar:"يرى المشارك الوكيل النهائي أولاً، ثم القدرات الخمس بمثال لكل منها",en:"Participants see the finished agent first, then the five capabilities with one example each"},
+ steps:{ar:["أول 5 دقائق: زبون يسأل على Telegram والوكيل يرد من بيانات المتجر","القدرات الخمس: نص، صورة، صوت، فيديو، كود","مثال سريع لكل قدرة من عالم المشاريع الصغيرة","تركيز اليوم: توليد ردود خدمة العملاء النصية"],en:["First 5 minutes: a customer asks on Telegram and the agent answers from the store's data","The five capabilities: text, image, audio, video, code","One quick example per capability from small-business life","Today's focus: generating text replies for customer service"]},
+ P:[["1.A","Reply to a customer","رد على زبون","ChatGPT / Claude","You are a customer service employee at an online perfume shop in Abu Dhabi. Write a polite reply to a customer asking: Do you have the oud perfume in 100 ml, and how much is delivery to Al Ain? If you do not have the prices, say so and do not make them up.","أنت موظف خدمة عملاء في متجر عطور إلكتروني في أبوظبي. اكتب رداً مهذباً على زبون يسأل: هل يتوفر عطر العود بحجم 100 مل؟ وكم سعر التوصيل إلى العين؟ إذا لم تكن لديك الأسعار فقل ذلك ولا تخترعها."],["1.B","Five capabilities, one business","خمس قدرات لمشروع واحد","ChatGPT / Gemini","For my business [describe your business], give me one practical example for each generative AI capability: text, image, audio, video and code. A two-column table, under 100 words.","لمشروعي [صف مشروعك]، أعطني مثالاً عملياً واحداً لكل قدرة من قدرات الذكاء الاصطناعي التوليدي: النص، والصورة، والصوت، والفيديو، والكود. في جدول من عمودين، وبأقل من 100 كلمة."]],rule:null},
+{id:"2",no:"2",ph:1,t:"00:15–00:35",h:20,kind:"st",ic:"robot",lead:null,tools:["Claude"],
+ nm:{ar:"ما هو الوكيل الذكي؟",en:"What is an AI agent?"},
+ out:{ar:"الفرق بين Chatbot والأتمتة والوكيل: يفهم الهدف، يخطط، ينفذ، يراجع",en:"Chatbot vs automation vs agent: it understands the goal, plans, acts and checks"},
+ steps:{ar:["Chatbot: يرد على السؤال فقط","Automation: يكرر خطوات ثابتة","AI Agent: يفهم الهدف، يختار الأداة، ينفذ ويتحقق من النتيجة","أين يقف وكيل خدمة العملاء بين الثلاثة"],en:["Chatbot: answers the question only","Automation: repeats fixed steps","AI agent: understands the goal, picks the tool, acts and checks the result","Where a customer service agent sits among the three"]},
+ P:[["2.A","Compare the three","قارن بين الثلاثة","Claude / ChatGPT","Compare a chatbot, an automation and an AI agent for a small online shop: what does each one do when a customer asks \"Where is my order?\" A three-column table, then one line: when do I actually need an agent?","قارن بين Chatbot والأتمتة (Automation) ووكيل الذكاء الاصطناعي (AI Agent) لمتجر إلكتروني صغير: ماذا يفعل كل منها عندما يسأل الزبون «وين طلبي؟». جدول من ثلاثة أعمدة، ثم سطر واحد: متى أحتاج وكيلاً فعلاً؟"]],rule:null},
+{id:"3",no:"3",ph:1,t:"00:35–01:00",h:25,kind:"st",ic:"chip",lead:null,tools:["Claude"],
+ nm:{ar:"مكونات الوكيل الذكي",en:"The parts of an agent"},
+ out:{ar:"بطاقة مكونات لوكيل مشروعك: الهدف، العقل، التعليمات، الذاكرة، الأدوات، التنفيذ، الصلاحيات",en:"A component card for your own agent: goal, brain, instructions, memory, tools, execution, permissions"},
+ steps:{ar:["Goal: ماذا يحقق الوكيل لزبائنك","Brain: النموذج اللغوي الذي يفهم ويستدل","Instructions: الرد بالعربية وعدم اختلاق الأسعار","Memory: يتذكر المنتج الذي يسأل عنه الزبون","Tools وExecution: ما يستطيع فعله فعلاً","الصلاحيات: ما يُسمح له وما يُمنع"],en:["Goal: what the agent achieves for your customers","Brain: the language model that understands and reasons","Instructions: reply in Arabic, never invent prices","Memory: remembers the product the customer asked about","Tools and execution: what it can actually do","Permissions: what it may and may not do"]},
+ P:[["3.A","My agent's component card","بطاقة مكونات وكيلي","Claude","Help me design a customer service agent for my business [describe your business]. Fill a 7-item card: goal, brain (model), instructions, memory, tools, execution, permissions (what it may and may not do). One line per item, with a customer service example.","ساعدني في تصميم وكيل خدمة عملاء لمشروعي [صف مشروعك]. املأ بطاقة من 7 بنود: الهدف، والعقل (النموذج)، والتعليمات، والذاكرة، والأدوات، والتنفيذ، والصلاحيات (ما يُسمح له وما يُمنع). سطر واحد لكل بند، مع مثال من خدمة العملاء."]],rule:null},
+{id:"4",no:"4",ph:1,t:"01:00–01:25",h:25,kind:"st",ic:"plug",lead:null,tools:["n8n","MCP"],
+ nm:{ar:"القدرات الأربع الجديدة",en:"The four new capabilities"},
+ out:{ar:"Connector وSkill وExtension وCo-worker: الفرق بينها ومتى يحتاجها رائد الأعمال",en:"Connector, skill, extension and co-worker: how they differ and when a founder needs each"},
+ steps:{ar:["Connector: يربط الوكيل بالخدمات والبيانات (Telegram وGoogle Sheets)","Skill: مهمة قابلة لإعادة الاستخدام (البحث عن منتج، حساب رسوم التوصيل)","Extension: خدمة خارجية توسّع القدرات (نظام الطلبات أو المخزون)","Co-worker: الوكيل يحوّل المحادثة لموظف عند الحاجة"],en:["Connector: links the agent to services and data (Telegram, Google Sheets)","Skill: a reusable task (find a product, calculate delivery fees)","Extension: an outside service that adds capability (orders or stock system)","Co-worker: the agent hands the chat to a person when needed"]},
+ P:[["4.A","Classify my needs","صنّف احتياجاتي","Claude / ChatGPT","These are my shop's needs: [answer price questions, order status, delivery fees, receive complaints, check stock]. Classify each as connector, skill, extension or co-worker, and give the reason in one line.","هذه احتياجات متجري: [الرد على أسئلة الأسعار، معرفة حالة الطلب، حساب رسوم التوصيل، استلام الشكاوى، التحقق من المخزون]. صنّف كل حاجة: Connector أو Skill أو Extension أو Co-worker، واشرح السبب في سطر واحد."]],rule:null},
+{id:"brk",no:"",ph:2,t:"01:25–01:35",h:10,kind:"break",ic:"cup",lead:null,tools:[],
+ nm:{ar:"استراحة",en:"Break"},out:{ar:"والمدرب يتأكد أن بيئة البناء جاهزة لكل مشارك",en:"and the trainer checks the build workspace is ready for everyone"},
+ steps:{ar:["استراحة 10 دقائق","المدرب يتأكد أن بيئة n8n تعمل على جهاز كل مشارك"],en:["10-minute break","The trainer checks n8n works on every participant's laptop"]},P:[],rule:null},
+{id:"5",no:"5",ph:2,t:"01:35–02:15",h:40,kind:"lab",ic:"Telegram",lead:"Telegram",tools:["Telegram","n8n"],
+ nm:{ar:"بناء أول وكيل Telegram",en:"Build your first Telegram agent"},
+ out:{ar:"بوت يعمل على Telegram ويرسل أول رد ذكي",en:"A bot running on Telegram that sends its first smart reply"},
+ steps:{ar:["إنشاء البوت عبر BotFather والحصول على الرمز (Token)","عقدة Telegram Trigger في n8n","عقدة AI Agent: ربط النموذج وكتابة التعليمات","إرسال الرد عبر Telegram وتجربة أول رسالة"],en:["Create the bot with BotFather and get its token","Telegram Trigger node in n8n","AI Agent node: connect the model and write the instructions","Send the reply through Telegram and test the first message"]},
+ P:[["5.A","Agent instructions (system prompt)","تعليمات الوكيل","n8n · AI Agent node","You are \"[Shop name] Assistant\" for customer service on Telegram. Your goal: answer customers' questions about products, prices and delivery. Write in the customer's language, warm and short (3 lines at most). Never invent a price, date or fact that is not in your data; say \"Let me check with the team\" instead. Never ask for card details or passwords.","أنت «مساعد [اسم المتجر]» لخدمة العملاء على Telegram. هدفك: الإجابة عن أسئلة الزبائن حول المنتجات والأسعار والتوصيل. اكتب بلغة الزبون، بأسلوب ودود ومختصر (3 أسطر كحد أقصى). لا تخترع أي سعر أو موعد أو معلومة غير موجودة في بياناتك؛ وقل «سأتأكد لك من الفريق» بدلاً من ذلك. لا تطلب بيانات بطاقات أو كلمات مرور."],["5.B","First three test messages","أول ثلاث رسائل اختبار","Telegram","1) Hello, what do you sell?\n2) How much is delivery to Dubai? (it must not invent a number)\n3) مرحبا، عندكم توصيل؟ (check the reply language)","1) السلام عليكم، شو تبيعون؟\n2) كم سعر التوصيل لدبي؟ (يجب ألا يخترع رقماً)\n3) Hi, do you speak English? (لاحظ لغة الرد)"]],rule:null},
+{id:"6",no:"6",ph:2,t:"02:15–03:05",h:50,kind:"lab",ic:"Sheets",lead:"Sheets",tools:["Google Sheets","n8n","Telegram"],
+ nm:{ar:"إضافة الأدوات والذاكرة",en:"Add tools and memory"},
+ out:{ar:"الوكيل يجيب من جدول منتجات المتجر ويتذكر سياق المحادثة",en:"The agent answers from the shop's product sheet and remembers the conversation"},
+ steps:{ar:["جدول منتجات تجريبي في Google Sheets: المنتج، السعر، المتوفر، الوصف","ربط الجدول بالوكيل كأداة (Connector)","إضافة ذاكرة المحادثة مرتبطة بمعرّف محادثة الزبون","اختبار: سؤال، ثم متابعة «وكم سعره؟» دون ذكر المنتج"],en:["A sample product sheet in Google Sheets: product, price, stock, description","Connect the sheet to the agent as a tool (connector)","Add chat memory keyed to the customer's chat ID","Test: a question, then \"and how much is it?\" without naming the product"]},
+ P:[["6.A","Sample product sheet","جدول المنتجات التجريبي","Claude / ChatGPT","Create a synthetic product table for a [type of shop] in the UAE: 15 products with columns: code, name, category, price in AED, quantity in stock, short description. As CSV so I can paste it into Google Sheets.","أنشئ جدول منتجات افتراضياً لمتجر [نوع المتجر] في الإمارات: 15 منتجاً بالأعمدة: الرمز، الاسم، الفئة، السعر بالدرهم، الكمية المتوفرة، وصف قصير. بصيغة CSV لألصقه في Google Sheets."],["6.B","Search tool description","وصف أداة البحث","n8n · Google Sheets tool","Use this tool to look up any product in the product sheet before you mention its price or availability. Search by name or category. If the product is not found, tell the customer and suggest the closest alternative from the sheet.","استخدم هذه الأداة للبحث عن أي منتج في جدول المنتجات قبل ذكر سعره أو توفره. ابحث بالاسم أو الفئة. إذا لم تجد المنتج فأخبر الزبون بذلك واقترح أقرب بديل من الجدول."],["6.C","Memory test","اختبار الذاكرة","Telegram","1) Do you have the oud perfume?\n2) And how much is it?\n3) I want two, what is the total?\nThe agent should understand that messages 2 and 3 are about the same product.","1) عندكم عطر العود؟\n2) وكم سعره؟\n3) أبغى اثنين، كم المجموع؟\nيجب أن يفهم الوكيل أن الرسالتين الثانية والثالثة عن المنتج نفسه."]],rule:null},
+{id:"7",no:"7",ph:2,t:"03:05–03:40",h:35,kind:"lab",ic:"n8n",lead:"n8n",tools:["n8n","Telegram","Google Sheets"],
+ nm:{ar:"من بوت إلى مساعد أعمال",en:"From bot to business assistant"},
+ out:{ar:"مهارة قابلة لإعادة الاستخدام، وخدمة إضافية، وتصعيد لموظف بقواعد أمان",en:"A reusable skill, an extra service, and hand-off to a person with safety rules"},
+ steps:{ar:["Skill: حساب رسوم التوصيل حسب الإمارة","Extension: ربط خدمة إضافية مثل حالة الطلب أو المخزون","Co-worker: تحويل المحادثة لموظف مع ملخص","حدود الصلاحيات: ما لا يفعله الوكيل أبداً"],en:["Skill: calculate delivery fees by emirate","Extension: connect an extra service such as order status or stock","Co-worker: hand the chat to a person with a summary","Permission limits: what the agent never does"]},
+ P:[["7.A","Delivery fee skill","مهارة رسوم التوصيل","n8n · sub-workflow","When a customer asks about delivery: ask for the emirate if they did not mention it, then use the delivery table (emirate, fee, delivery time). Orders over 200 AED get free delivery. State the fee and the time in one line.","عند سؤال الزبون عن التوصيل: اسأله عن الإمارة إن لم يذكرها، ثم استخدم جدول التوصيل (الإمارة، الرسوم، مدة التوصيل). الطلبات فوق 200 درهم توصيلها مجاني. اذكر الرسوم والمدة في سطر واحد."],["7.B","Escalation rules","قواعد التصعيد","n8n · AI Agent node","Hand the chat to the staff member on duty right away, and send them a 3-line summary (customer, request, reason), when: there is a complaint or refund request, the answer is not in your data, the customer is upset, or they ask for a special discount. Tell the customer: \"I have passed your request to my colleague, who will contact you shortly.\"","حوّل المحادثة إلى الموظف المسؤول فوراً، وأرسل له ملخصاً من 3 أسطر (الزبون، الطلب، سبب التصعيد)، في هذه الحالات: شكوى أو طلب استرجاع، أو سؤال لا تجد إجابته في البيانات، أو زبون منزعج، أو طلب خصم خاص. وأخبر الزبون: «حوّلت طلبك لزميلي وسيتواصل معك قريباً»."],["7.C","Permission limits","حدود الصلاحيات","n8n · AI Agent node","Do not confirm an order or a payment, do not change prices, do not promise a delivery time that is not in the table, and never share another customer's data.","لا تؤكد طلباً أو دفعة، ولا تعدّل الأسعار، ولا تعد بموعد توصيل غير موجود في الجدول، ولا تشارك بيانات أي زبون آخر."]],rule:null},
+{id:"h",no:"8",ph:2,t:"",h:0,kind:"st",ic:"server",lead:null,tools:["Hermes Agent","Telegram","WhatsApp"],
+ nm:{ar:"بديل جاهز: Hermes Agent",en:"A ready-made option: Hermes Agent"},
+ out:{ar:"عرض حي لوكيل مفتوح المصدر يعمل على Telegram وWhatsApp، ومتى تختاره بدل n8n",en:"A live demo of an open-source agent on Telegram and WhatsApp, and when to choose it over n8n"},
+ steps:{ar:["ما هو Hermes Agent: وكيل مفتوح المصدر من Nous Research يعمل على خادمك","بوابة واحدة تربطه بـ Telegram وWhatsApp وغيرهما","ذاكرة دائمة، ومهارات بصيغة SKILL.md يعيد استخدامها","مهام مجدولة: تقرير يومي يصلك على Telegram","n8n أم Hermes: متى تختار كل واحد؟"],en:["What Hermes Agent is: an open-source agent from Nous Research that runs on your own server","One gateway connects it to Telegram, WhatsApp and more","Lasting memory, and reusable skills in the SKILL.md format","Scheduled tasks: a daily report delivered to Telegram","n8n or Hermes: when to choose each"]},
+ P:[["8.A","Shop questions skill","مهارة أسئلة المتجر","Hermes Agent · SKILL.md","Write a SKILL.md file for a skill called \"[Shop name] questions\": when to use it (price, availability and delivery questions), and the steps: search the product sheet first, reply in the customer's language in 3 lines, never invent a price, and hand complaints to a staff member with a summary.","اكتب ملف SKILL.md لمهارة اسمها «أسئلة متجر [اسم المتجر]»: متى تُستخدم (أسئلة الأسعار والتوفر والتوصيل)، والخطوات: ابحث في جدول المنتجات أولاً، ورد بلغة الزبون في 3 أسطر، ولا تخترع أي سعر، وحوّل الشكاوى لموظف مع ملخص."],["8.B","Daily scheduled report","التقرير اليومي المجدول","Hermes Agent · scheduled tasks","Every day at 9 am: summarise yesterday's customer chats: number of questions, the 3 most asked-about products, and the cases handed to a staff member. Send the summary to me on Telegram.","كل يوم الساعة 9 صباحاً: لخّص محادثات الزبائن أمس: عدد الأسئلة، وأكثر 3 منتجات سُئل عنها، والحالات التي حُوّلت لموظف. وأرسل الملخص لي على Telegram."],["8.C","n8n or Hermes?","n8n أم Hermes؟","Claude / ChatGPT","Compare building a customer service agent in n8n with running Hermes Agent for a small business: ease of starting, control over the steps, hosting, cost and maintenance. A table, then a two-line recommendation for my business [describe your business].","قارن بين بناء وكيل خدمة العملاء في n8n وتشغيل Hermes Agent لمشروع صغير: سهولة البدء، والتحكم في الخطوات، والاستضافة، والتكلفة، والصيانة. جدول، ثم توصية في سطرين لمشروعي [صف مشروعك]."]],rule:null},
+{id:"9",no:"9",ph:2,t:"03:40–04:00",h:20,kind:"st",ic:"flag",lead:null,tools:["Telegram"],
+ nm:{ar:"التحدي النهائي",en:"The final challenge"},
+ out:{ar:"كل مشارك يختبر وكيله برسائل الزبائن ويتحقق من دقة الردود والتصعيد",en:"Every participant tests their agent with customer messages and checks accuracy and hand-off"},
+ steps:{ar:["المشاركون يتبادلون رسائل اختبار على وكلاء بعضهم","هل الرد من البيانات؟ هل يعترف بما لا يعرفه؟","هل صعّد الحالات الصحيحة إلى موظف؟","الخطوة التالية لكل مشارك في مشروعه"],en:["Participants send test messages to each other's agents","Is the reply from the data? Does it admit what it does not know?","Did it hand the right cases to a person?","Each participant's next step for their own business"]},
+ P:[["8.A","Test messages","رسائل الاختبار","Telegram","Do you deliver to Ras Al Khaimah?\nMy order arrived broken!\nI want a 50% discount.\nHow much is [a product not in the sheet]?\nWhat is a good gift under 150 AED?\nCan I have a staff member's number?","عندكم توصيل لرأس الخيمة؟\nالمنتج وصلني مكسور!\nأبغى خصم 50%\nكم سعر [منتج غير موجود في الجدول]؟\nشو أفضل هدية بأقل من 150 درهم؟\nممكن رقم موظف؟"],["8.B","Scorecard","بطاقة التقييم","Peer review","Score your agent: 1) never invented a price 2) replied in the customer's language 3) remembered the conversation 4) escalated the complaint and the discount request 5) replied within seconds 6) shared no sensitive data.","قيّم وكيلك: 1) لم يخترع أي سعر 2) رد بلغة الزبون 3) تذكّر سياق المحادثة 4) صعّد الشكوى وطلب الخصم 5) رد خلال ثوانٍ 6) لم يشارك أي بيانات حساسة."]],
+ rule:{ar:"الوكيل يجيب من البيانات، والإنسان يتولى الاستثناءات",en:"The agent answers from data; people handle the exceptions"}}
+];
+const CON=[
+ ["Generative AI",{ar:"ينتج النص والصورة والصوت والفيديو والكود",en:"Produces text, images, audio, video and code"},{ar:"نركز على توليد الردود النصية",en:"We focus on generating text replies"},1,["1"]],
+ ["AI Agent",{ar:"يفهم الهدف، يختار الأدوات، ينفذ ويتحقق من النتيجة",en:"Understands the goal, picks tools, acts and checks the result"},{ar:"يخدم العميل ويتعامل مع استفساراته",en:"Serves the customer and handles their questions"},1,["2"]],
+ ["Brain / LLM",{ar:"النموذج المسؤول عن فهم اللغة والاستدلال",en:"The model that understands language and reasons"},{ar:"نموذج ذكاء اصطناعي متصل بـ n8n",en:"An AI model connected to n8n"},2,["3","5"]],
+ ["Instructions",{ar:"تعليمات الوكيل وحدود عمله",en:"The agent's instructions and limits"},{ar:"الرد بالعربية، وعدم اختلاق الأسعار",en:"Reply in Arabic, never invent prices"},2,["3","5"]],
+ ["Memory",{ar:"الاحتفاظ بسياق المحادثة",en:"Keeps the conversation's context"},{ar:"يتذكر المنتج الذي يسأل عنه العميل",en:"Remembers the product the customer asked about"},2,["3","6","8"]],
+ ["Connector",{ar:"ربط النظام بالخدمات والبيانات",en:"Links the system to services and data"},{ar:"ربط Telegram وGoogle Sheets",en:"Connect Telegram and Google Sheets"},3,["4","6"]],
+ ["Skill",{ar:"قدرة أو مهمة قابلة لإعادة الاستخدام",en:"A reusable ability or task"},{ar:"البحث عن منتج أو حساب رسوم التوصيل",en:"Find a product or calculate delivery fees"},3,["4","7","8"]],
+ ["Extension / Cloud",{ar:"توسيع القدرات باستخدام خدمات خارجية",en:"Extends capability with outside services"},{ar:"الاتصال بنظام الطلبات أو المخزون",en:"Connect to the orders or stock system"},3,["4","7"]],
+ ["Co-worker",{ar:"تعاون الوكيل مع الإنسان",en:"The agent working alongside people"},{ar:"تحويل المحادثة لموظف عند الحاجة",en:"Hand the chat to a staff member when needed"},3,["4","7"]]
+];
+(function(){
+const root=document.documentElement,$=id=>document.getElementById(id);
+const N=S.length,esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const LMAP=[["Telegram","Telegram"],["Sheets","Sheets"],["ChatGPT","ChatGPT"],["Gemini","Gemini"],["Claude","Claude"],["MCP","MCP"],["n8n","n8n"]];
+const logoOf=n=>{const m=LMAP.find(([a])=>n.includes(a));return m?m[1]:null;};
+const IC={chip:'<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M10 10h4v4h-4zM9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',spark:'<path d="M12 3l1.8 4.6L18 9.5l-4.2 1.9L12 16l-1.8-4.6L6 9.5l4.2-1.9z"/><path d="M19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/>',plug:'<path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4"/>',robot:'<rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 5v3M9.5 13h.01M14.5 13h.01M9.5 16h5"/><circle cx="12" cy="4" r="1"/>',server:'<rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/>',flag:'<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',cup:'<path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M16 11h2a2 2 0 0 1 0 4h-2M8 3v3M12 3v3"/>'};
+const ico=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]||IC.spark}</svg>`;
+const T={ar:{dir:"rtl",lang:"English",eyebrow:"صندوق خليفة لتطوير المشاريع · تقديم: عبدالله الدرعي",h1:"ابنِ وكيلك الذكي لخدمة العملاء",lede:"ورشة لرواد الأعمال · يوم واحد · 4 ساعات · n8n وTelegram · مستوى مبتدئ",
+ phase:{1:["الفهم","00:00–01:25"],2:["البناء","01:35–04:00"]},mapLbl:["يوم واحد","من الفكرة إلى وكيل يعمل في 4 ساعات"],
+ storyA:["تبدأ الورشة","بعرض الوكيل النهائي وهو يرد على زبون"],storyB:["وتنتهي","وكل مشارك لديه وكيل يعمل على Telegram"],
+ here:"نحن هنا",next:"التالي",overview:"نظرة عامة على الورشة",end:"نهاية الورشة",det:"تفاصيل المحطة",prev:"السابقة",nxt:"التالية",kbd:"أثناء العرض: السهم ← للتالي، والسهم → للسابق.",
+ st:"المحطة",of:"من",lab:"تطبيق",labOf:"تطبيق عملي",brk:"استراحة",out:"المخرج",labOut:"ما يبنيه المشارك",what:"ماذا يحدث في المحطة",labWhat:"خطوات التطبيق",tools:"الأدوات",cmds:"أوامر جاهزة",runIn:"أين يُستخدم",copy:"نسخ",copied:"تم النسخ",min:"دقيقة",
+ conH:"المفاهيم التسعة وأين تظهر في الورشة",conS:"كل مفهوم يُشرح أولاً، ثم يطبقه المتدرب على وكيل Telegram نفسه. اضغط رقم المحطة لفتحها.",conCols:["المفهوم","ماذا نشرح للمتدرب","التطبيق على وكيل Telegram","المحطة"],grp:{1:"أساسيات",2:"مكونات",3:"قدرات"},
+ note:"<b>ملاحظة:</b> القدرات الأربع الأخيرة ليست كلها مكونات مستقلة لأي وكيل، وبعضها يتداخل. الـConnector يوفّر الاتصال، والأداة (Tool) تنفّذ الإجراء، والـSkill قدرة تُبنى من أداة أو أكثر. أما Co-worker فهو أسلوب تعاون بين الإنسان والذكاء الاصطناعي.",
+ archH:"كيف يرى المتدرب كل المكونات في مشروع واحد",archS:"مخطط مفاهيمي؛ تُنفَّذ القدرات داخل n8n بعُقد وتدفقات عمل مترابطة.",
+ arch:{tg:["الزبون يرسل استفساره"],ag:["AI Agent في n8n","العقل + التعليمات + الهدف"],mem:"يتذكر المحادثة",con:"يتصل بالبيانات",sk:"ينفذ مهمة محددة",ext:"يستخدم خدمة خارجية",rep:["الرد الآلي","عند توفر معلومة موثوقة"],cw:["Co-worker","التصعيد لموظف عند الحاجة"]},
+ growH:"الوكيل يكبر أمام المتدرب خطوة بخطوة",growS:"مفهوم واحد يتطور طوال الجزء العملي بدلاً من شرح كل أنواع الوكلاء.",
+ grow:[["5","البوت يرد","أول رد ذكي على Telegram"],["6","يقرأ بيانات المتجر","يجيب من جدول المنتجات"],["6","يتذكر","يفهم «وكم سعره؟»"],["7","ينفذ مهمة","يحسب رسوم التوصيل"],["7","يحوّل للمسؤول","يصعّد الشكاوى لموظف"]],
+ outsH:"ماذا يخرج به كل مشارك",outs:[["3","بطاقة مكونات لوكيل مشروعه"],["5","بوت Telegram يعمل"],["6","وكيل يجيب من بيانات متجره ويتذكر"],["7","تصعيد لموظف بقواعد أمان واضحة"],["9","وكيل مختبر برسائل زبائن"]],
+ prepH:"التحضير والنطاق",prepA:"تحضير المدرب قبل الورشة",prep:["بيئة n8n جاهزة لكل مشارك، مع ربط نموذج الذكاء الاصطناعي مسبقاً","وكيل تجريبي كامل على Telegram للعرض في أول خمس دقائق","جدول منتجات وجدول توصيل تجريبيان في Google Sheets","سير عمل احتياطي جاهز لمن يتأخر في البناء","وكيل Hermes Agent يعمل على خادم ومتصل بـ Telegram وWhatsApp للعرض الحي","المشارك لا يحتاج أي تحضير؛ يحضر بجهازه المحمول فقط"],prepB:"ما نختصره أو نؤجله",cut:[["أنواع الوكلاء بالتفصيل","شريحة مختصرة، أو ورشة متقدمة لاحقة"],["الصور والصوت والفيديو","مثال سريع لكل قدرة في المحطة الأولى فقط"],["الأتمتة المعقدة متعددة الأنظمة","خارج نطاق المبتدئين"]],
+ factsH:"الورشة بالأرقام",facts:[["1","يوم"],["4","ساعات"],["9","محطات"],["3","تطبيقات عملية"],["9","مفاهيم"]],
+ foot:"صندوق خليفة لتطوير المشاريع · تقديم: عبدالله الدرعي · جميع الأمثلة افتراضية"},
+ en:{dir:"ltr",lang:"عربي",eyebrow:"Khalifa Fund for Enterprise Development · Presented by Abdulla AlDerei",h1:"Build Your AI Customer Service Agent",lede:"A workshop for entrepreneurs · 1 day · 4 hours · n8n and Telegram · beginner level",
+ phase:{1:["Understand","00:00–01:25"],2:["Build","01:35–04:00"]},mapLbl:["One day","From idea to a working agent in 4 hours"],
+ storyA:["The workshop starts","by showing the finished agent answering a customer"],storyB:["And ends","with every participant running an agent on Telegram"],
+ here:"We are here",next:"Next",overview:"Workshop overview",end:"End of the workshop",det:"Station details",prev:"Previous",nxt:"Next",kbd:"While presenting: → for next, ← for previous.",
+ st:"Station",of:"of",lab:"Lab",labOf:"Hands-on lab",brk:"Break",out:"Output",labOut:"What participants build",what:"What happens here",labWhat:"Lab steps",tools:"Tools",cmds:"Ready prompts",runIn:"Use in",copy:"Copy",copied:"Copied",min:"min",
+ conH:"The nine concepts and where they appear",conS:"Each concept is explained first, then applied to the same Telegram agent. Tap a station number to open it.",conCols:["Concept","What we explain","Applied to the Telegram agent","Station"],grp:{1:"Basics",2:"Parts",3:"Capabilities"},
+ note:"<b>Note:</b> the last four capabilities are not all separate parts of every agent, and some overlap. A connector provides the link, a tool performs the action, and a skill is a capability built from one or more tools. Co-worker is a way of working between people and AI.",
+ archH:"How participants see every part in one project",archS:"A conceptual map; the capabilities are built inside n8n as connected nodes and workflows.",
+ arch:{tg:["The customer sends a question"],ag:["AI Agent in n8n","brain + instructions + goal"],mem:"remembers the chat",con:"reaches the data",sk:"runs a specific task",ext:"uses an outside service",rep:["Automatic reply","when the information is reliable"],cw:["Co-worker","hand-off to a person when needed"]},
+ growH:"The agent grows in front of participants",growS:"One idea that develops through the hands-on part, instead of covering every type of agent.",
+ grow:[["5","The bot replies","First smart reply on Telegram"],["6","Reads the shop's data","Answers from the product sheet"],["6","Remembers","Understands \"how much is it?\""],["7","Runs a task","Calculates delivery fees"],["7","Hands off","Escalates complaints to a person"]],
+ outsH:"What every participant leaves with",outs:[["3","A component card for their own agent"],["5","A working Telegram bot"],["6","An agent that answers from their data and remembers"],["7","Hand-off to a person with clear safety rules"],["9","An agent tested with customer messages"]],
+ prepH:"Preparation and scope",prepA:"Trainer preparation before the workshop",prep:["A ready n8n workspace for every participant, with the AI model already connected","A complete demo agent on Telegram to show in the first five minutes","Sample product and delivery sheets in Google Sheets","A ready backup workflow for anyone who falls behind","A Hermes Agent running on a server, connected to Telegram and WhatsApp for the live demo","Participants prepare nothing; they only bring a laptop"],prepB:"What we shorten or postpone",cut:[["Agent types in detail","One short slide, or a later advanced workshop"],["Images, audio and video","One quick example each in station 1 only"],["Complex multi-system automation","Out of scope for beginners"]],
+ factsH:"The workshop in numbers",facts:[["1","day"],["4","hours"],["9","stations"],["3","hands-on labs"],["9","concepts"]],
+ foot:"Khalifa Fund for Enterprise Development · Presented by Abdulla AlDerei · all examples are synthetic"}};
+let lang="ar";
+const nTot=S.filter(s=>s.kind!=="break").length;
+/* geometry: 3 per row */
+const VBW=1200,R1=[960,600,240],R2=[240,600,960],LX=150,RX=1050;
+const rows=[];for(let k=0;k<N;k+=3)rows.push(S.slice(k,k+3));
+const Y=[];let y=250;rows.forEach((r,i)=>{if(i>0)y+=330;Y.push(y);});
+const panels=[[16,y+190]];const VBH=y+210;
+const POS={};rows.forEach((r,i)=>r.forEach((s,k)=>POS[s.id]=[(i%2===0?R1:R2)[k],Y[i]]));
+let d=`M1150 ${Y[0]}`;rows.forEach((r,i)=>{const last=i===rows.length-1;if(last){const lx=POS[r[r.length-1].id][0];d+=` L${i%2===0?lx-110:lx+110} ${Y[i]}`;}else{const ry=(Y[i+1]-Y[i])/2;d+=i%2===0?` L${LX} ${Y[i]} A135 ${ry} 0 0 0 ${LX} ${Y[i+1]}`:` L${RX} ${Y[i]} A135 ${ry} 0 0 1 ${RX} ${Y[i+1]}`;}});
+function dotHTML(s){if(s.kind==="break")return ico("cup");const lg=s.lead?logoOf(s.lead):null;const l2=s.kind==="lab"&&s.tools[1]?logoOf(s.tools[1]):null;
+ return `${l2&&l2!==lg?`<span class="l2"><img src="${LOGO[l2]}" alt=""></span>`:""}${lg?`<img class="lg" src="${LOGO[lg]}" alt="">`:ico(s.ic)}<span class="n">${s.no}</span>`;}
+const dotCls=s=>s.kind==="lab"?"lab":s.kind==="break"?"brk":"";
+const chip=x=>{const l=logoOf(x);return `<span class="chip">${l?`<img src="${LOGO[l]}" alt="">`:""}${esc(x)}</span>`;};
+const chipsOf=s=>s.tools.map(chip).join("")+(s.rule?`<span class="chip rule">${esc(s.rule[lang])}</span>`:"");
+const tm=s=>"";
+const idx=id=>S.findIndex(s=>s.id===id)+1;
+function build(){const t=T[lang];root.lang=lang;root.dir=t.dir;
+ $("eyebrow").textContent=t.eyebrow;$("h1").textContent=t.h1;$("lede").textContent=t.lede;$("langBtn").textContent=t.lang;$("foot").textContent=t.foot;
+ $("story").innerHTML=`<div class="end"><span class="n">1</span><div><small>${t.storyA[0]}</small><b>${t.storyA[1]}</b></div></div><div class="mid"><div class="mini"></div><div class="lg">${["Telegram","n8n","Sheets","Claude","ChatGPT","Gemini"].map(k=>`<img src="${LOGO[k]}" alt="">`).join("")}</div></div><div class="end fin"><span class="n">9</span><div><small>${t.storyB[0]}</small><b>${t.storyB[1]}</b></div></div>`;
+ $("hereL").textContent=t.here;$("nextL").textContent=t.next;$("detBtn").textContent=t.det;$("kbd").textContent=t.kbd;
+ $("prevBtn").textContent=lang==="ar"?"→":"←";$("nextBtn").textContent=lang==="ar"?"←":"→";
+ const flipX=x=>lang==="ar"?x:VBW-x;
+ let h=`<div style="position:relative;width:100%;aspect-ratio:${VBW}/${VBH}"><svg class="rope" viewBox="0 0 ${VBW} ${VBH}" aria-hidden="true" style="${lang==="en"?"transform:scaleX(-1)":""}"><defs><linearGradient id="gRope" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--rope)"/><stop offset="1" style="stop-color:var(--rope2)"/></linearGradient></defs>
+ ${panels.map(([a,b])=>`<rect class="panel" x="16" y="${a}" width="1168" height="${b-a}" rx="30"/>`).join("")}
+ <path id="ropePath" class="rope-base" d="${d}"/><path id="ropeDone" class="rope-done" d="${d}"/><circle class="mk" cx="1150" cy="${Y[0]}" r="21"/><polygon class="mk-tri" points="1157,${Y[0]-10} 1157,${Y[0]+10} 1141,${Y[0]}"/></svg>`;
+ h+=`<div class="dayl" style="top:${60/VBH*100}%"><b>${t.mapLbl[0]}</b><span>${t.mapLbl[1]}</span></div>`;
+ S.forEach((s,i)=>{const [x,yy]=POS[s.id],lab=s.kind==="lab";
+  h+=`<div class="st ${lab?"labst":""}" data-i="${i+1}" style="left:${flipX(x)/VBW*100}%;top:${yy/VBH*100}%"><div class="lbl"><span class="tag here-t">${t.here}</span>${tm(s)}${lab?`<span class="ltag">${t.lab} · ${s.no}</span>`:""}<b>${esc(s.nm[lang])}</b><span class="o">${esc(s.out[lang])}</span></div><button class="dot ${dotCls(s)}" type="button" aria-label="${esc(s.nm[lang])}">${dotHTML(s)}</button>${(s.tools.length||s.rule)?`<div class="chips">${chipsOf(s)}</div>`:""}</div>`;});
+ $("map").innerHTML=h+`</div>`;
+ let l="";[1,2].forEach(p=>{l+=`<div class="lday"><b>${t.phase[p][0]}</b></div><div class="lgroup">`;
+  S.forEach((s,i)=>{if(s.ph!==p)return;const lab=s.kind==="lab";l+=`<button type="button" class="li ${lab?"labli":""}" data-i="${i+1}"><span class="dot ${dotCls(s)}">${dotHTML(s)}</span><span class="tx"><span class="tag here-t">${t.here}</span>${tm(s)}${lab?`<span class="ltag">${t.lab} · ${s.no}</span>`:""}<b>${esc(s.nm[lang])}</b><span class="o">${esc(s.out[lang])}</span>${(s.tools.length||s.rule)?`<span class="cl">${chipsOf(s)}</span>`:""}</span></button>`;});l+=`</div>`;});
+ $("list").innerHTML=l;
+ $("conceptSec").innerHTML=`<h2>${t.conH}</h2><p class="sub">${t.conS}</p><div class="tblw"><table><thead><tr>${t.conCols.map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>${CON.map(c=>`<tr><td class="cn"><b>${c[0]}</b><span class="grp ${c[3]===3?"k3":""}">${t.grp[c[3]]}</span></td><td>${esc(c[1][lang])}</td><td>${esc(c[2][lang])}</td><td><div class="stn">${c[4].map(n=>`<button type="button" data-go="${n}">${n}</button>`).join("")}</div></td></tr>`).join("")}</tbody></table></div><div class="callout">${t.note}</div>`;
+ const a=t.arch;
+ $("archSec").innerHTML=`<h2>${t.archH}</h2><p class="sub">${t.archS}</p><div class="arch">
+  <div class="node"><span class="k"><img src="${LOGO.Telegram}" alt="">Telegram</span><b>${a.tg[0]}</b></div><div class="arw" aria-hidden="true">↓</div>
+  <div class="node hero"><span class="k"><img src="${LOGO.n8n}" alt="">${a.ag[0]}</span><span>${a.ag[1]}</span></div><div class="arw" aria-hidden="true">↓</div>
+  <div class="row4">${[["Memory",a.mem],["Connector",a.con],["Skill",a.sk],["Extension",a.ext]].map(x=>`<div class="node"><span class="k">${x[0]}</span><span>${x[1]}</span></div>`).join("")}</div><div class="arw" aria-hidden="true">↓</div>
+  <div class="row2"><div class="node ok"><span class="k">${a.rep[0]}</span><span>${a.rep[1]}</span></div><div class="node esc"><span class="k">${a.cw[0]}</span><span>${a.cw[1]}</span></div></div>
+  </div>`;
+ $("growSec").innerHTML=`<h2>${t.growH}</h2><p class="sub">${t.growS}</p><div class="grow">${t.grow.map(g=>`<div class="gs"><small>${t.st} ${g[0]}</small><b>${g[1]}</b><span>${g[2]}</span></div>`).join("")}</div>`;
+ $("outsSec").innerHTML=`<h2>${t.outsH}</h2><div class="outs">${t.outs.map(o=>`<div class="out"><small>${t.st} ${o[0]}</small><b>${o[1]}</b></div>`).join("")}</div>`;
+ $("prepSec").innerHTML=`<h2>${t.prepH}</h2><div class="two"><div class="box"><h3>${t.prepA}</h3><ul>${t.prep.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="box"><h3>${t.prepB}</h3><ul>${t.cut.map(x=>`<li>${x[0]} <span>· ${x[1]}</span></li>`).join("")}</ul></div></div>`;
+ $("factsSec").innerHTML=`<h2>${t.factsH}</h2><div class="facts">${t.facts.map(f=>`<div class="fact"><b>${f[0]}</b><span>${f[1]}</span></div>`).join("")}</div>`;
+ L=[];render(false);if(open)fillDr(open);}
+let total=0,L=[];
+function measure(){if(L.length)return;const rp=$("ropePath");if(!rp)return;try{total=rp.getTotalLength();if(!total)return;const pts=[];for(let s=0;s<=total;s+=4){const p=rp.getPointAtLength(s);pts.push([s,p.x,p.y]);}
+ L=S.map(s=>{const q=POS[s.id];let best=0,bd=Infinity;pts.forEach(p=>{const dd=(p[1]-q[0])**2+(p[2]-q[1])**2;if(dd<bd){bd=dd;best=p[0];}});return best;});}catch(e){L=[];}}
+let cur=0,open=0,lastFocus=null;const mq=matchMedia("(min-width:1000px)"),reduce=matchMedia("(prefers-reduced-motion: reduce)");
+const lblOf=s=>s.kind==="break"?esc(s.nm[lang]):`${s.kind==="lab"?`<span class="lt">${T[lang].lab} ${s.no}</span>`:`${s.no} · `}${esc(s.nm[lang])}`;
+function render(scroll){const t=T[lang];
+ document.querySelectorAll(".st[data-i],.li[data-i]").forEach(el=>{const i=+el.dataset.i;el.classList.toggle("done",cur>0&&i<cur);el.classList.toggle("cur",i===cur);el.classList.toggle("dim",cur>0&&i>cur);});
+ $("hereNow").innerHTML=cur?lblOf(S[cur-1]):t.overview;$("hereNext").innerHTML=cur<N?lblOf(S[cur]):t.end;
+ $("prevBtn").disabled=cur===0;$("nextBtn").disabled=cur===N;$("detBtn").hidden=cur===0;$("progBar").style.width=(cur/N*100)+"%";
+ measure();const rd=$("ropeDone");if(L.length&&rd){rd.style.strokeDasharray=cur?(L[cur-1]+" "+total):("0 "+total);rd.style.visibility=cur?"visible":"hidden";}
+ if(scroll&&cur){const el=document.querySelector(mq.matches?`.st[data-i="${cur}"] .dot`:`.li[data-i="${cur}"]`);if(el){const r=el.getBoundingClientRect();if(r.top<80||r.bottom>innerHeight-40)el.scrollIntoView({block:"center",behavior:reduce.matches?"auto":"smooth"});}}}
+const setCur=(n,sc)=>{cur=Math.max(0,Math.min(N,n));render(sc);};
+function fillDr(n){const t=T[lang],s=S[n-1],lab=s.kind==="lab",brk=s.kind==="break";
+ const head=brk?t.brk:(lab?`${t.labOf} · ${t.st} ${s.no} ${t.of} ${nTot}`:`${t.st} ${s.no} ${t.of} ${nTot}`);
+ $("dp").innerHTML=`<div class="dh"><div class="dot ${dotCls(s)}">${dotHTML(s)}</div><div class="tt"><small>${head}</small><h2>${esc(s.nm[lang])}</h2></div><button class="x" id="drClose" type="button" aria-label="×">×</button></div>
+ <div class="dout ${lab?"lab":""}"><small>${lab?t.labOut:t.out}</small><p>${esc(s.out[lang])}</p></div>
+ <h3>${lab?t.labWhat:t.what}</h3><ol>${s.steps[lang].map(x=>`<li>${esc(x)}</li>`).join("")}</ol>
+ ${s.tools.length?`<div><h3 style="margin-bottom:8px">${t.tools}</h3><div class="tchips">${s.tools.map(chip).join("")}</div></div>`:""}
+ ${s.P.length?`<div><h3 style="margin-bottom:8px">${t.cmds} (${s.P.length})</h3>${s.P.map((p,i)=>`<details class="pr"><summary><b><bdi>${p[0]}</bdi></b> ${esc(lang==="ar"?p[2]:p[1])}</summary><div class="pmeta">${t.runIn}: ${esc(p[3])}</div><div class="ptext" dir="${t.dir}">${esc(lang==="ar"?p[5]:p[4])}</div><button class="cp" type="button" data-p="${i}">${t.copy}</button></details>`).join("")}</div>`:""}
+ ${s.rule?`<p class="drule">${esc(s.rule[lang])}</p>`:""}
+ <div class="dfoot"><button type="button" id="drPrev" ${n===1?"disabled":""}>${lang==="ar"?"→":"←"} ${t.prev}</button><button type="button" id="drNext" class="pri" ${n===N?"disabled":""}>${t.nxt} ${lang==="ar"?"←":"→"}</button></div>`;
+ $("drClose").onclick=closeDr;$("drPrev").onclick=()=>go(open-1);$("drNext").onclick=()=>go(open+1);
+ $("dp").querySelectorAll(".cp").forEach(b=>b.onclick=async()=>{const p=s.P[+b.dataset.p],x=lang==="ar"?p[5]:p[4];try{await navigator.clipboard.writeText(x)}catch(e){const a=document.createElement("textarea");a.value=x;document.body.appendChild(a);a.select();try{document.execCommand("copy")}catch(_){}a.remove();}b.textContent=t.copied;setTimeout(()=>b.textContent=t.copy,1500);});}
+function openDr(n){if(!open)lastFocus=document.activeElement;open=n;fillDr(n);$("dr").hidden=false;$("drClose").focus();}
+function go(n){if(n<1||n>N)return;open=n;setCur(n,true);fillDr(n);$("drClose").focus();}
+function closeDr(){$("dr").hidden=true;open=0;if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g){const n=idx(g.dataset.go);setCur(n,false);openDr(n);return;}
+ const t=e.target.closest(".st .dot, .li");if(!t)return;const n=+t.closest("[data-i]").dataset.i;setCur(n,false);openDr(n);});
+$("dr").addEventListener("click",e=>{if(e.target.id==="dr")closeDr();});
+$("prevBtn").onclick=()=>setCur(cur-1,true);$("nextBtn").onclick=()=>setCur(cur+1,true);$("detBtn").onclick=()=>{if(cur)openDr(cur);};
+document.addEventListener("keydown",e=>{if(e.altKey||e.ctrlKey||e.metaKey)return;const fwd=lang==="ar"?"ArrowLeft":"ArrowRight",back=lang==="ar"?"ArrowRight":"ArrowLeft";
+ if(open){if(e.key==="Escape"){closeDr();e.preventDefault();}else if(e.key===fwd){go(open+1);e.preventDefault();}else if(e.key===back){go(open-1);e.preventDefault();}return;}
+ if(e.key===fwd){setCur(cur+1,true);e.preventDefault();}else if(e.key===back){setCur(cur-1,true);e.preventDefault();}});
+if(mq.addEventListener)mq.addEventListener("change",()=>{L=[];render(false);});
+root.setAttribute("data-style","b");
+$("themeBtn").onclick=()=>{const t=root.getAttribute("data-theme");const dark=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches;root.setAttribute("data-theme",dark?"light":"dark");};
+$("langBtn").onclick=()=>{lang=lang==="ar"?"en":"ar";build();};
+root.lang="ar";root.dir="rtl";
+build();
+})();
+</script>
+
+</body>
+</html>
