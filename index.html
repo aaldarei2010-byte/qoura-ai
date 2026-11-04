@@ -456,6 +456,7 @@ html[dir="rtl"] .field label{font-family:var(--body);letter-spacing:0;text-trans
   color:var(--copper-2);margin:0 0 .85rem;font-weight:500}
 html[dir="rtl"] .ftr h5{font-family:var(--body);letter-spacing:0;text-transform:none;font-size:.82rem}
 .ftr ul{list-style:none;margin:0;padding:0;display:grid;gap:.45rem}
+.wa-link{display:inline-flex;align-items:center;gap:6px}.wa-ic{flex:none;vertical-align:middle;display:inline-block;margin-inline-end:4px}.wa-note{font-size:.78em;opacity:.75}
 .ftr a{font-size:.92rem;opacity:.78;transition:.3s}
 .ftr a:hover{opacity:1;color:var(--copper-2)}
 .ftr-btm{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
@@ -1063,9 +1064,9 @@ const logo = (pt, cls='', set=LOGOS) => {
    "have you done this before, and did it hold?" The full record,
    with definitions and method, lives on the impact page. */
 const HOME_STATS = [
-  {v:7000, suf:'+', l:['Professionals trained','متدرّب تم تأهيلهم']},
-  {v:85,   suf:'%', l:['Clients who return for a second engagement','من العملاء يعودون للتعاون مرة أخرى']},
-  {v:95,   suf:'%', l:['Overall satisfaction','الرضا العام']}
+  {v:7000, suf:'+', l:['Professionals trained','متدرب ومستفيد']},
+  {v:85,   suf:'%', l:['Clients who return for a second engagement','من العملاء يعودون لتجارب أو مشاريع جديدة']},
+  {v:95,   suf:'%', l:['Overall satisfaction','نسبة الرضا الإجمالية']}
 ];
 
 /* Full ledger. Each figure states what it counts, what it
@@ -1186,19 +1187,19 @@ PAGES['/'] = {
   {type:'directive', bg:'paper',
    kicker:['A national objective','هدف وطني'],
    quote:['Half of federal government operations on agentic AI, within two years.',
-          'نصف العمليات الحكومية الاتحادية على الذكاء الاصطناعي المساعد خلال عامين.'],
+          '50% من قطاعات وخدمات وعمليات الحكومة إلى الذكاء الاصطناعي المساعد خلال عامين'],
    lead:['On 23 April 2026 the UAE Government announced a new operating model: within two years, 50% of federal sectors, services and operations are to run on agentic AI, and federal employees are to become experts in the field through continuous, specialised training.',
-         'في 23 أبريل 2026 أعلنت حكومة الإمارات منظومة عمل جديدة: خلال عامين، تعمل 50% من القطاعات والخدمات والعمليات الاتحادية بالذكاء الاصطناعي المساعد، ويتحول موظفو الحكومة الاتحادية إلى خبراء في المجال عبر تدريب تخصصي متواصل.'],
+         'في 23 أبريل 2026، أعلنت حكومة دولة الإمارات عن هدف طموح: تحويل 50% من قطاعات وخدمات وعمليات الحكومة إلى الذكاء الاصطناعي المساعد (Agentic AI) خلال عامين، مع تمكين موظفي الحكومة الاتحادية من خلال التدريب المتخصص والمستمر.'],
    lead2:['Reaching that objective is a people question before it is a technology question. Qoura helps entities get there smoothly: we build the skills, the workflows and the confidence inside teams so the transition holds.',
-          'وبلوغ هذا الهدف مسألة كوادر قبل أن يكون مسألة تقنية. تساعد قُرى الجهات على الوصول إليه بسلاسة: نبني المهارات والمسارات والثقة داخل الفرق حتى يثبت التحول.'],
+          'تحقيق هذا الهدف لا يتعلق بالتكنولوجيا وحدها، بل بجاهزية الإنسان. وهنا يأتي دور Qoura: نساعد الجهات على بناء المهارات، وتطوير أساليب العمل، وتمكين فرقها من تبني الذكاء الاصطناعي بثقة واستدامة.'],
    facts:[
-     {dt:['Target','المستهدف'], dd:['50% of federal sectors, services and operations','50% من القطاعات والخدمات والعمليات الاتحادية']},
+     {dt:['Target','المستهدف'], dd:['50% of federal sectors, services and operations','50% من قطاعات وخدمات وعمليات الحكومة']},
      {dt:['Timeframe','الإطار الزمني'], dd:['Two years from the April 2026 announcement','عامان من إعلان أبريل 2026']},
-     {dt:['Model','النموذج'], dd:['Agentic AI, self-executing and self-directing','ذكاء اصطناعي مساعد، ذاتي التنفيذ والقيادة']}
+     {dt:['Model','النموذج'], dd:['Agentic AI, self-executing and self-directing','الذكاء الاصطناعي المساعد (Agentic AI)، القادر على تنفيذ المهام واتخاذ الإجراءات بشكل ذاتي ضمن أطر محددة']}
    ],
    srcLabel:['Announced by H.H. Sheikh Mohammed bin Rashid Al Maktoum, Vice President and Prime Minister of the UAE and Ruler of Dubai, under the directives of the President. Source:',
-             'أعلنه صاحب السمو الشيخ محمد بن راشد آل مكتوم، نائب رئيس الدولة رئيس مجلس الوزراء حاكم دبي، بتوجيهات رئيس الدولة. المصدر:'],
-   srcName:['UAE Government Media Office','المكتب الإعلامي لحكومة الإمارات'],
+             'المصدر:'],
+   srcName:['UAE Government Media Office','مكتب الإعلام الحكومي لحكومة دولة الإمارات'],
    srcHref:'https://www.mediaoffice.ae/en/news/2026/april/23-04/mohammed-bin-rashid-chairs-uae-cabinet-meeting'},
 
   {type:'statement', bg:'dark',
@@ -1211,39 +1212,39 @@ PAGES['/'] = {
           'قُرى تعمل عند هذه الطبقة تحديداً. ندرّب من يؤدي العمل، ونعيد بناء المسارات التي يديرها، ونبقى إلى أن تثبت الطريقة الجديدة. ولهذا <strong>يعود 85% من عملائنا</strong> للتعاون مرة أخرى.']]},
 
   {type:'facts', bg:'paper', items:[
-     {icon:'landmark', dt:['Founded in','التأسيس'],
-      dd:['The UAE. Aligned with the national AI agenda and Vision 2031.','الإمارات. بما يتماشى مع أجندة الذكاء الاصطناعي الوطنية ورؤية 2031.']},
-     {icon:'chat', dt:['Delivered in','لغة التقديم'],
-      dd:['Arabic or English, whichever your teams work in.','بالعربية أو الإنجليزية، بحسب لغة العمل لدى فرقكم.']},
-     {icon:'chart', dt:['Measured by','مقياس النجاح'],
-      dd:['Operational outcomes and sustained use, not just training hours or certificates.','نتائج تشغيلية واستخدام مستمر، لا مجرد ساعات تدريب وشهادات.']}
+     {icon:'landmark', dt:['Founded in','تأسست في'],
+      dd:['The UAE. Aligned with the national AI agenda and Vision 2031.','الإمارات، بما يتماشى مع الأجندة الوطنية للذكاء الاصطناعي ورؤية الإمارات 2031.']},
+     {icon:'chat', dt:['Delivered in','تُقدَّم باللغتين'],
+      dd:['Arabic or English, whichever your teams work in.','العربية والإنجليزية، وفقاً للغة التي تعمل بها فرقكم.']},
+     {icon:'chart', dt:['Measured by','نقيس أثرها عبر'],
+      dd:['Operational outcomes and sustained use, not just training hours or certificates.','النتائج التشغيلية والاستخدام المستدام، لا بعدد ساعات التدريب أو الشهادات فقط.']}
    ]},
 
   {type:'stats', items:HOME_STATS,
-   kicker:['Track record','السجل'],
-   title:['The three figures that matter most.','الأرقام الثلاثة الأهم.'],
+   kicker:['Track record','سجل الإنجازات'],
+   title:['The three figures that matter most.','ثلاثة أرقام تختصر أثرنا.'],
    lead:['Emirati, institution-native and measured on adoption: these three figures are the evidence behind that position. The full record is on the impact page.',
-         'إماراتية، نابعة من المؤسسة، وتُقاس بالتبنّي: هذه الأرقام الثلاثة هي الدليل على هذا الموقع. السجل الكامل منشور في صفحة الأثر.'],
-   after:{href:'#/impact', label:['See the full record','اطّلع على السجل الكامل']}},
+         'خبرة إماراتية، فهم عميق للمؤسسات، ونتائج يمكن قياسها. هذه الأرقام تعكس أثرنا الحقيقي ومستوى الثقة التي بنيناها مع عملائنا. للاطلاع على سجلنا الكامل، تفضل بزيارة صفحة الأثر.'],
+   after:{href:'#/impact', label:['See the full record','اطّلع على سجلنا الكامل']}},
 
   {type:'grid', cols:3, bg:'paper',
    kicker:['Three divisions','ثلاثة أقسام'],
-   title:['One firm, three audiences that need very different things.','شركة واحدة، وثلاث فئات لكلٍّ منها احتياج مختلف تماماً.'],
+   title:['One firm, three audiences that need very different things.','جهة واحدة، وثلاث فئات باحتياجات مختلفة.'],
    lead:['A senior executive, a frontline team and a secondary-school student do not learn the same way. Each curriculum is developed based on the custom needs and pace of each division.',
-         'لا يتعلم القيادي التنفيذي وفريق الخدمة وطالب المرحلة الثانوية بالطريقة نفسها. يُبنى كل منهج بحسب الاحتياجات الخاصة وإيقاع كل قسم.'],
+         'لا يتعلم القيادي، وموظف العمل الميداني، وطالب المرحلة الثانوية بالطريقة نفسها. لذلك نطوّر كل برنامج بما يناسب احتياجات كل فئة وسرعة تعلّمها.'],
    items:[
-     {shape:'sq', tag:['Qoura Gov','قُرى الحكومي'], href:'#/gov',
+     {shape:'sq', tag:['Qoura Gov','قُرى للحكومة'], ctaLabel:['Explore','استكشف'], href:'#/gov',
       icon:'landmark', title:['Government & sovereign entities','الجهات الحكومية والسيادية'],
       text:['AI strategy, workflow automation and department-wide enablement for entities delivering on the national agenda.',
-            'استراتيجيات الذكاء الاصطناعي، وأتمتة العمليات، وتمكين الإدارات في الجهات التي تنفّذ الأجندة الوطنية.']},
-     {shape:'rd', tag:['Qoura Enterprise','قُرى للمؤسسات'], href:'#/enterprise',
+            'استراتيجيات للذكاء الاصطناعي، وأتمتة سير العمل، وتمكين فرق العمل لدعم تنفيذ الأجندة الوطنية.']},
+     {shape:'rd', tag:['Qoura Enterprise','قُرى للمؤسسات'], ctaLabel:['Explore','استكشف'], href:'#/enterprise',
       icon:'briefcase', title:['Enterprise & professional training','التدريب المؤسسي والمهني'],
       text:['Structured programmes that move a workforce from first prompt to building and running its own AI agents.',
-            'برامج متدرّجة تنقل فرق العمل من أول أمر نصّي إلى بناء وكلاء ذكاء اصطناعي وتشغيلهم.']},
-     {shape:'pl', tag:['Qoura Youth','قُرى للشباب'], href:'#/youth',
-      icon:'cap', title:['Youth, ages 10 to 17','النشء، من 10 إلى 17 عاماً'],
+            'برامج بمستويات مختلفة تنقل فرق العمل من أساسيات استخدام الذكاء الاصطناعي إلى بناء وتشغيل وكلائه.']},
+     {shape:'pl', tag:['Qoura Youth','قُرى للشباب'], ctaLabel:['Explore','استكشف'], href:'#/youth',
+      icon:'cap', title:['Youth, ages 10 to 17','الشباب من 10 إلى 17 عاماً'],
       text:['Camps, competitions and creative build sessions that teach AI safely, and teach judgement alongside it.',
-            'معسكرات ومسابقات وجلسات بناء إبداعية تعلّم الذكاء الاصطناعي بأمان، وتغرس الحكم السليم في استخدامه.']}
+            'معسكرات ومسابقات وتجارب إبداعية تعلّم الشباب استخدام الذكاء الاصطناعي بأمان، وتساعدهم على استخدامه بوعي ومسؤولية.']}
    ]},
 
   {type:'steps', bg:'dark', variant:'grid',
@@ -1266,9 +1267,9 @@ PAGES['/'] = {
 
   {type:'gallery', bg:'paper',
    kicker:['From the field','من الميدان'],
-   title:['The work, as it actually happens.','العمل كما يجري فعلاً.'],
+   title:['The work, as it actually happens.','هكذا تبدو التجربة على أرض الواقع.'],
    lead:['Sessions and working rounds with client teams. Practice on live material, not just slides about it.',
-         'جلسات وجولات عمل مع فرق العملاء. تطبيق على مواد حقيقية، لا مجرد شرائح عنها.'],
+         'لقطات من جلساتنا وورش العمل مع فرق عملائنا، حيث يتحول التعلّم إلى تجربة عملية وتطبيق مباشر.'],
    items:[
      {src:MEDIA.g_room, cap:['Enablement cohort in session','دفعة تمكين أثناء الجلسة']},
      {src:MEDIA.g_dash, cap:['Reviewing a decision dashboard with a client team','مراجعة لوحة قرارات مع فريق العميل']},
@@ -1297,10 +1298,10 @@ PAGES['/'] = {
    ]},
 
   {type:'cta', bg:'paper2',
-   title:['Tell us what your teams are stuck on.','أخبرنا أين تتعثّر فرقكم.'],
+   title:['Tell us what your teams are stuck on.','أخبرنا بما تواجهه فرقك من تحديات.'],
    text:['A first conversation is a scoping call, not a pitch. We will tell you honestly whether training is the right answer for what you are describing.',
-         'اللقاء الأول جلسة تحديد نطاق لا عرضاً تجارياً. سنخبركم بصراحة ما إذا كان التدريب هو الحل الصحيح لما تصفونه.'],
-   ctas:[{href:'#/contact',label:['Book a scoping call','احجز جلسة تحديد نطاق']},{href:'#/impact',label:['Read the impact record','اطّلع على سجل الأثر'],ghost:true}]}
+         'ابدأ معنا بمحادثة لفهم احتياجاتك بشكل أوسع، وسنساعدك على تحديد نوع التدريب الأنسب لك ولفريقك، بما يتناسب مع احتياجاتكم وأهدافكم.'],
+   ctas:[{href:'#/contact',label:['Book a scoping call','احجز جلسة استكشاف']},{href:'#/impact',label:['Read the impact record','اطّلع على سجل الأثر'],ghost:true}]}
 ]};
 
 /* ------------------------------ ABOUT ------------------------------ */
@@ -2142,7 +2143,7 @@ const cardEl = it => {
     ${it.text?`<p>${T(it.text)}</p>`:''}
     ${it.logos?`<span class="lg-row">${it.logos.map(f=>logo(P_BY[f],'lg-sm')).join('')}</span>`:''}
     ${it.bullets?`<ul>${it.bullets.map(b=>`<li>${T(b)}</li>`).join('')}</ul>`:''}
-    ${it.href?`<span class="tlink card-cta">${L.i?'اعرف المزيد':'Explore'} <span class="arw">${ARW()}</span></span>`:''}
+    ${it.href?`<span class="tlink card-cta">${it.ctaLabel?T(it.ctaLabel):(L.i?'اعرف المزيد':'Explore')} <span class="arw">${ARW()}</span></span>`:''}
   </${tag}>`;
 };
 
@@ -2514,8 +2515,8 @@ const R = {
       <aside ${rv('panel')}>
         <h4 class="d4">${L.i?'التواصل المباشر':'Direct contact'}</h4>
         <dl>
-          <div><dt>${L.i?'البريد':'Email'}</dt><dd><a href="mailto:Info@qoura.ai">Info@qoura.ai</a><br><a href="mailto:Mahmoud.atef@qoura.ai">Mahmoud.atef@qoura.ai</a></dd></div>
-          <div><dt>${L.i?'الهاتف':'Phone'}</dt><dd><a href="tel:+971507300052" dir="ltr">+971 50 730 0052</a></dd></div>
+          <div><dt>${L.i?'البريد':'Email'}</dt><dd><a href="mailto:Info@qoura.ai">Info@qoura.ai</a></dd></div>
+          <div><dt>${L.i?'واتساب':'WhatsApp'}</dt><dd><a class="wa-link" href="https://wa.me/971501258179" target="_blank" rel="noopener"><svg class="wa-ic" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M17.3 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg><span dir="ltr">+971 50 125 8179</span></a><br><small class="wa-note">${L.i?'واتساب فقط':'WhatsApp only'}</small></dd></div>
           <div><dt>${L.i?'الموقع':'Location'}</dt><dd>${L.i?'أبوظبي، الإمارات العربية المتحدة':'Abu Dhabi, United Arab Emirates'}</dd></div>
           <div><dt>${L.i?'لينكدإن':'LinkedIn'}</dt><dd><a href="https://www.linkedin.com/company/qoura-ai" target="_blank" rel="noopener">linkedin.com/company/qoura-ai</a></dd></div>
           <div><dt>${L.i?'إنستغرام':'Instagram'}</dt><dd><a href="https://www.instagram.com/qoura.ai/" target="_blank" rel="noopener">instagram.com/qoura.ai</a></dd></div>
@@ -2563,7 +2564,7 @@ function paintFooter(){
         {href:'#/contact',label:['Contact','تواصل معنا']}])}
       ${col(['Get in touch','للتواصل'],[
         {href:'mailto:Info@qoura.ai',label:['Info@qoura.ai','Info@qoura.ai']},
-        {href:'tel:+971507300052',label:['+971 50 730 0052','+971 50 730 0052']},
+        {href:'https://wa.me/971501258179',ext:1,label:['<svg class="wa-ic" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M17.3 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg><span dir="ltr">+971 50 125 8179</span> <small class="wa-note">(WhatsApp only)</small>','<svg class="wa-ic" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M17.3 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1l-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg><span dir="ltr">+971 50 125 8179</span> <small class="wa-note">(واتساب فقط)</small>']},
         {href:'https://www.linkedin.com/company/qoura-ai',ext:1,label:['LinkedIn','لينكدإن']},
         {href:'https://www.instagram.com/qoura.ai/',ext:1,label:['Instagram','إنستغرام']}])}
     </div>
@@ -2849,7 +2850,7 @@ function bind(){
       if(note) note.textContent = L.i
         ? 'تعذّر الإرسال المباشر، ففتحنا بريدكم بالرسالة جاهزة. اضغطوا إرسال من هناك.'
         : 'Direct sending was unavailable, so your mail app has opened with the message ready. Press send there.';
-      location.href = `mailto:Info@qoura.ai?cc=Mahmoud.atef@qoura.ai&subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(mailBody)}`;
+      location.href = `mailto:Info@qoura.ai?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(mailBody)}`;
     });
   });
 }
