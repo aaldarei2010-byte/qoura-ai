@@ -167,13 +167,13 @@ details.kit{margin-top:8px;border-top:1px solid var(--line);padding-top:8px}deta
 /* ================= TRAINER SETTINGS (edit only this block) ================= */
 const FORM_MODE="external";   // "external" = Microsoft Forms links below | "internal" = questions inside this page
 const API_URL="";             // optional server endpoint, e.g. "/api/event". Empty = progress stays on the participant's device only
-const FORMS={ pre:"https://forms.cloud.microsoft/r/LNHfmKCDXP", post:"" };   // Microsoft Forms: paste the Presidential Flight pre and post survey links here (the participant writes their name inside the form)
+const FORMS={ pre:"https://forms.cloud.microsoft/r/LNHfmKCDXP", post:"https://forms.cloud.microsoft/r/XG39WXsGQE" };   // Microsoft Forms: paste the Presidential Flight pre and post survey links here (the participant writes their name inside the form)
 // Optional date lock. Empty lists = no date lock: every day is open from the start and the participant moves station by station.
 // To lock each day to its own date (UAE time), use: {1:["2026-11-17"],2:["2026-11-18"],3:["2026-11-19"]}
 const PRE_SURVEY=true;     // true = participants fill the pre-training survey before the journey opens
-const PRE_SURVEY_UNTIL="";   // last date (UAE time) the pre-survey is asked; from the next day everyone goes straight into the journey. Empty = always ask
+const PRE_SURVEY_UNTIL="2026-11-17";   // last date (UAE time) the pre-survey is asked; from the next day everyone goes straight into the journey. Empty = always ask
 const DATES={1:[],2:[],3:[]};   // programme dates: 17, 18 and 19 November 2026 (UAE time); left open so every day is available from Day 1
-const POST_OPEN_AT="2026-11-19 13:00";   // UAE time: the post-training survey card appears from this moment. Empty = from the start of Day 3
+const POST_OPEN_AT="2026-11-19 12:00";   // UAE time: the post-training survey card appears from this moment. Empty = from the start of Day 3
 const ALLOW_PAST_DAYS=true;   // with a date lock: true = a day stays open after its date has passed
 const DAY_MATERIALS={1:[],2:[],3:[]};   // optional links per day: {en:"...",ar:"...",url:"https://..."}
 // Programme files (IATA Annual Review 2026, PF_Cabin_Inventory_Oct2026.xlsx, Vendor A and B contracts, the two prompting guides) are on PF OneDrive.
