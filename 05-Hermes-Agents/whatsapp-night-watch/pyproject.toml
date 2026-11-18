@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wa-watch"
+version = "0.1.0"
+description = "WhatsApp Night Watch: a local, human-paced WhatsApp Web reader that feeds Hermes Agent (Qoura AI)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary — Qoura AI" }
+dependencies = ["playwright>=1.49", "PyYAML>=6.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+wa-watch = "wa_watch.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+wa_watch = ["js/*.js", "fixtures/*.html", "templates/*.yaml", "hermes_assets/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

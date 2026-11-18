@@ -1,0 +1,56 @@
+# ─────────────────────────────────────────────────────────────
+#  WhatsApp Night Watch — إعدادات قارئ الواتساب الليلي (Qoura AI)
+#  المكان: ~/.qoura/wa-watch/config.yaml  (على الماك ميني فقط)
+#  الأسرار (توكن تيليجرام) ما تنكتب هنا — تنقرأ من ~/.hermes/.env
+# ─────────────────────────────────────────────────────────────
+
+owner_name: "عبدالله"
+owner_aliases: ["Abdulla", "Abdullah", "عبدالله", "عبد الله"]   # لكشف المنشن في المجموعات
+timezone: "Asia/Dubai"
+
+scan:
+  mode: preview            # preview = ما يفتح أي محادثة (ما توصلهم علامة القراءة الزرقاء)
+  lookback_hours: 24       # يقرأ نشاط آخر 24 ساعة
+  max_rows: 80             # أقصى عدد محادثات يقرأها في كل مرور
+  max_minutes: 25          # سقف زمني للجلسة؛ بعده يوقف بهدوء ويحفظ اللي قرأه
+  jitter_minutes: 20       # يبدأ بدقيقة مختلفة كل ليلة (مثل الإنسان)
+  use_unread_filter: true
+  awaiting_reply: true     # يطلع لك الناس اللي قريت رسايلهم وما رديت
+  detect_groups: true
+  ignore_chats: ["WhatsApp", "Meta AI"]
+
+deep_read:                 # القراءة المعمقة: يفتح المحادثات غير المقروءة ويقرأ آخر الرسائل
+  enabled: false           # ⚠️ إذا تشغّلها: المرسل يشوف الصحين الزرق إلا إذا مطفي "إشعار القراءة" عندك
+  include_groups: false    # المجموعات دايماً ترسل إشعار القراءة، فخلها false
+  max_chats: 15
+  max_messages_per_chat: 12
+  restore_unread: true     # يرجع المحادثة "غير مقروءة" بعد ما يقرأها عشان تشوفها في تلفونك
+
+human:
+  profile: calm            # calm (الافتراضي، بطيء وطبيعي) أو normal
+
+priority:
+  vip: []                  # أسماء تطلع دايماً فوق، مثال: ["Mom", "سعادة"]
+  urgent_keywords: [عاجل, ضروري, مستعجل, بسرعة, الحين, اليوم, اتصل, كلمني, "رد علي", اجتماع, موعد, توقيع, عقد, دفعة, فاتورة, مهم,
+                    urgent, asap, important, "call me", meeting, deadline, today, contract, invoice, payment, sign]
+
+delivery:
+  mode: hermes             # hermes = Hermes يرسل التقرير (تيليجرام الحين، واتساب لاحقاً) | direct = يرسل مباشرة لتيليجرام
+  format: plain            # plain لتيليجرام · whatsapp لما تحول التسليم للواتساب (خط عريض *هكذا*)
+  telegram_chat_id: null   # فاضي = نفس محادثة Hermes (TELEGRAM_HOME_CHANNEL)
+  include_previews: true   # false = أرقام وأسماء فقط بدون نص الرسائل
+  max_items: 12
+  night_ping: false        # true = رسالة قصيرة بالليل "خلص المسح"
+  alerts_at_night: false   # true = تنبيه فوري بالليل إذا الواتساب يحتاج إعادة ربط
+  stale_after_hours: 20
+
+llm:                       # المرحلة الثانية: ذكاء اصطناعي محلي (Qwen 3.5) — البيانات ما تطلع من الماك ميني
+  enabled: false
+  provider: ollama
+  base_url: "http://127.0.0.1:11434"
+  model: "qwen3.5:9b"      # 16GB → qwen3.5:9b · 32GB → qwen3.5:27b · 48GB+ → qwen3.5:35b
+  allow_remote: false      # حماية: يرفض أي سيرفر غير الجهاز نفسه
+  timeout_s: 240
+  num_ctx: 16384
+
+retention_days: 30         # يمسح البيانات الأقدم من 30 يوم تلقائياً
