@@ -22,11 +22,11 @@ def seeded_store(tmp_path, status="ok"):
     sid = store.begin_scan(datetime(2026, 11, 18, 2, 41, tzinfo=TZ), "preview")
     store.save_chats(sid, [
         chat("Ahmed", 3, preview="ضروري نتكلم بخصوص العقد"),
-        chat("Salem", 1, preview="تمام"),
+        chat("Majid", 1, preview="تمام"),
         chat("Mom", 1, preview="اتصل لي <b>"),
-        chat("Team", 12, is_group=True, preview="Mohammed: @Abdulla نبي رأيك"),
+        chat("Team", 12, is_group=True, preview="Ali: @Abdulla نبي رأيك"),
         chat("Family", 9, is_group=True, muted=True),
-        chat("Afra", 0, awaiting_reply=True, preview="ننتظر ردك", source="all"),
+        chat("Maryam", 0, awaiting_reply=True, preview="ننتظر ردك", source="all"),
     ])
     store.finish_scan(sid, status, datetime(2026, 11, 18, 2, 52, tzinfo=TZ), meta={"opened_chats": 0})
     return store, sid

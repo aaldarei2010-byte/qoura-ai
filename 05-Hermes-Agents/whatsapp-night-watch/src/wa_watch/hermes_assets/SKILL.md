@@ -26,7 +26,7 @@ Command: `~/.qoura/wa-watch/bin/wa-watch` (below: `wa-watch`).
 
 Abdulla asks things like:
 - «مين كلمني؟» «كم واحد كلمني أمس؟» «عطني تقرير الواتساب» → **Brief**
-- «شو قال أحمد؟» «في شي من سالم؟» → **Look up a person**
+- «شو قال أحمد؟» «في شي من خالد؟» → **Look up a person**
 - «مين ما رديت عليه؟» → **Brief** (section «بانتظار ردك»)
 - «سو مسح للواتساب الحين» → **Scan now**
 - «اربط الواتساب» / the brief says WhatsApp needs linking → **Re-link**

@@ -37,8 +37,8 @@ def test_dates_fix_obvious_order_mistakes():
 
 
 def test_pre_plain_text():
-    when, sender = parse_pre_plain("[10:32 PM, 11/17/2026] Ahmed Al Kaabi: ", TZ)
-    assert sender == "Ahmed Al Kaabi" and when == datetime(2026, 11, 17, 22, 32, tzinfo=TZ)
+    when, sender = parse_pre_plain("[10:32 PM, 11/17/2026] Khalid: ", TZ)
+    assert sender == "Khalid" and when == datetime(2026, 11, 17, 22, 32, tzinfo=TZ)
 
 
 def test_arabic_labels():

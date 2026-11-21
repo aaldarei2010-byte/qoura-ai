@@ -26,11 +26,11 @@ def test_preview_scan_reads_everything_without_opening_chats(browser_cfg, fake_u
     assert (t["groups"], t["group_messages"]) == (3, 19)
     assert (t["muted_chats"], t["muted_messages"], t["awaiting_reply"]) == (2, 39, 2)
     by_name = {c["name"]: c for c in res.chats}
-    assert by_name["Zayed"]["marked_unread"] and by_name["فريق قرى AI"]["is_group"]
-    assert by_name["Afra"]["awaiting_reply"] and not by_name.get("Shiekha", {}).get("awaiting_reply")
+    assert by_name["Saif"]["marked_unread"] and by_name["Project Team"]["is_group"]
+    assert by_name["Maryam"]["awaiting_reply"] and not by_name.get("Noura", {}).get("awaiting_reply")
     assert "Mom" not in by_name                     # pinned, old, read: not reported
     text = render(digest_for(cfg, res), "plain", cfg)
-    assert "كلمك 7 أشخاص" in text and "Ahmed Al Kaabi" in text
+    assert "كلمك 7 أشخاص" in text and "Khalid" in text
 
 
 def test_deep_read_opens_people_only_and_restores_unread(browser_cfg, fake_url):
@@ -38,10 +38,10 @@ def test_deep_read_opens_people_only_and_restores_unread(browser_cfg, fake_url):
     res = run_scan(cfg, jitter=False, url=fake_url, now_fn=lambda: FIXED_NOW)
     assert res.status == "ok", res.error
     chats_read = {m["chat_name"] for m in res.messages}
-    assert chats_read == {"Ahmed Al Kaabi", "Salem Al Menhali", "+971 50 123 4567", "Manal", "Zayed", "Osama", "Old Friend"}
+    assert chats_read == {"Khalid", "Majid", "+971 50 123 4567", "Reem", "Saif", "Faisal", "Old Friend"}
     assert "restore_failed" not in res.meta
-    ahmed = [m for m in res.messages if m["chat_name"] == "Ahmed Al Kaabi"]
-    assert len(ahmed) == 3 and ahmed[-1]["sender"] == "Ahmed Al Kaabi" and ahmed[-1]["sent_at"].hour == 1
+    ahmed = [m for m in res.messages if m["chat_name"] == "Khalid"]
+    assert len(ahmed) == 3 and ahmed[-1]["sender"] == "Khalid" and ahmed[-1]["sent_at"].hour == 1
 
 
 def test_logged_out_whatsapp_is_reported_with_qr(browser_cfg, fake_url):
